@@ -9,12 +9,13 @@ enum Dir {
 	Count
 };
 
+
+# Editor stuff ==============
 export var card_name : String setget set_name;
 export(String, MULTILINE) var activation_text : String setget set_activation_text;
 export(String, MULTILINE) var effect_text : String setget set_effect_text;
 export(Array, int) var values : Array = [0,0,0,0] setget set_values;
 
-var held = false;
 onready var Labels = [$Right, $Top, $Left , $Down];
 
 onready var CardName = $CardName;
@@ -56,16 +57,40 @@ func update_card_numbers():
 	update();
 	
 
+# Game stuff
+
+var choucroute = false;
+var hovered = false;
+
 func _ready() -> void:
 	update_card_numbers();
 	pass # Replace with function body.
+	
+func _physics_process(delta: float) -> void:
+	if (choucroute == true):
+		position = get_global_mouse_position();
+		modulate = Color.red;
+	elif (hovered == true):
+		modulate = Color.gray;
+	else:
+		modulate = Color.white;
 
-func _input_event(viewport, event, shape_idx):
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			held = true;
-			get_tree().set_input_as_handled()
-			print("Inpoute");
-		elif event.button_index == BUTTON_LEFT and !event.pressed:
-			held = false;
+		if event.button_index == BUTTON_LEFT && event.pressed && hovered:
+			choucroute = true;
+			print("Pressed %s" % str(self))
+			get_tree().set_input_as_handled();
+		elif event.button_index == BUTTON_LEFT && event.pressed == false && choucroute:
+			choucroute = false;
+			print("Unpressed %s" % str(self))
+			get_tree().set_input_as_handled();
 
+
+
+func _on_Node2D_mouse_entered() -> void:
+	hovered = true;
+
+
+func _on_Node2D_mouse_exited() -> void:
+	hovered = false;
