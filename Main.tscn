@@ -13,6 +13,21 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 5000, 5000 )
 
+[node name="Node2D3" parent="." instance=ExtResource( 2 )]
+position = Vector2( -609, 599 )
+card_name = "Coucou"
+activation_text = "Coucou"
+effect_text = "Coucou"
+
+[node name="Node2D4" parent="." instance=ExtResource( 2 )]
+position = Vector2( -236, 598 )
+
+[node name="Node2D5" parent="." instance=ExtResource( 2 )]
+position = Vector2( -240, 1097 )
+
+[node name="Node2D6" parent="." instance=ExtResource( 2 )]
+position = Vector2( -610, 1095 )
+
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
 position = Vector2( 177, 264 )
 values = [ 5, 2, 7, 4 ]

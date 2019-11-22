@@ -12,6 +12,7 @@ extents = Vector2( 178, 241 )
 [node name="Node2D" type="KinematicBody2D"]
 input_pickable = true
 script = ExtResource( 1 )
+card_name = ""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -53,7 +54,7 @@ margin_right = -147.0
 rect_pivot_offset = Vector2( 12, 10 )
 text = "0"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="ActivationText" type="RichTextLabel" parent="."]
 margin_left = -135.0
 margin_top = 14.0
 margin_right = 134.0
