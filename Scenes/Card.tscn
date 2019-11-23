@@ -27,7 +27,6 @@ margin_right = 145.0
 margin_bottom = -166.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Card Name"
 
 [node name="Top" parent="." instance=ExtResource( 4 )]
 margin_top = -234.0
@@ -63,8 +62,6 @@ custom_fonts/bold_font = ExtResource( 5 )
 custom_fonts/normal_font = ExtResource( 3 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
-bbcode_text = "[center]COUCOU[/center]"
-text = "COUCOU"
 scroll_active = false
 
 [node name="EffectText" type="RichTextLabel" parent="."]
@@ -76,8 +73,6 @@ custom_fonts/bold_font = ExtResource( 5 )
 custom_fonts/normal_font = ExtResource( 3 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
-bbcode_text = "Hello worlds [b]Keyword[/b]"
-text = "Hello worlds Keyword"
 scroll_active = false
 [connection signal="mouse_entered" from="." to="." method="_on_Node2D_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Node2D_mouse_exited"]

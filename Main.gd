@@ -27,7 +27,6 @@ func _ready() -> void:
 		peer.create_client(SERVER_ADRESS, SERVER_PORT);
 		get_tree().set_network_peer(peer)
 	
-	
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
