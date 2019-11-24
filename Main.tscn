@@ -40,6 +40,13 @@ script = ExtResource( 3 )
 
 [node name="Node2D2" parent="Control/Viewport" instance=ExtResource( 4 )]
 
+[node name="Node2D" parent="Control" instance=ExtResource( 4 )]
+position = Vector2( 194, 327 )
+card_damage = "5 DMG"
+card_type = 1
+card_attribute = 4
+card_condition = 1
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 drag_margin_left = 0.0

@@ -1,45 +1,259 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Scenes/Card.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Card/CardTemplate.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Font/Arial.tres" type="DynamicFont" id=3]
-[ext_resource path="res://Scenes/CardNumber.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/Font/ArialBold.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Assets/Card/template_off.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Card/template_def.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Card/notch_right_off.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Card/notch_right_def.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Card/notch_up_off.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Card/notch_up_def.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Card/notch_left_off.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Card/notch_left_def.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Card/notch_down_off.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Card/notch_down_def.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Font/ArialBold.tres" type="DynamicFont" id=12]
+[ext_resource path="res://Assets/Font/Arial.tres" type="DynamicFont" id=13]
+[ext_resource path="res://Scenes/CardNumber.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/Card/attribute_fire.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Card/attribute_ice.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Card/attribute_volt.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Card/attribute_iron.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Card/attribute_neutral.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Card/condition_persistent.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Card/condition_swift.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Card/condition_activation.png" type="Texture" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 178, 241 )
 
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "off",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "def",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "def",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "def",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "def",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "def",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "fire",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "ice",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "volt",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "iron",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "neutral",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "persistent",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ) ],
+"loop": true,
+"name": "swift",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "activation",
+"speed": 5.0
+} ]
+
 [node name="Node2D" type="KinematicBody2D"]
 input_pickable = true
 script = ExtResource( 1 )
-card_name = ""
+card_name = "Card Name"
+activation_text = "Activation text"
+effect_text = "Effect Text"
+card_damage = "4 DMG"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="CardTemplate" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="CardTemplate" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "off"
+playing = true
+
+[node name="RightNotch" type="AnimatedSprite" parent="."]
+position = Vector2( 160, 0 )
+frames = SubResource( 3 )
+animation = "off"
+playing = true
+
+[node name="TopNotch" type="AnimatedSprite" parent="."]
+position = Vector2( 1, -230 )
+frames = SubResource( 4 )
+animation = "off"
+playing = true
+
+[node name="LeftNotch" type="AnimatedSprite" parent="."]
+position = Vector2( -160, 0 )
+frames = SubResource( 5 )
+animation = "off"
+playing = true
+
+[node name="DownNotch" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 230 )
+frames = SubResource( 6 )
+animation = "off"
+playing = true
+
+[node name="DamageScale" type="Node2D" parent="."]
+position = Vector2( 93, -161 )
+scale = Vector2( 0.75, 0.75 )
+
+[node name="DamageValue" type="Label" parent="DamageScale"]
+margin_right = 77.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 12 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "4 DMG"
 
 [node name="CardName" type="Label" parent="."]
-margin_left = -143.0
-margin_top = -185.0
-margin_right = 145.0
-margin_bottom = -166.0
-custom_fonts/font = ExtResource( 3 )
+margin_left = -61.0
+margin_top = -195.0
+margin_right = 107.0
+margin_bottom = -169.0
+custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Card Name"
 
-[node name="Top" parent="." instance=ExtResource( 4 )]
-margin_top = -234.0
-margin_bottom = -215.0
+[node name="Right" parent="." instance=ExtResource( 14 )]
+margin_left = -103.0
+margin_top = -194.0
+margin_right = -80.0
+margin_bottom = -170.0
+rect_pivot_offset = Vector2( 12, 12 )
 text = "0"
 
-[node name="Right" parent="." instance=ExtResource( 4 )]
-margin_left = 147.0
-margin_right = 170.0
+[node name="Top" parent="." instance=ExtResource( 14 )]
+margin_left = -122.0
+margin_top = -212.0
+margin_right = -99.0
+margin_bottom = -188.0
+rect_pivot_offset = Vector2( 12, 12 )
+text = "0"
+
+[node name="Left" parent="." instance=ExtResource( 14 )]
+margin_left = -140.0
+margin_top = -194.0
+margin_right = -117.0
+margin_bottom = -170.0
+rect_pivot_offset = Vector2( 12, 12 )
+text = "0"
+
+[node name="Down" parent="." instance=ExtResource( 14 )]
+margin_left = -122.0
+margin_top = -174.0
+margin_right = -99.0
+margin_bottom = -150.0
+rect_pivot_offset = Vector2( 12, 12 )
+text = "0"
+
+[node name="RightNotchNumber" parent="." instance=ExtResource( 14 )]
+margin_left = 142.0
+margin_top = -11.0
+margin_right = 165.0
+margin_bottom = 13.0
 rect_pivot_offset = Vector2( 12, 10 )
 text = "0"
 
-[node name="Down" parent="." instance=ExtResource( 4 )]
+[node name="TopNotchNumber" parent="." instance=ExtResource( 14 )]
+margin_left = -12.0
+margin_top = -236.0
+margin_right = 11.0
+margin_bottom = -212.0
+rect_pivot_offset = Vector2( 12, 12 )
+text = "0"
+
+[node name="LeftNotchNumber" parent="." instance=ExtResource( 14 )]
+margin_left = -164.0
+margin_top = -11.0
+margin_right = -141.0
+margin_bottom = 13.0
+rect_pivot_offset = Vector2( 12, 10 )
+text = "0"
+
+[node name="DownNotchNumber" parent="." instance=ExtResource( 14 )]
 margin_left = -12.0
 margin_top = 212.0
 margin_right = 11.0
@@ -47,36 +261,42 @@ margin_bottom = 231.0
 rect_pivot_offset = Vector2( 12, 10 )
 text = "0"
 
-[node name="Left" parent="." instance=ExtResource( 4 )]
-margin_left = -170.0
-margin_right = -147.0
-rect_pivot_offset = Vector2( 12, 10 )
-text = "0"
-
 [node name="ActivationText" type="RichTextLabel" parent="."]
 margin_left = -135.0
-margin_top = 14.0
+margin_top = 33.0
 margin_right = 134.0
 margin_bottom = 112.0
-custom_fonts/bold_font = ExtResource( 5 )
-custom_fonts/normal_font = ExtResource( 3 )
+custom_fonts/bold_font = ExtResource( 12 )
+custom_fonts/normal_font = ExtResource( 13 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
-bbcode_text = "[center]Loremi ipsum sit dolor 
-amet eunt sdkfqsldf [/center]"
-text = "Loremi ipsum sit dolor 
-amet eunt sdkfqsldf "
+bbcode_text = "[center]Activation text[/center]"
+text = "Activation text"
 scroll_active = false
 
 [node name="EffectText" type="RichTextLabel" parent="."]
 margin_left = -144.0
-margin_top = 122.0
+margin_top = 140.0
 margin_right = 146.0
-margin_bottom = 194.0
-custom_fonts/bold_font = ExtResource( 5 )
-custom_fonts/normal_font = ExtResource( 3 )
+margin_bottom = 207.0
+custom_fonts/bold_font = ExtResource( 12 )
+custom_fonts/normal_font = ExtResource( 13 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
+bbcode_text = "[center]Effect Text[/center]"
+text = "Effect Text"
 scroll_active = false
+
+[node name="Attribute" type="AnimatedSprite" parent="."]
+position = Vector2( 128, -182 )
+frames = SubResource( 7 )
+animation = "neutral"
+playing = true
+
+[node name="Condition" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 18 )
+frames = SubResource( 8 )
+animation = "activation"
+playing = true
 [connection signal="mouse_entered" from="." to="." method="_on_Node2D_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Node2D_mouse_exited"]
