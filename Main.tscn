@@ -42,7 +42,6 @@ script = ExtResource( 3 )
 
 [node name="Node2D" parent="Control" instance=ExtResource( 4 )]
 position = Vector2( 194, 327 )
-card_damage = "5 DMG"
 card_type = 1
 card_attribute = 4
 card_condition = 1
@@ -69,6 +68,21 @@ margin_right = 97.0
 margin_bottom = 34.0
 text = "Import"
 
+[node name="Download" type="Button" parent="CanvasLayer"]
+margin_left = 226.0
+margin_top = 2.0
+margin_right = 341.0
+margin_bottom = 34.0
+text = "Download"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+visible = false
+margin_left = 3.0
+margin_top = 38.0
+margin_right = 340.0
+margin_bottom = 79.0
+
 [node name="CardDB" type="Node2D" parent="."]
 [connection signal="pressed" from="CanvasLayer/Export" to="Control/Viewport/Camera2D2" method="_on_Export_pressed"]
 [connection signal="pressed" from="CanvasLayer/Imoprt" to="." method="_on_Imoprt_pressed"]
+[connection signal="pressed" from="CanvasLayer/Download" to="." method="_on_Download_pressed"]

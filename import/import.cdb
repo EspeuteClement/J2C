@@ -1,9 +1,67 @@
-Toto la déglingue, 9, 9, 9, 9, Fire, 3, DMG, Flash, Toto joue au jeu, +999 Damage
-Toto la déglingue, 9, 9, 9, 9, Fire, 3, DMG, Flash, Toto joue au jeu, +999 Damage
-Asura's Blade, -1, 1, 2, 3, Fire, 3, DMG, Flash, Chain has exactly 7 cards, +7 Damage
-Asura's Blade, -1, 1, 2, 3, Fire, 3, DMG, Flash, Chain has exactly 7 cards, +7 Damage
-Asura's Blade, -1, 1, 2, 3, Fire, 3, DMG, Flash, Chain has exactly 7 cards, +7 Damage
-Asura's Blade, -1, 1, 2, 3, Fire, 3, DMG, Flash, Chain has exactly 7 cards, +7 Damage
-Asura's Blade, -1, 1, 2, 3, Fire, 3, DMG, Flash, Chain has exactly 7 cards, +7 Damage
-Asura's Blade, -1, 1, 2, 3, Fire, 3, DMG, Flash, Chain has exactly 7 cards, +7 Damage
-Asura's Blade of the living dead, -1, 1, 2, 3, Fire, 3, DMG, Flash, Chain has exactly 7 cards, +7 Damage
+name,type,condition,effect,condition_type,attribute,base_value,notch_count
+Dawn Battle Axe,Offense,Play this card first and in the same chain as Dusk Battle Axe,Draw one more card in your defense phase,Activation,Neutral,4,1
+Dusk Battle Axe,Offense,Play this card last and in the same chain as Dawn Battle Axe,DMG +6,Activation,Neutral,4,1
+Thrid Strike,Offense,Play this card as the third card of a chain,This card can't be countered,Swift,Neutral,3,4
+Preemptive Strike,Offense,Play this card first,This card can't be countered,Swift,Neutral,2,4
+Heavy Boomerang,Offense,The enemy has more cards than you in the chain,Put this card back in your hand at the begining of your next offensive phase,Activation,Neutral,4,4
+Crystalline Boomerang,Offense,The enemy has as many cards as you in the chain,Put this card back in your hand at the begining of your next offensive phase,Activation,Neutral,5,4
+Light Boomerang,Offense,You have more cards than the enemy in the chain,Put this card back in your hand at the begining of your next offensive phase,Activation,Neutral,2,4
+Lucky 7,Offense,Play this card as the seventh card of a chain,DMG +7,Activation,Neutral,0,4
+Virtuous Circle,Offense,There's at least one loop in the chain,"Draw a card at the end of your turn if a loop was made during this turn, discard one if a loop was broken",Persistent,Neutral,0,4
+Wicked Circle,Offense,There's at least one loop in the chain,"Deals 2 DMG at the end of your turn if a loop was made during this turn,  receive 2 DMG if a loop was broken",Persistent,Neutral,0,4
+Cycle of Life,Offense,Make a loop,Heals 5,Activation,Neutral,3,4
+Cycle of Death,Offense,Make a loop,DMG +5,Activation,Neutral,3,4
+Horizontal Assault,Offense,The width of the chain is superior or equal to 4,Deals the width of the chain as DMG,Activation,Neutral,3,4
+Vertical Assault,Offense,The height of the chain is superior or equal to 4,Deals the height of the chain as DMG,Activation,Neutral,3,4
+Square Assault,Offense,The width of the chain is equal to its height,"Deals the sum of the of the width and height off the chain as DMG, if they are still equal at when this effect is resolved",Activation,Neutral,3,4
+Fireball,Offense,The number of cards in the chain is inferior or equal to 10,DMG +1 per offense card in the chain,Activation,Fire,1,4
+Eruption,Offense,The number of cards in the chain is inferior or equal to 5,DMG +1 per card in the chain,Activation,Fire,3,4
+Ultimate Combustion,Offense,Play this card first,DMG +2 per card in the chain,Activation,Fire,5,4
+Iceball,Offense,The total base damage in the chain is superior to 10,The next card in the chain has its condition locked,Persistent,Ice,3,4
+Icecube,Offense,The total base damage in the chain is superior to 10,The previous card in the chain has its condition locked,Persistent,Ice,3,4
+Blizzard,Offense,The total base damage in the chain is superior to 15,All cards connected to this one has their conditions locked,Persistent,Ice,5,4
+Death Freeze,Offense,The total base damage in the chain is superior to 20,All cards conditions are locked,Persistent,Ice,7,4
+Short Circuit,Offense,There is at least one activated offense card in the chain,"Get a card in your deck, deactivate one of your cards",Swift,Volt,3,4
+Thunderball,Offense,There is at least two activated cards in the chain,All cards connected to this one are deactivated,Swift,Volt,3,4
+Thunderstorm,Offense,There is at least three activated cards in the chain,The last defense card activated is deactivated,Swift,Volt,3,4
+IEM Burst,Offense,There is at least five activated cards in the chain,All cards are deactivated,Swift,Volt,5,4
+Throwing Knife,Offense,There is at least 3 iron cards in the chain,DMG +1 per iron card in the chain,Activation,Iron,2,4
+Magnetic Hammer,Offense,Play this card next to an iron card,Get up to 2 iron cards in your deck,Swift,Iron,2,4
+EM Field Generator,Offense,There is at least 3 iron cards in the chain,Draw one card at the end of your turn. Discard it immediately if it is not an iron card.,Persistent,Volt,3,4
+Phoenix Rush,Offense,There is at least one card in your discard pile,"If you can play the top card of your discard pile after this one, do it immediately. If not, receive 3 DMG instead",Swift,Fire,3,
+Conductivity,Offense,There is at least 1 Iron card in the chain,Every Iron card in the chain deals 2 DMG to their respective owners,Activation,Volt,2,
+Curfew,Offense,There is at least 1 deactivated offense card in the chain,DMG+3 per deactivated offense card in the chain,Activation,Volt,0,
+ON/OFF Switch,Offense,Play this card,"You opponent deactivate one of his activated cards. If they have none, activate one of your cards",Swift,Volt,1,
+Frozen Mantle,Defense,There are 3 or more defense cards in the chain,All cards connected to this one has their conditions locked,Persistent,Ice,3,4
+Agni's Blessing,Defense,There are 3 or more Fire cards in the chain,BLK+2 per Fire card in the chain,Activation,Fire,3,4
+Electric-powered Rubber Suit,Defense,This card is connected to a Volt card,Your cards can't be deactivated anymore,Persistent,Volt,3,4
+Power Shortage,Defense,Play this card after an activated card,Deactivate the previous card,Swift,Volt,1,4
+Electrosmite,Defense,There is at least 3 activated offense cards in the chain,Deactivate an offense card,Swift,Volt,1,4
+Iron Helmet,Defense,The total base damage in the chain is superior to 7,BLK+1 per Iron card in the chain,Activation,Iron,1,4
+Iron Gloves,Defense,The total base damage in the chain is superior to 14,BLK+2 per Iron card in the chain,Activation,Iron,1,4
+Iron Buckler,Defense,The total base damage in the chain is superior to 21,BLK+3 per Iron card in the chain,Activation,Iron,1,4
+Iron Blessing,Defense,There is at least 3 iron cards in the chain,Draw one card at the end of your turn if you played an iron card this turn. ,Persistent,Iron,1,4
+Future Sight,Defense,Play this card,"If the last active card belongs to your opponent, draw a card at the begining of your offense phase",Activation,Neutral,2,4
+Glass Armour,Defense,The total base damage in the chain is superior to 40,This card's owner receives 3 DMG,Activation,Neutral,7,4
+Spiky Shield,Defense,There are 3 or more offense cards in the chain,Deals 1 DMG to the attacker when an offense card is played,Persistent,Neutral,3,4
+Greedy Policy,Defense,You oppnent drew one card during its last turn,Draw 2 cards,Swift,Neutral,1,4
+Social Orb,Defense,There is 3 Social Orbs in the chain,BLK+3,Activation,Neutral,2,4
+Testudo Formation,Defense,There's at least one loop in the chain,BLK+1 for each card in a loop (Cards in 2 or more loops are counted once),Activation,Neutral,2,4
+Cross Guard,Defense,There's at least one card in this card's corners,BLK+5,Activation,Neutral,3,4
+Preemptive Guard,Defense,Play this card second,This card can't be countered,Swift,Neutral,2,4
+Octogonal Guard,Defense,There is exactly 8 defense cards in the chain (Including this one),BLK+8,Activation,Neutral,2,4
+Guard Counter,Defense,There is another Guard Counter in the chain,Draw one card per other Guard Counter in the chain,Swift,Neutral,3,4
+Reinforced Crucible,Defense,You have at least one Iron card in your hand,"Discard an Iron card, get an Iron card from your deck",Swift,Fire,2,4
+Scrap Yard,Defense,You have at least one Iron card in your discard pile,BLK+1 per Iron card in your discard pile,Swift,Iron,3,4
+Phoenix Call,Defense,You have at least one Iron card in your hand,"Discard a fire card, get any card from your discard pile",Swift,Fire,0,4
+Fire Shield,Defense,There is at least 1 Fire card in the chain,BLK+2,Activation,Fire,2,4
+Ice Shield,Defense,There is at least 1 Ice card in the chain,BLK+2,Activation,Ice,2,4
+Volt Shield,Defense,There is at least 1 Volt card in the chain,BLK+2,Activation,Volt,2,4
+Celcius Veil,Defense,There is at least 1 Fire offense or 1 Ice defense card in the chain,BLK+1 per Fire offense card and DMG+1 per Ice defense card,Activation,Ice,1,4
+War of Attrition,Defense,Play this card first,"If the number of cards in the chain is superior equal to 10, BLOCK+7",Activation,Neutral,3,4
+White flag,Defense,Play this card,Your opponent draw 2 additional cards in the next phase,Activation,Neutral,0,1
+Glacial Fortress,Defense,There are 3 or more Ice card in the chain,All cards placed after this card in the chain have their condition locked,Persistent,Ice,5,4
+Frost Retribution,Defense,There are 3 or more condition-locked card in the chain,DMG+1 per condition-locked card in the chain,Activation,Ice,2,4
+Simple Guard,Defense,Play this card,BLK+1,Activation,Neutral,3,4
+Additive Guard,Defense,The previous card base value is inferior or equal to 3,Grants the previous card base value as BLK,Activation,Neutral,1,4
+Substractive Guard,Defense,The previous card base value is superior or equal to 3,Grants the difference between previous card base value and this one's base value as BLK,Activation,Neutral,1,4

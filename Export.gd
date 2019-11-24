@@ -23,9 +23,10 @@ func export_card(card : Card, out_name : String) -> void:
 	
 	
 	var dupe = card.duplicate();
+	dupe.values = card.values;
 	add_child(dupe);
 	
-	var size = dupe.get_node("CardTemplate").texture.get_size();
+	var size = preload("res://Assets/Card/CardTemplate.png").get_size();
 	get_viewport().set_size(size*scalefactor);
 	dupe.position = size/2*scalefactor;
 	dupe.scale = scalefactor;
@@ -33,17 +34,28 @@ func export_card(card : Card, out_name : String) -> void:
 	yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
 	var img = get_viewport().get_texture().get_data();
-	img.save_png("export/%s.png" % out_name);
+	img.save_png("user://%s.png" % out_name);
 
 	
 	pass # Replace with function body.
 
 func _on_Export_pressed() -> void:
+	var pb = $"../../../CanvasLayer/ProgressBar";
+	pb.visible = true;
+	pb.percent_visible = true;
+	pb.value = 0;
+	pb.min_value = 0;
+	pb.max_value = 1.0;
+	
 	var count:int = 0;
-	for node in $"../../../CardDB".get_children():
+	var children = $"../../../CardDB".get_children();
+	for node in children:
 		if node is Card:
 			export_card(node, "(%03d) - %s" % [count, node.card_name]);
 			yield(get_tree(), "idle_frame")
 			yield(get_tree(), "idle_frame")
 			count += 1;
+			pb.value = float(count) / float(children.size());
+	pb.visible = false;
+	OS.shell_open(str("file://", OS.get_user_data_dir()));
 	pass # Replace with function body.

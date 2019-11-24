@@ -50,8 +50,9 @@ const condition_animation_name = {
 export var card_name : String setget set_name;
 export(String, MULTILINE) var activation_text : String setget set_activation_text;
 export(String, MULTILINE) var effect_text : String setget set_effect_text;
-export(Array, int) var values : Array = [0,0,0,0] setget set_values;
-export(String) var card_damage setget set_card_damage;
+#export(Array, int) 
+var values : Array = [0,0,0,0] setget set_values;
+export(int) var card_value setget set_card_value;
 
 
 export(CardType) var card_type setget set_card_type;
@@ -69,8 +70,8 @@ onready var EffectText = $EffectText;
 
 onready var CardBorders = [$RightNotch, $TopNotch, $LeftNotch, $DownNotch, $CardTemplate];
 
-func set_card_damage(new_value : String):
-	card_damage = new_value;
+func set_card_value(new_value : int):
+	card_value = new_value;
 	update_card_numbers();
 
 func set_card_condition(new_value : int):
@@ -118,11 +119,14 @@ func update_card_numbers():
 	
 	if (CardName):
 		CardName.text = card_name;
+		var base_size = 172;
+		yield(get_tree(), "idle_frame");
+		CardName.rect_scale.x = min(1.0,base_size/CardName.rect_size.x);
 		
 	if (ActivationText):
-		ActivationText.bbcode_text = "[center]%s[/center]" % activation_text;
+		ActivationText.bbcode_text = "%s" % activation_text;
 	if (EffectText):
-		EffectText.bbcode_text = "[center]%s[/center]" % effect_text;
+		EffectText.bbcode_text = "%s" % effect_text;
 	
 	if (CardBorders.size() != 0):
 		for border in CardBorders:
@@ -135,7 +139,8 @@ func update_card_numbers():
 		$Condition.play(condition_animation_name[card_condition]);
 		
 	if($DamageScale/DamageValue):
-		$DamageScale/DamageValue.text = card_damage;
+		var typ = "DMG" if card_type == 0 else "BLK";
+		$DamageScale/DamageValue.text = "%d %s" % [card_value, typ];
 	update();
 	
 
