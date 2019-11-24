@@ -32,3 +32,67 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 #	pass
+
+enum CardProp {
+	NAME,
+	RIGHT,
+	TOP,
+	LEFT,
+	DOWN,
+	ATTRIBUTE,
+	VALUE,
+	VALUE_TYPE,
+	ACTIVATION_TYPE,
+	ACTIVATION_TEXT,
+	EFFECT_TEXT,
+	COUNT
+};
+
+func strip_spaces(s :String) -> String:
+	return s.strip_edges();
+#	s = s.replace(" ", "");
+#	s = s.replace("\t", "");
+
+func _on_Imoprt_pressed() -> void:
+	var path = "import/import.cdb";
+	var f:File = File.new();
+	var err:int = f.open(path, File.READ);
+	
+	var cardDB : Node2D = get_tree().get_root().get_node("Board/CardDB"); 
+	
+	if (!err):
+		# Remove all children of card db
+		for child in cardDB.get_children():
+			child.queue_free();
+
+		var counter = 0;
+		var CARDS_PER_LINE = 10;
+		
+		while(!f.eof_reached()):
+			var line = f.get_csv_line();
+			if (line.size() != CardProp.COUNT):
+				printerr("Line %d in %s is illformed, skipping" % [counter, path]);
+				continue;
+			
+			var new_card : Card = preload("res://Scenes/Card.tscn").instance();
+			new_card.card_name = line[CardProp.NAME].strip_edges();
+			
+			new_card.values[Card.Dir.Right] = int(line[CardProp.RIGHT].strip_edges());
+			new_card.values[Card.Dir.Top] = int(line[CardProp.TOP].strip_edges());
+			new_card.values[Card.Dir.Left] = int(line[CardProp.LEFT].strip_edges());
+			new_card.values[Card.Dir.Down] = int(line[CardProp.DOWN].strip_edges());
+			
+			new_card.activation_text = line[CardProp.ACTIVATION_TEXT].strip_edges();
+			new_card.effect_text = line[CardProp.EFFECT_TEXT].strip_edges();
+			
+			new_card.position.x = (counter % CARDS_PER_LINE) * 360;
+			new_card.position.y = int(counter / CARDS_PER_LINE) * 500;
+			
+			cardDB.add_child(new_card);
+			
+			counter +=1;
+
+	else:
+		printerr("Couldn't open file %s. Error %d" % [path, err]);
+
+	f.close();	

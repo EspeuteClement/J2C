@@ -17,7 +17,8 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 5000, 5000 )
 
 [node name="Control" type="Control" parent="."]
-margin_right = 598.0
+margin_left = 1.0
+margin_right = 599.0
 margin_bottom = 395.0
 
 [node name="Viewport" type="Viewport" parent="Control"]
@@ -47,23 +48,20 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 script = ExtResource( 5 )
 
-[node name="Node2D4" parent="." instance=ExtResource( 4 )]
-position = Vector2( -236, 598 )
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Node2D5" parent="." instance=ExtResource( 4 )]
-position = Vector2( -240, 1097 )
-
-[node name="Node2D6" parent="." instance=ExtResource( 4 )]
-position = Vector2( -610, 1095 )
-
-[node name="Node2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 680, 338 )
-values = [ 5, 2, 7, 4 ]
-
-[node name="Export" type="Button" parent="."]
-margin_left = 115.0
-margin_top = 35.0
-margin_right = 203.0
-margin_bottom = 128.0
+[node name="Export" type="Button" parent="CanvasLayer"]
+margin_left = 104.0
+margin_top = 1.0
+margin_right = 218.0
+margin_bottom = 33.0
 text = "Export"
-[connection signal="pressed" from="Export" to="Control/Viewport/Camera2D2" method="_on_Export_pressed"]
+
+[node name="Imoprt" type="Button" parent="CanvasLayer"]
+margin_right = 97.0
+margin_bottom = 34.0
+text = "Import"
+
+[node name="CardDB" type="Node2D" parent="."]
+[connection signal="pressed" from="CanvasLayer/Export" to="Control/Viewport/Camera2D2" method="_on_Export_pressed"]
+[connection signal="pressed" from="CanvasLayer/Imoprt" to="." method="_on_Imoprt_pressed"]

@@ -57,11 +57,15 @@ text = "0"
 margin_left = -135.0
 margin_top = 14.0
 margin_right = 134.0
-margin_bottom = 72.0
+margin_bottom = 112.0
 custom_fonts/bold_font = ExtResource( 5 )
 custom_fonts/normal_font = ExtResource( 3 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
+bbcode_text = "[center]Loremi ipsum sit dolor 
+amet eunt sdkfqsldf [/center]"
+text = "Loremi ipsum sit dolor 
+amet eunt sdkfqsldf "
 scroll_active = false
 
 [node name="EffectText" type="RichTextLabel" parent="."]
