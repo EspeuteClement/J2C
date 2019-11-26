@@ -35,16 +35,13 @@ func _ready() -> void:
 
 enum CardProp {
 	NAME,
-	RIGHT,
-	TOP,
-	LEFT,
-	DOWN,
+	TYPE,
+	CONDITION_TEXT,
+	EFFECT_TEXT,
+	CONDITION_TYPE,
 	ATTRIBUTE,
 	VALUE,
-	VALUE_TYPE,
-	ACTIVATION_TYPE,
-	ACTIVATION_TEXT,
-	EFFECT_TEXT,
+	NOTCH_COUNT,
 	COUNT
 };
 
@@ -66,33 +63,85 @@ func _on_Imoprt_pressed() -> void:
 			child.queue_free();
 
 		var counter = 0;
+		var nb_line = 0;
 		var CARDS_PER_LINE = 10;
 		
+		var rng = 4
+		# Skip first line
+		f.get_csv_line();
 		while(!f.eof_reached()):
+			var index;
 			var line = f.get_csv_line();
+			nb_line += 1;
+			var card_is_valid = true;
+			
 			if (line.size() != CardProp.COUNT):
-				printerr("Line %d in %s is illformed, skipping" % [counter, path]);
+				printerr("Line %d in %s is illformed, skipping" % [nb_line, path]);
 				continue;
 			
 			var new_card : Card = preload("res://Scenes/Card.tscn").instance();
 			new_card.card_name = line[CardProp.NAME].strip_edges();
 			
-			new_card.values[Card.Dir.Right] = int(line[CardProp.RIGHT].strip_edges());
-			new_card.values[Card.Dir.Top] = int(line[CardProp.TOP].strip_edges());
-			new_card.values[Card.Dir.Left] = int(line[CardProp.LEFT].strip_edges());
-			new_card.values[Card.Dir.Down] = int(line[CardProp.DOWN].strip_edges());
+			match line[CardProp.TYPE].strip_edges().to_lower():
+				"offense":
+					new_card.card_type = Card.CardType.OFFENSE;
+				"defense":
+					new_card.card_type = Card.CardType.DEFENSE;
+				var wrong_type:
+					printerr("Line %d type is invalid : %s" % [nb_line, wrong_type]);
+					new_card.card_type = Card.CardType.OFFENSE;
 			
-			new_card.activation_text = line[CardProp.ACTIVATION_TEXT].strip_edges();
+			#Sides :
+			var sides = Card.Dir.values();
+			sides.pop_back(); #remove COUNT
+			sides.shuffle();
+			
+			var nb_notches = int(line[CardProp.NOTCH_COUNT].strip_edges());
+			
+			for i in range(4):
+				var side = sides.pop_front();
+				if (i < nb_notches):
+					new_card.values[side] = int(randi()%(rng)+1);
+				else:
+					new_card.values[side] = -1;
+			
+			index = Card.condition_animation_name.values().find(line[CardProp.CONDITION_TYPE].strip_edges().to_lower());
+			
+			if (index == -1):
+				printerr("Couldn't find condition for card %d" % nb_line);
+				card_is_valid = false;
+			else:
+				new_card.card_condition = index;
+				
+			index = Card.attribute_animation_name.values().find(line[CardProp.ATTRIBUTE].strip_edges().to_lower());
+			if (index == -1):
+				printerr("Couldn't find attribute for card %d" % nb_line);
+				card_is_valid = false;
+			else:
+				new_card.card_attribute = index;			
+
+			new_card.activation_text = line[CardProp.CONDITION_TEXT].strip_edges();
 			new_card.effect_text = line[CardProp.EFFECT_TEXT].strip_edges();
+			
+			new_card.card_value = int(line[CardProp.VALUE].strip_edges());
 			
 			new_card.position.x = (counter % CARDS_PER_LINE) * 360;
 			new_card.position.y = int(counter / CARDS_PER_LINE) * 500;
 			
-			cardDB.add_child(new_card);
-			
-			counter +=1;
+			if (card_is_valid):
+				cardDB.add_child(new_card);
+				counter +=1;
+			else:
+				new_card.queue_free();
+
 
 	else:
 		printerr("Couldn't open file %s. Error %d" % [path, err]);
 
 	f.close();	
+
+func _on_Download_pressed() -> void:
+	var error = OS.execute("Wget/dl.bat", [], true);
+	
+	#var error = $HTTPRequest.request(url, PoolStringArray( ), false, HTTPClient.METHOD_GET);
+	print(error);
