@@ -23,7 +23,9 @@ enum CardAttribute {
 	FIRE,
 	ICE,
 	IRON,
-	VOLT
+	VOLT,
+	DUAL,
+	GLASS
 };
 
 const attribute_animation_name = {
@@ -32,18 +34,22 @@ const attribute_animation_name = {
 	CardAttribute.ICE: "ice",
 	CardAttribute.IRON: "iron",
 	CardAttribute.VOLT: "volt",
+	CardAttribute.DUAL: "dual",
+	CardAttribute.GLASS: "glass",
 };
 
 enum CardCondition {
 	ACTIVATION,
 	PERSISTENT,
-	SWIFT,	
+	SWIFT,
+	SLOW
 };
 
 const condition_animation_name = {
 	CardCondition.ACTIVATION: "activation",
 	CardCondition.PERSISTENT: "persistent",
 	CardCondition.SWIFT: "swift",
+	CardCondition.SLOW: "slow",
 };
 
 # Editor stuff ==============
@@ -110,8 +116,8 @@ func update_card_numbers():
 		
 	for direction in range(0, Dir.Count):
 		if (values[direction] >= 0):
-			Labels[direction].text = str(values[direction]);
-			LabelsNotch[direction].text = str(values[direction]);
+			Labels[direction].text = "■";
+			LabelsNotch[direction].visible = false;
 		else:
 			CardBorders[direction].visible = false;
 			Labels[direction].visible = false;

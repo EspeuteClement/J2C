@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CardTemplateBack.png-7ba07ce924fd3721cba23315ae749a64.stex"
+path="res://.import/condition_slow.png-81e6f542e2e0a5d22d5e14fce6386070.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Card/CardTemplateBack.png"
-dest_files=[ "res://.import/CardTemplateBack.png-7ba07ce924fd3721cba23315ae749a64.stex" ]
+source_file="res://Assets/Card/condition_slow.png"
+dest_files=[ "res://.import/condition_slow.png-81e6f542e2e0a5d22d5e14fce6386070.stex" ]
 
 [params]
 

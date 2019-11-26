@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scenes/Card.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Card/fire.jpg" type="Texture" id=2]
@@ -15,14 +15,17 @@
 [ext_resource path="res://Assets/Font/ArialBold.tres" type="DynamicFont" id=13]
 [ext_resource path="res://Assets/Font/Arial.tres" type="DynamicFont" id=14]
 [ext_resource path="res://Scenes/CardNumber.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Assets/Card/attribute_volt.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Card/attribute_ice.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Card/attribute_neutral.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Card/attribute_fire.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Card/attribute_iron.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Card/condition_persistent.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Card/condition_swift.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Card/condition_activation.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Card/attribute_iron.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Card/attribute_volt.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Card/attribute_ice.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Card/attribute_neutral.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Card/attribute_fire.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Card/attribute_dual.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Card/attribute_glass.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Card/condition_persistent.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Card/condition_swift.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Card/condition_activation.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Card/condition_slow.png" type="Texture" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 178, 241 )
@@ -96,45 +99,60 @@ animations = [ {
 animations = [ {
 "frames": [ ExtResource( 16 ) ],
 "loop": true,
-"name": "volt",
+"name": "iron",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ) ],
 "loop": true,
-"name": "ice",
+"name": "volt",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ) ],
 "loop": true,
-"name": "neutral",
+"name": "ice",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 19 ) ],
 "loop": true,
-"name": "fire",
+"name": "neutral",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 20 ) ],
 "loop": true,
-"name": "iron",
+"name": "fire",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ) ],
+"loop": true,
+"name": "dual",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "glass",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=8]
 animations = [ {
-"frames": [ ExtResource( 21 ) ],
+"frames": [ ExtResource( 23 ) ],
 "loop": true,
 "name": "persistent",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ) ],
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
 "name": "swift",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 23 ) ],
+"frames": [ ExtResource( 25 ) ],
 "loop": true,
 "name": "activation",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 26 ) ],
+"loop": true,
+"name": "slow",
 "speed": 5.0
 } ]
 
@@ -322,13 +340,13 @@ scroll_active = false
 [node name="Attribute" type="AnimatedSprite" parent="."]
 position = Vector2( 128, -182 )
 frames = SubResource( 7 )
-animation = "neutral"
+animation = "glass"
 playing = true
 
 [node name="Condition" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 18 )
 frames = SubResource( 8 )
-animation = "activation"
+animation = "slow"
 playing = true
 [connection signal="mouse_entered" from="." to="." method="_on_Node2D_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Node2D_mouse_exited"]

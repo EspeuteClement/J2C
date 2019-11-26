@@ -101,7 +101,7 @@ func _on_Imoprt_pressed() -> void:
 			for i in range(4):
 				var side = sides.pop_front();
 				if (i < nb_notches):
-					new_card.values[side] = int(randi()%(rng)+1);
+					new_card.values[side] = 1;
 				else:
 					new_card.values[side] = -1;
 			
