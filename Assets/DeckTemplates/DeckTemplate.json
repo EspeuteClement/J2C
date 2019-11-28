@@ -1,0 +1,73 @@
+{
+  "SaveName": "",
+  "GameMode": "",
+  "Gravity": 0.5,
+  "PlayArea": 0.5,
+  "Date": "",
+  "Table": "",
+  "Sky": "",
+  "Note": "",
+  "Rules": "",
+  "XmlUI": "",
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "ObjectStates": [
+    {
+      "Name": "Deck",
+      "Transform": {
+        "posX": -9.701797,
+        "posY": 1.08535266,
+        "posZ": -1.44361639,
+        "rotX": 0.00664056325,
+        "rotY": 180.1999,
+        "rotZ": 357.2264,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.713235259,
+        "g": 0.713235259,
+        "b": 0.713235259
+      },
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": true,
+      "Hands": false,
+      "SidewaysCard": false,
+      "DeckIDs": [
+        305,
+        300,
+        304,
+        303,
+        302,
+        301
+      ],
+      "CustomDeck": {
+        "3": {
+          "FaceURL": "http://cloud-3.steamusercontent.com/ugc/777363933070441847/6278418A58150D9CB040851D396C757F9A6EF496/",
+          "BackURL": "http://cloud-3.steamusercontent.com/ugc/777363933070445385/47D231E23C19DD8AD7E0B40B17E08F3C15A92EED/",
+          "NumWidth": 6,
+          "NumHeight": 6,
+          "BackIsHidden": false,
+          "UniqueBack": false
+        }
+      },
+      "XmlUI": "",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "GUID": "84dc33"
+    }
+  ],
+  "TabStates": {},
+  "VersionNumber": ""
+}

@@ -81,6 +81,22 @@ func export_batch(nodes: Array, type:int, out_name: String):
 		else:
 			i += 1
 
+func _create_deck_export_data() -> Dictionary:
+	var file := File.new()
+	file.open("user://panelText.json", file.READ)
+	var text = file.get_as_text()
+	var dict := JSON.parse(text).get_result() as Dictionary;
+	dict.DeckIDs.clear();
+	dict.CustomDeck.clear();
+	return dict;
+	
+func _add_new_deck(db:Dictionary, id:int, name:String, type:int) -> Dictionary:
+	if (db.CustomDeck.contains(id)):
+		return db;
+	return db;
+	
+func _add_new_card_id(db:Dictionary, id:int, deck:int) -> Dictionary:
+	return deck;
 func _on_Export_pressed() -> void:
 	var pb = $"../../../CanvasLayer/ProgressBar";
 	pb.visible = true;
