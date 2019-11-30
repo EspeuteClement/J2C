@@ -59,6 +59,7 @@ export(String, MULTILINE) var effect_text : String setget set_effect_text;
 #export(Array, int) 
 var values : Array = [0,0,0,0] setget set_values;
 export(int) var card_value setget set_card_value;
+export(int) var card_id;
 
 
 export(CardType) var card_type setget set_card_type;
