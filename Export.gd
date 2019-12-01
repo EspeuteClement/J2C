@@ -107,7 +107,7 @@ func _add_new_deck(db:Dictionary, id:int, face_card_file:String, type:int) -> Di
 	
 	dict.NumWidth = tiles_size.x;
 	dict.NumHeight = tiles_size.y;
-	dict.BackIsHidden = false;
+	dict.BackIsHidden = true;
 	dict.UniqueBack = false;
 	
 	return db;
@@ -120,7 +120,7 @@ func _add_new_card_id(db:Dictionary, card_pos:int, deck_id:int) -> Dictionary:
 	var y = int(card_pos / int(tiles_size.x));
 	
 	
-	(db.ObjectStates[0].DeckIDs as Array).append(deck_id+3 * 100 + y * 10 + x);
+	(db.ObjectStates[0].DeckIDs as Array).append((deck_id+3) * 100 + y * 10 + x);
 	
 	return db;
 
