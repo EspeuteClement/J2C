@@ -15,7 +15,7 @@ func _ready() -> void:
 #	pass
 
 const scalefactor = Vector2(0.75,0.75);
-const tiles_size = Vector2(6,6);
+const tiles_size = Vector2(8,8);
 
 func export_card(card : Card, out_name : String) -> void:
 	#remove all other cards

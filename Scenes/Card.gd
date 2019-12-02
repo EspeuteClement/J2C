@@ -25,7 +25,11 @@ enum CardAttribute {
 	IRON,
 	VOLT,
 	DUAL,
-	GLASS
+	GLASS,
+	EARTH,
+	LIFE,
+	STAR,
+	NECRO
 };
 
 const attribute_animation_name = {
@@ -36,6 +40,10 @@ const attribute_animation_name = {
 	CardAttribute.VOLT: "volt",
 	CardAttribute.DUAL: "dual",
 	CardAttribute.GLASS: "glass",
+	CardAttribute.EARTH: "earth",
+	CardAttribute.LIFE: "life",
+	CardAttribute.STAR: "star",
+	CardAttribute.NECRO: "necro"
 };
 
 enum CardCondition {
