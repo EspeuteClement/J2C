@@ -40,6 +40,8 @@ func export_card(card : Card, out_name : String) -> void:
 	
 	pass # Replace with function body.
 
+
+
 func export_batch(nodes: Array, type:int, out_name: String, db:Dictionary):
 	for child in get_children():
 		remove_child(child);
@@ -49,9 +51,16 @@ func export_batch(nodes: Array, type:int, out_name: String, db:Dictionary):
 	get_viewport().set_size(size*tiles_size);
 
 	
+	var current_deck;
+	var image_name;
+	
 	var i = 0;
 	var nb_gen = 0;
 	for c in range(nodes.size()):
+		if (c % int(tiles_size.x * tiles_size.y) == 0):
+			image_name = "%s_%d.png" % [out_name, nb_gen];
+			current_deck = _add_new_deck(db, nb_gen, image_name, type);
+		
 		var node = nodes[c];
 		if (node):
 			var dupe = node.duplicate();
@@ -60,16 +69,14 @@ func export_batch(nodes: Array, type:int, out_name: String, db:Dictionary):
 			dupe.position = size/2 + size * Vector2(i%int(tiles_size.x), int(i/tiles_size.y));
 			dupe.scale = scalefactor;
 			
-			_add_new_card_id(db, i, nb_gen);
+			_add_new_card_id(db, i, nb_gen, current_deck, dupe);
 		
 		if (i == tiles_size.x * tiles_size.y - 1 || c == nodes.size()-1):
 			get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
 			yield(get_tree(), "idle_frame")
 			yield(get_tree(), "idle_frame")
 			var img = get_viewport().get_texture().get_data();
-			var image_name = "%s_%d.png" % [out_name, nb_gen];
 			img.save_png("user://%s" % image_name);
-			_add_new_deck(db, nb_gen, image_name, type);
 			
 			nb_gen += 1;
 			i = 0;
@@ -79,6 +86,8 @@ func export_batch(nodes: Array, type:int, out_name: String, db:Dictionary):
 				child.queue_free();
 		else:
 			i += 1
+
+var CardTemplateObject = null;
 
 func _create_deck_export_data() -> Dictionary:
 	var file := File.new()
@@ -110,17 +119,38 @@ func _add_new_deck(db:Dictionary, id:int, face_card_file:String, type:int) -> Di
 	dict.BackIsHidden = true;
 	dict.UniqueBack = false;
 	
-	return db;
+	return dict;
 	
-func _add_new_card_id(db:Dictionary, card_pos:int, deck_id:int) -> Dictionary:
+func _add_new_card_id(db:Dictionary, card_pos:int, deck_id:int, deck: Dictionary, card:Card) -> Dictionary:
+	
+	if !CardTemplateObject:
+		var file := File.new()
+		file.open("res://Assets/DeckTemplates/CardTemplate.json", file.READ)
+		var text = file.get_as_text();
+		CardTemplateObject = JSON.parse(text).get_result() as Dictionary;
+	
 	if !db.ObjectStates[0].has("DeckIDs"):
 		db.ObjectStates[0].DeckIDs = Array();
+		
+	if !db.ObjectStates[0].has("ContainedObjects"):
+		db.ObjectStates[0]["ContainedObjects"] = Array();
+	
+	var card_obj = CardTemplateObject.duplicate(true);
 	
 	var x = card_pos % int(tiles_size.x);
 	var y = int(card_pos / int(tiles_size.x));
 	
+	var card_id = (deck_id+3) * 100 + y * 10 + x;	
+	card_obj.CardID = card_id;
+	card_obj.Nickname = card.card_name;
+	card_obj.CustomDeck = Dictionary();
+	var the_deck = deck.duplicate();
+	card_obj.CustomDeck[str(deck_id+3)] = the_deck;
 	
-	(db.ObjectStates[0].DeckIDs as Array).append((deck_id+3) * 100 + y * 10 + x);
+	(db.ObjectStates[0].DeckIDs as Array).append(card_id);
+	
+	db.ObjectStates[0]["ContainedObjects"].append(card_obj);
+	print("Hello");
 	return db;
 
 func _save_card_db(db:Dictionary, out_name:String, type:int):
