@@ -24,6 +24,10 @@ config/name="J2C"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+CardDatabase="*res://Scenes/CardDatabase.gd"
+
 [display]
 
 window/size/width=1600

@@ -121,7 +121,6 @@ func _add_new_card_id(db:Dictionary, card_pos:int, deck_id:int) -> Dictionary:
 	
 	
 	(db.ObjectStates[0].DeckIDs as Array).append((deck_id+3) * 100 + y * 10 + x);
-	
 	return db;
 
 func _save_card_db(db:Dictionary, out_name:String, type:int):
@@ -147,8 +146,6 @@ func _on_Export_pressed() -> void:
 	pb.value = 0;
 	pb.min_value = 0;
 	pb.max_value = 1.0;
-	
-
 	
 	var count:int = 0;
 	var nb_batch:int = 0;

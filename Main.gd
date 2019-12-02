@@ -103,9 +103,15 @@ func _genetrate_card(props : Array, sides_flags : int, id : int, gen_data : Dict
 		get_tree().get_root().get_node("Board/CardDB").add_child(new_card);
 		gen_data.counter +=1;
 	
+	if(!CardDatabase.Data.has(id)):
+		CardDatabase.Data[id] = Dictionary();
+	
+	CardDatabase.Data[id][sides_flags] = new_card;
+	
 	return new_card;
 
 func _on_Imoprt_pressed() -> void:
+	CardDatabase.Data.clear();
 	var path = "import/import.cdb";
 	var f:File = File.new();
 	var err:int = f.open(path, File.READ);
