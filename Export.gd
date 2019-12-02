@@ -15,7 +15,7 @@ func _ready() -> void:
 #	pass
 
 const scalefactor = Vector2(0.75,0.75);
-const tiles_size = Vector2(8,8);
+const tiles_size = Vector2(6,6);
 
 func export_card(card : Card, out_name : String) -> void:
 	#remove all other cards
@@ -43,6 +43,7 @@ func export_card(card : Card, out_name : String) -> void:
 
 
 func export_batch(nodes: Array, type:int, out_name: String, db:Dictionary):
+	randomize()
 	for child in get_children():
 		remove_child(child);
 		child.queue_free();
@@ -58,7 +59,7 @@ func export_batch(nodes: Array, type:int, out_name: String, db:Dictionary):
 	var nb_gen = 0;
 	for c in range(nodes.size()):
 		if (c % int(tiles_size.x * tiles_size.y) == 0):
-			image_name = "%s_%d.png" % [out_name, nb_gen];
+			image_name = "%s_%d.png" % [out_name, randi()];
 			current_deck = _add_new_deck(db, nb_gen, image_name, type);
 		
 		var node = nodes[c];
@@ -100,6 +101,19 @@ func _create_deck_export_data() -> Dictionary:
 
 const FILE_HOST_URL = "http://clementespeute.com/res/";
 
+func _notch_flags_to_name(flags: int) -> String:
+	var name = "";
+	if (flags & (1<<Card.Dir.Right) > 0):
+		name += "R";
+	if (flags & (1<<Card.Dir.Top) > 0):
+		name += "T";
+	if (flags & (1<<Card.Dir.Left) > 0):
+		name += "L";
+	if (flags & (1<<Card.Dir.Down) > 0):
+		name += "D";
+	
+	return name;
+
 func _add_new_deck(db:Dictionary, id:int, face_card_file:String, type:int) -> Dictionary:
 	var deck_name = (id+3);
 	if (db.ObjectStates[0].CustomDeck.has(deck_name)):
@@ -140,9 +154,10 @@ func _add_new_card_id(db:Dictionary, card_pos:int, deck_id:int, deck: Dictionary
 	var x = card_pos % int(tiles_size.x);
 	var y = int(card_pos / int(tiles_size.x));
 	
-	var card_id = (deck_id+3) * 100 + y * 10 + x;	
+	var card_id = (deck_id+3) * 100 + card_pos;	
 	card_obj.CardID = card_id;
-	card_obj.Nickname = card.card_name;
+	card_obj.Nickname = "%s (%s) [%s]" % [card.card_name, Card.attribute_animation_name[card.card_attribute].capitalize() , _notch_flags_to_name(card.notch_flags)];
+	card_obj.Description = "%s" % Card.condition_animation_name[card.card_condition].capitalize();
 	card_obj.CustomDeck = Dictionary();
 	var the_deck = deck.duplicate();
 	card_obj.CustomDeck[str(deck_id+3)] = the_deck;
@@ -214,9 +229,30 @@ func _on_Export_pressed() -> void:
 		yield(get_tree(), "idle_frame")
 		yield(get_tree(), "idle_frame")
 		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		
 		_save_card_db(db, "Master Deck Offense", Card.CardType.OFFENSE);		
 		db = _create_deck_export_data();
 		export_batch(batch_def, Card.CardType.DEFENSE, "cards_batch_def", db);
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
 		yield(get_tree(), "idle_frame")
 		yield(get_tree(), "idle_frame")
 		yield(get_tree(), "idle_frame")

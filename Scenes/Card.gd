@@ -68,7 +68,7 @@ export(String, MULTILINE) var effect_text : String setget set_effect_text;
 var values : Array = [0,0,0,0] setget set_values;
 export(int) var card_value setget set_card_value;
 export(int) var card_id;
-
+export(int) var notch_flags : int = 0;
 
 export(CardType) var card_type setget set_card_type;
 export(CardAttribute) var card_attribute setget set_card_attribute;

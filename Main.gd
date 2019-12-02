@@ -58,12 +58,8 @@ func _genetrate_card(props : Array, sides_flags : int, id : int, gen_data : Dict
 			new_card.card_type = Card.CardType.OFFENSE;
 	
 	#Sides :
-	var sides = Card.Dir.values();
-	sides.pop_back(); #remove COUNT
-	sides.shuffle();
-	
 
-	
+	new_card.notch_flags = sides_flags;
 	for i in range(4):
 		var side = sides_flags & 1 << i;
 		if (side > 0):
