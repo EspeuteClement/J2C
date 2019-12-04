@@ -157,7 +157,7 @@ func _add_new_card_id(db:Dictionary, card_pos:int, deck_id:int, deck: Dictionary
 	var card_id = (deck_id+3) * 100 + card_pos;	
 	card_obj.CardID = card_id;
 	card_obj.Nickname = "%s (%s) [%s]" % [card.card_name, Card.attribute_animation_name[card.card_attribute].capitalize() , _notch_flags_to_name(card.notch_flags)];
-	card_obj.Description = "%s" % Card.condition_animation_name[card.card_condition].capitalize();
+	card_obj.Description = "%d, %d, x:%d, y:%d" % [card.card_export_id, card.card_deck_id, card.card_x, card.card_y];
 	card_obj.CustomDeck = Dictionary();
 	var the_deck = deck.duplicate();
 	card_obj.CustomDeck[str(deck_id+3)] = the_deck;

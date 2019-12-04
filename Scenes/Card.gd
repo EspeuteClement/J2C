@@ -73,7 +73,10 @@ export(int) var notch_flags : int = 0;
 export(CardType) var card_type setget set_card_type;
 export(CardAttribute) var card_attribute setget set_card_attribute;
 export(CardCondition) var card_condition setget set_card_condition;
-
+export(int) var card_x;
+export(int) var card_y;
+export(int) var card_deck_id;
+export(int) var card_export_id;
 
 onready var Labels = [$Right, $Top, $Left , $Down];
 onready var LabelsNotch = [$RightNotchNumber, $TopNotchNumber, $LeftNotchNumber , $DownNotchNumber];

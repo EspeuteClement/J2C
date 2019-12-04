@@ -9,6 +9,12 @@ var is_server = false;
 const SERVER_PORT = 987;
 const MAX_PLAYERS = 2;
 
+const CARD_PER_ROW = 6;
+const CARD_PER_COLUMN = 6;
+
+var count_card_offense = 0;
+var count_card_defense = 0;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var args = Array(OS.get_cmdline_args());
@@ -36,7 +42,7 @@ enum CardProp {
 	COUNT
 };
 
-const CARDS_PER_LINE = 10;
+const CARDS_PER_LINE_DISPLAY = 10;
 
 func strip_spaces(s :String) -> String:
 	return s.strip_edges();
@@ -93,8 +99,8 @@ func _genetrate_card(props : Array, sides_flags : int, id : int, gen_data : Dict
 	new_card.card_id = id;
 	
 	if (new_card):
-		new_card.position.x = (gen_data.counter % CARDS_PER_LINE) * 360;
-		new_card.position.y = int(gen_data.counter / CARDS_PER_LINE) * 500;
+		new_card.position.x = (gen_data.counter % CARDS_PER_LINE_DISPLAY) * 360;
+		new_card.position.y = int(gen_data.counter / CARDS_PER_LINE_DISPLAY) * 500;
 		
 		get_tree().get_root().get_node("Board/CardDB").add_child(new_card);
 		gen_data.counter +=1;
@@ -104,6 +110,20 @@ func _genetrate_card(props : Array, sides_flags : int, id : int, gen_data : Dict
 	
 	CardDatabase.Data[id][sides_flags] = new_card;
 	
+	var value_to_use = 0;
+	match new_card.card_type:
+		Card.CardType.OFFENSE:
+			value_to_use = count_card_offense;
+			count_card_offense += 1;
+		Card.CardType.DEFENSE:
+			value_to_use = count_card_defense;
+			count_card_defense += 1;
+			
+	new_card.card_x = (value_to_use % (CARD_PER_ROW * CARD_PER_COLUMN)) % CARD_PER_ROW;
+	new_card.card_y = (value_to_use % (CARD_PER_ROW * CARD_PER_COLUMN)) / CARD_PER_ROW;
+	new_card.card_deck_id = 3 + int(value_to_use / (CARD_PER_COLUMN * CARD_PER_ROW));
+	new_card.card_export_id = new_card.card_deck_id * 100 + (value_to_use % (CARD_PER_COLUMN * CARD_PER_ROW));
+				
 	return new_card;
 
 func _on_Imoprt_pressed() -> void:
@@ -113,6 +133,9 @@ func _on_Imoprt_pressed() -> void:
 	var err:int = f.open(path, File.READ);
 	
 	var cardDB : Node2D = get_tree().get_root().get_node("Board/CardDB"); 
+	
+	count_card_offense = 0;
+	count_card_defense = 0;
 	
 	if (!err):
 		# Remove all children of card db
