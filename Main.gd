@@ -31,6 +31,7 @@ func _ready() -> void:
 #	pass
 
 enum CardProp {
+	SHEET_ID,
 	NAME,
 	TYPE,
 	CONDITION_TEXT,
@@ -49,19 +50,13 @@ func strip_spaces(s :String) -> String:
 #	s = s.replace(" ", "");
 #	s = s.replace("\t", "");
 
-func _genetrate_card(props : Array, sides_flags : int, id : int, gen_data : Dictionary) -> Node2D:
+func _genetrate_card(props : Array, sides_flags : int, type: int, gen_data : Dictionary) -> Node2D:
+	var id = int(props[0].strip_edges());
 	var new_card : Card = preload("res://Scenes/Card.tscn").instance();
 	var index;
 	new_card.card_name = props[CardProp.NAME].strip_edges();
 	
-	match props[CardProp.TYPE].strip_edges().to_lower():
-		"offense":
-			new_card.card_type = Card.CardType.OFFENSE;
-		"defense":
-			new_card.card_type = Card.CardType.DEFENSE;
-		var wrong_type:
-			#printerr("Line %d type is invalid : %s" % [nb_line, wrong_type]);
-			new_card.card_type = Card.CardType.OFFENSE;
+	new_card.card_type = type;
 	
 	#Sides :
 
@@ -108,7 +103,8 @@ func _genetrate_card(props : Array, sides_flags : int, id : int, gen_data : Dict
 	if(!CardDatabase.Data.has(id)):
 		CardDatabase.Data[id] = Dictionary();
 	
-	CardDatabase.Data[id][sides_flags] = new_card;
+	if(!CardDatabase.Data[id].has(type)):
+		CardDatabase.Data[id][type] = Dictionary();
 	
 	var value_to_use = 0;
 	match new_card.card_type:
@@ -123,7 +119,9 @@ func _genetrate_card(props : Array, sides_flags : int, id : int, gen_data : Dict
 	new_card.card_y = (value_to_use % (CARD_PER_ROW * CARD_PER_COLUMN)) / CARD_PER_ROW;
 	new_card.card_deck_id = 3 + int(value_to_use / (CARD_PER_COLUMN * CARD_PER_ROW));
 	new_card.card_export_id = new_card.card_deck_id * 100 + (value_to_use % (CARD_PER_COLUMN * CARD_PER_ROW));
-				
+	
+	CardDatabase.Data[id][type][sides_flags] = new_card;
+			
 	return new_card;
 
 func _on_Imoprt_pressed() -> void:
@@ -150,7 +148,7 @@ func _on_Imoprt_pressed() -> void:
 		};
 		
 		var id = 0;
-		
+		CardDatabase.export_hash = f.get_md5(path);
 		
 		var rng = 4
 		# Skip first line
@@ -165,32 +163,44 @@ func _on_Imoprt_pressed() -> void:
 				continue;
 			var nb_notches = int(line[CardProp.NOTCH_COUNT].strip_edges());
 			
-			match nb_notches:
-				0:
-					_genetrate_card(line, 0, id, gen_data);
-				1: 
-					_genetrate_card(line, 0x1, id, gen_data);
-					_genetrate_card(line, 0x2, id, gen_data);
-					_genetrate_card(line, 0x4, id, gen_data);
-					_genetrate_card(line, 0x8, id, gen_data);
-				2: 
-					_genetrate_card(line, 0x1 | 0x02, id, gen_data);
-					_genetrate_card(line, 0x1 | 0x04, id, gen_data);
-					_genetrate_card(line, 0x1 | 0x08, id, gen_data);
-					_genetrate_card(line, 0x2 | 0x04, id, gen_data);
-					_genetrate_card(line, 0x2 | 0x08, id, gen_data);
-					_genetrate_card(line, 0x4 | 0x08, id, gen_data);
-				3:
-					_genetrate_card(line, 0xF ^ 0x1, id, gen_data);
-					_genetrate_card(line, 0xF ^ 0x2, id, gen_data);
-					_genetrate_card(line, 0xF ^ 0x4, id, gen_data);
-					_genetrate_card(line, 0xF ^ 0x8, id, gen_data);
-				4:
-					_genetrate_card(line, 0xF, id, gen_data);
-				_:
-					printerr("Too Much sides");
-
-			id += 1;
+			var types = Array();
+			
+			match line[CardProp.TYPE].strip_edges().to_lower():
+				"offense":
+					types.append(Card.CardType.OFFENSE);
+				"defense":
+					types.append(Card.CardType.DEFENSE);
+				"hybrid":
+					types.append(Card.CardType.OFFENSE);
+					types.append(Card.CardType.DEFENSE);
+			
+			id = int(line[CardProp.SHEET_ID].strip_edges());
+			
+			for type in types:
+				match nb_notches:
+					0:
+						_genetrate_card(line, 0, type, gen_data);
+					1: 
+						_genetrate_card(line, 0x1, type, gen_data);
+						_genetrate_card(line, 0x2, type, gen_data);
+						_genetrate_card(line, 0x4, type, gen_data);
+						_genetrate_card(line, 0x8, type, gen_data);
+					2: 
+						_genetrate_card(line, 0x1 | 0x02, type, gen_data);
+						_genetrate_card(line, 0x1 | 0x04, type, gen_data);
+						_genetrate_card(line, 0x1 | 0x08, type, gen_data);
+						_genetrate_card(line, 0x2 | 0x04, type, gen_data);
+						_genetrate_card(line, 0x2 | 0x08, type, gen_data);
+						_genetrate_card(line, 0x4 | 0x08, type, gen_data);
+					3:
+						_genetrate_card(line, 0xF ^ 0x1, type, gen_data);
+						_genetrate_card(line, 0xF ^ 0x2, type, gen_data);
+						_genetrate_card(line, 0xF ^ 0x4, type, gen_data);
+						_genetrate_card(line, 0xF ^ 0x8, type, gen_data);
+					4:
+						_genetrate_card(line, 0xF, type, gen_data);
+					_:
+						printerr("Too Much sides");
 	else:
 		printerr("Couldn't open file %s. Error %d" % [path, err]);
 
@@ -201,3 +211,6 @@ func _on_Download_pressed() -> void:
 	
 	#var error = $HTTPRequest.request(url, PoolStringArray( ), false, HTTPClient.METHOD_GET);
 	print(error);
+
+
+

@@ -1,1 +1,3 @@
 Wget\wget.exe --output-document=import/import.cdb --no-check-certificate "http://docs.google.com/spreadsheets/d/1o7K6qs4PkOApoRXCfQgh5xbE5y-aXSAl2VRxwKNk-3w/export?gid=0&format=csv&id=1o7K6qs4PkOApoRXCfQgh5xbE5y-aXSAl2VRxwKNk-3w"
+Wget\wget.exe --output-document=import/import1.cdb --no-check-certificate "http://docs.google.com/spreadsheets/d/1o7K6qs4PkOApoRXCfQgh5xbE5y-aXSAl2VRxwKNk-3w/export?gid=1123343134&format=csv&id=1o7K6qs4PkOApoRXCfQgh5xbE5y-aXSAl2VRxwKNk-3w"
+Wget\wget.exe --output-document=import/import2.cdb --no-check-certificate "http://docs.google.com/spreadsheets/d/1o7K6qs4PkOApoRXCfQgh5xbE5y-aXSAl2VRxwKNk-3w/export?gid=528475135&format=csv&id=1o7K6qs4PkOApoRXCfQgh5xbE5y-aXSAl2VRxwKNk-3w"

@@ -54,41 +54,54 @@ script = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Export" type="Button" parent="CanvasLayer"]
-margin_left = 104.0
-margin_top = 1.0
-margin_right = 218.0
-margin_bottom = 33.0
-text = "Export"
+[node name="Panel" type="PanelContainer" parent="CanvasLayer"]
+margin_right = 128.0
+margin_bottom = 134.0
 
-[node name="Imoprt" type="Button" parent="CanvasLayer"]
-margin_right = 97.0
-margin_bottom = 34.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 121.0
+margin_bottom = 127.0
+
+[node name="SaveDecks" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
+margin_right = 114.0
+margin_bottom = 20.0
+text = "Save Decks"
+
+[node name="Imoprt" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
+margin_top = 24.0
+margin_right = 114.0
+margin_bottom = 44.0
 text = "Import"
 
-[node name="Download" type="Button" parent="CanvasLayer"]
-margin_left = 226.0
-margin_top = 2.0
-margin_right = 341.0
-margin_bottom = 34.0
+[node name="Export" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
+margin_top = 48.0
+margin_right = 114.0
+margin_bottom = 68.0
+text = "Export"
+
+[node name="Download" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
+margin_top = 72.0
+margin_right = 114.0
+margin_bottom = 92.0
 text = "Download"
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
-visible = false
-margin_left = 3.0
-margin_top = 38.0
-margin_right = 340.0
-margin_bottom = 79.0
-
-[node name="CheckBox" type="CheckBox" parent="CanvasLayer"]
-margin_left = 351.0
-margin_top = 6.0
-margin_right = 375.0
-margin_bottom = 30.0
+[node name="CheckBox" type="CheckBox" parent="CanvasLayer/Panel/VBoxContainer"]
+margin_top = 96.0
+margin_right = 114.0
+margin_bottom = 120.0
 text = "Tiled"
 
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/VBoxContainer"]
+visible = false
+margin_top = 124.0
+margin_right = 114.0
+margin_bottom = 138.0
+
 [node name="CardDB" type="Node2D" parent="."]
-[connection signal="pressed" from="CanvasLayer/Export" to="Control/Viewport/RenderCam" method="_on_Export_pressed"]
-[connection signal="pressed" from="CanvasLayer/Imoprt" to="." method="_on_Imoprt_pressed"]
-[connection signal="pressed" from="CanvasLayer/Download" to="." method="_on_Download_pressed"]
-[connection signal="toggled" from="CanvasLayer/CheckBox" to="Control/Viewport/RenderCam" method="_on_CheckBox_toggled"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/SaveDecks" to="Control/Viewport/RenderCam" method="_on_SaveDecks_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Imoprt" to="." method="_on_Imoprt_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Export" to="Control/Viewport/RenderCam" method="_on_Export_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Download" to="." method="_on_Download_pressed"]
+[connection signal="toggled" from="CanvasLayer/Panel/VBoxContainer/CheckBox" to="Control/Viewport/RenderCam" method="_on_CheckBox_toggled"]

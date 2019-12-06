@@ -17,6 +17,8 @@ func _ready() -> void:
 const scalefactor = Vector2(0.75,0.75);
 const tiles_size = Vector2(6,6);
 
+var deck_db : Array;
+
 func export_card(card : Card, out_name : String) -> void:
 	#remove all other cards
 	for node in get_children():
@@ -59,8 +61,9 @@ func export_batch(nodes: Array, type:int, out_name: String, db:Dictionary):
 	var nb_gen = 0;
 	for c in range(nodes.size()):
 		if (c % int(tiles_size.x * tiles_size.y) == 0):
-			image_name = "%s_%d.png" % [out_name, randi()];
+			image_name = "%s_%s_%d.png" % [out_name, CardDatabase.export_hash, nb_gen];
 			current_deck = _add_new_deck(db, nb_gen, image_name, type);
+			deck_db[type].append(current_deck);
 		
 		var node = nodes[c];
 		if (node):
@@ -70,7 +73,7 @@ func export_batch(nodes: Array, type:int, out_name: String, db:Dictionary):
 			dupe.position = size/2 + size * Vector2(i%int(tiles_size.x), int(i/tiles_size.y));
 			dupe.scale = scalefactor;
 			
-			_add_new_card_id(db, i, nb_gen, current_deck, dupe);
+			_add_new_card_id(db, dupe);
 		
 		if (i == tiles_size.x * tiles_size.y - 1 || c == nodes.size()-1):
 			get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
@@ -116,6 +119,8 @@ func _notch_flags_to_name(flags: int) -> String:
 
 func _add_new_deck(db:Dictionary, id:int, face_card_file:String, type:int) -> Dictionary:
 	var deck_name = (id+3);
+	
+	
 	if (db.ObjectStates[0].CustomDeck.has(deck_name)):
 		return db;
 		
@@ -135,7 +140,7 @@ func _add_new_deck(db:Dictionary, id:int, face_card_file:String, type:int) -> Di
 	
 	return dict;
 	
-func _add_new_card_id(db:Dictionary, card_pos:int, deck_id:int, deck: Dictionary, card:Card) -> Dictionary:
+func _add_new_card_id(db:Dictionary, card:Card) -> Dictionary:
 	
 	if !CardTemplateObject:
 		var file := File.new()
@@ -151,21 +156,22 @@ func _add_new_card_id(db:Dictionary, card_pos:int, deck_id:int, deck: Dictionary
 	
 	var card_obj = CardTemplateObject.duplicate(true);
 	
-	var x = card_pos % int(tiles_size.x);
-	var y = int(card_pos / int(tiles_size.x));
+	var x = card.card_x;
+	var y = card.card_y;
 	
-	var card_id = (deck_id+3) * 100 + card_pos;	
+	var deck_id = card.card_deck_id;
+	
+	var card_id = card.card_export_id;	
 	card_obj.CardID = card_id;
 	card_obj.Nickname = "%s (%s) [%s]" % [card.card_name, Card.attribute_animation_name[card.card_attribute].capitalize() , _notch_flags_to_name(card.notch_flags)];
 	card_obj.Description = "%d, %d, x:%d, y:%d" % [card.card_export_id, card.card_deck_id, card.card_x, card.card_y];
 	card_obj.CustomDeck = Dictionary();
-	var the_deck = deck.duplicate();
+	var the_deck = deck_db[card.card_type][deck_id-3].duplicate();
 	card_obj.CustomDeck[str(deck_id+3)] = the_deck;
 	
 	(db.ObjectStates[0].DeckIDs as Array).append(card_id);
 	
 	db.ObjectStates[0]["ContainedObjects"].append(card_obj);
-	print("Hello");
 	return db;
 
 func _save_card_db(db:Dictionary, out_name:String, type:int):
@@ -185,12 +191,14 @@ func _save_card_db(db:Dictionary, out_name:String, type:int):
 	dir.copy(path, "user://%s.png" % out_name);
 
 func _on_Export_pressed() -> void:
-	var pb = $"../../../CanvasLayer/ProgressBar";
+	var pb = $"../../../CanvasLayer/Panel/VBoxContainer/ProgressBar";
 	pb.visible = true;
 	pb.percent_visible = true;
 	pb.value = 0;
 	pb.min_value = 0;
 	pb.max_value = 1.0;
+	
+	deck_db = [Array(), Array()];
 	
 	var count:int = 0;
 	var nb_batch:int = 0;
@@ -268,11 +276,63 @@ func _on_Export_pressed() -> void:
 		_save_card_db(db, "Master Deck Defense", Card.CardType.DEFENSE);
 		
 	pb.visible = false;
+	
 	OS.shell_open(str("file://", OS.get_user_data_dir()));
 	pass # Replace with function body.
 
 var tiled = false;
 
+func _save_custom_deck(in_name:String, out_name:String):
+	var path = in_name;
+	var f:File = File.new();
+	var err:int = f.open(path, File.READ);
+	
+	if (err):
+		printerr("Couldn't open file %s" % in_name);
+		return;
+	
+	var line = f.get_csv_line();
+	
+	var type = 0;
+	var type_str = line[0].strip_edges().to_lower();
+	if (type_str == "defense"): type = 1;
+	
+	f.get_csv_line();
+	var db = _create_deck_export_data();
+	
+	while(!f.eof_reached()):
+		line = f.get_csv_line();
+		var id = int(line[0].strip_edges());
+		var notches_txt = line[1].strip_edges();
+		var notch_id = 0;
+		for c in notches_txt:
+			match c.to_upper():
+				"R":
+					notch_id += 1 << Card.Dir.Right;
+				"T":
+					notch_id += 1 << Card.Dir.Top;
+				"L":
+					notch_id += 1 << Card.Dir.Left;
+				"D":
+					notch_id += 1 << Card.Dir.Down;
+				"_":
+					printerr("Notch char not recognized");
+					
+		_add_new_card_id(db, CardDatabase.Data[id][type][notch_id]);
+	
+	var did = 3;
+	for deck in deck_db[type]:
+		db.ObjectStates[0].CustomDeck[str(did)] = deck;
+		did += 1;
+	
+	_save_card_db(db, out_name, type);
+
 func _on_CheckBox_toggled(button_pressed: bool) -> void:
 	tiled = button_pressed;
 	pass # Replace with function body.
+
+
+func _on_SaveDecks_pressed() -> void:
+	_save_custom_deck("import/import1.cdb", "Custom Offense 1");
+	_save_custom_deck("import/import2.cdb", "Custom Defense 1");
+	

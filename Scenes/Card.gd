@@ -50,7 +50,8 @@ enum CardCondition {
 	ACTIVATION,
 	PERSISTENT,
 	SWIFT,
-	SLOW
+	SLOW,
+	ARTEFACT
 };
 
 const condition_animation_name = {
@@ -58,6 +59,8 @@ const condition_animation_name = {
 	CardCondition.PERSISTENT: "persistent",
 	CardCondition.SWIFT: "swift",
 	CardCondition.SLOW: "slow",
+	CardCondition.ARTEFACT: "artefact",
+	
 };
 
 # Editor stuff ==============

@@ -1,0 +1,32 @@
+Defense,,,,,,,,,
+id,notches,name,type,condition,effect,condition_type,attribute,base_value,notch_count
+5,TLD,Agni's Blessing,Defense,There are 3 or more Fire cards in this card Fire cluster,BLK+2 per Fire card in the cluster,Activation,Fire,3,3
+6,TLD,Fire Shield,Defense,There are 2 or more Fire cards in the chain,BLK+2,Activation,Fire,2,3
+41,TRLD,Altar of Agni,Hybrid,This card is in a Fire cluster of 4 or more cards,Fire cards in the affected columns gain +1 value,Artefact,Fire,0,4
+81,TLD,Incandescent Crucible,Hybrid,You have at least one Iron card in your hand,"Discard an Iron card, get a Fire card from your deck",Swift,Fire,2,3
+82,TLD,Phoenix Call,Defense,You have at least one Fire card in your hand,"Discard a Fire card, get any non-Phoenix card from your discard pile",Swift,Fire,2,3
+5,TLD,Agni's Blessing,Defense,There are 3 or more Fire cards in this card Fire cluster,BLK+2 per Fire card in the cluster,Activation,Fire,3,3
+6,TLD,Fire Shield,Defense,There are 2 or more Fire cards in the chain,BLK+2,Activation,Fire,2,3
+41,TRLD,Altar of Agni,Hybrid,This card is in a Fire cluster of 4 or more cards,Fire cards in the affected columns gain +1 value,Artefact,Fire,0,4
+81,TLD,Incandescent Crucible,Hybrid,You have at least one Iron card in your hand,"Discard an Iron card, get a Fire card from your deck",Swift,Fire,2,3
+82,TLD,Phoenix Call,Defense,You have at least one Fire card in your hand,"Discard a Fire card, get any non-Phoenix card from your discard pile",Swift,Fire,2,3
+5,TLD,Agni's Blessing,Defense,There are 3 or more Fire cards in this card Fire cluster,BLK+2 per Fire card in the cluster,Activation,Fire,3,3
+6,TLD,Fire Shield,Defense,There are 2 or more Fire cards in the chain,BLK+2,Activation,Fire,2,3
+41,TRLD,Altar of Agni,Hybrid,This card is in a Fire cluster of 4 or more cards,Fire cards in the affected columns gain +1 value,Artefact,Fire,0,4
+81,TLD,Incandescent Crucible,Hybrid,You have at least one Iron card in your hand,"Discard an Iron card, get a Fire card from your deck",Swift,Fire,2,3
+82,TLD,Phoenix Call,Defense,You have at least one Fire card in your hand,"Discard a Fire card, get any non-Phoenix card from your discard pile",Swift,Fire,2,3
+5,TLD,Agni's Blessing,Defense,There are 3 or more Fire cards in this card Fire cluster,BLK+2 per Fire card in the cluster,Activation,Fire,3,3
+6,TLD,Fire Shield,Defense,There are 2 or more Fire cards in the chain,BLK+2,Activation,Fire,2,3
+41,TRLD,Altar of Agni,Hybrid,This card is in a Fire cluster of 4 or more cards,Fire cards in the affected columns gain +1 value,Artefact,Fire,0,4
+81,TLD,Incandescent Crucible,Hybrid,You have at least one Iron card in your hand,"Discard an Iron card, get a Fire card from your deck",Swift,Fire,2,3
+82,TLD,Phoenix Call,Defense,You have at least one Fire card in your hand,"Discard a Fire card, get any non-Phoenix card from your discard pile",Swift,Fire,2,3
+5,TLD,Agni's Blessing,Defense,There are 3 or more Fire cards in this card Fire cluster,BLK+2 per Fire card in the cluster,Activation,Fire,3,3
+6,TLD,Fire Shield,Defense,There are 2 or more Fire cards in the chain,BLK+2,Activation,Fire,2,3
+41,TRLD,Altar of Agni,Hybrid,This card is in a Fire cluster of 4 or more cards,Fire cards in the affected columns gain +1 value,Artefact,Fire,0,4
+81,TLD,Incandescent Crucible,Hybrid,You have at least one Iron card in your hand,"Discard an Iron card, get a Fire card from your deck",Swift,Fire,2,3
+82,TLD,Phoenix Call,Defense,You have at least one Fire card in your hand,"Discard a Fire card, get any non-Phoenix card from your discard pile",Swift,Fire,2,3
+5,TLD,Agni's Blessing,Defense,There are 3 or more Fire cards in this card Fire cluster,BLK+2 per Fire card in the cluster,Activation,Fire,3,3
+6,TLD,Fire Shield,Defense,There are 2 or more Fire cards in the chain,BLK+2,Activation,Fire,2,3
+41,TRLD,Altar of Agni,Hybrid,This card is in a Fire cluster of 4 or more cards,Fire cards in the affected columns gain +1 value,Artefact,Fire,0,4
+81,TLD,Incandescent Crucible,Hybrid,You have at least one Iron card in your hand,"Discard an Iron card, get a Fire card from your deck",Swift,Fire,2,3
+82,TLD,Phoenix Call,Defense,You have at least one Fire card in your hand,"Discard a Fire card, get any non-Phoenix card from your discard pile",Swift,Fire,2,3

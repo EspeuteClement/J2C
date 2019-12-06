@@ -1,0 +1,32 @@
+Offense,,,,,,,,,
+id,notches,name,type,condition,effect,condition_type,attribute,base_value,notch_count
+2,DRL,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per fire card in the same cluster,Activation,Fire,1,3
+2,TLD,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per fire card in the same cluster,Activation,Fire,1,3
+3,TLD,Eruption,Offense,The number of cards in the chain is inferior or equal to 4,DMG +1 per fire card in the same cluster,Activation,Fire,3,3
+3,TLD,Eruption,Offense,The number of cards in the chain is inferior or equal to 4,DMG +1 per fire card in the same cluster,Activation,Fire,3,3
+4,TLD,Ultimate Combustion,Offense,Play this card first,DMG +2 per fire card in the same cluster,Activation,Fire,1,3
+4,TLD,Ultimate Combustion,Offense,Play this card first,DMG +2 per fire card in the same cluster,Activation,Fire,1,3
+7,TLD,Frostbite,Offense,There is at least one locked card in the chain,"DMG+1 per defense locked card, DMG+2 per offense locked card",Activation,Ice,2,3
+7,TLD,Frostbite,Offense,There is at least one locked card in the chain,"DMG+1 per defense locked card, DMG+2 per offense locked card",Activation,Ice,2,3
+2,TLD,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per fire card in the same cluster,Activation,Fire,1,3
+2,TLD,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per fire card in the same cluster,Activation,Fire,1,3
+3,TLD,Eruption,Offense,The number of cards in the chain is inferior or equal to 4,DMG +1 per fire card in the same cluster,Activation,Fire,3,3
+3,TLD,Eruption,Offense,The number of cards in the chain is inferior or equal to 4,DMG +1 per fire card in the same cluster,Activation,Fire,3,3
+4,TLD,Ultimate Combustion,Offense,Play this card first,DMG +2 per fire card in the same cluster,Activation,Fire,1,3
+4,TLD,Ultimate Combustion,Offense,Play this card first,DMG +2 per fire card in the same cluster,Activation,Fire,1,3
+7,TLD,Frostbite,Offense,There is at least one locked card in the chain,"DMG+1 per defense locked card, DMG+2 per offense locked card",Activation,Ice,2,3
+7,TLD,Frostbite,Offense,There is at least one locked card in the chain,"DMG+1 per defense locked card, DMG+2 per offense locked card",Activation,Ice,2,3
+2,TLD,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per fire card in the same cluster,Activation,Fire,1,3
+2,TLD,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per fire card in the same cluster,Activation,Fire,1,3
+3,TLD,Eruption,Offense,The number of cards in the chain is inferior or equal to 4,DMG +1 per fire card in the same cluster,Activation,Fire,3,3
+3,TLD,Eruption,Offense,The number of cards in the chain is inferior or equal to 4,DMG +1 per fire card in the same cluster,Activation,Fire,3,3
+4,TLD,Ultimate Combustion,Offense,Play this card first,DMG +2 per fire card in the same cluster,Activation,Fire,1,3
+4,TLD,Ultimate Combustion,Offense,Play this card first,DMG +2 per fire card in the same cluster,Activation,Fire,1,3
+7,TLD,Frostbite,Offense,There is at least one locked card in the chain,"DMG+1 per defense locked card, DMG+2 per offense locked card",Activation,Ice,2,3
+7,TLD,Frostbite,Offense,There is at least one locked card in the chain,"DMG+1 per defense locked card, DMG+2 per offense locked card",Activation,Ice,2,3
+2,TLD,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per fire card in the same cluster,Activation,Fire,1,3
+2,TLD,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per fire card in the same cluster,Activation,Fire,1,3
+3,TLD,Eruption,Offense,The number of cards in the chain is inferior or equal to 4,DMG +1 per fire card in the same cluster,Activation,Fire,3,3
+3,TLD,Eruption,Offense,The number of cards in the chain is inferior or equal to 4,DMG +1 per fire card in the same cluster,Activation,Fire,3,3
+4,TLD,Ultimate Combustion,Offense,Play this card first,DMG +2 per fire card in the same cluster,Activation,Fire,1,3
+4,TLD,Ultimate Combustion,Offense,Play this card first,DMG +2 per fire card in the same cluster,Activation,Fire,1,3

@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
   },
   "Locked": false,
   "Grid": true,
