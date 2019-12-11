@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Scenes/Card.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Card/fire.jpg" type="Texture" id=2]
@@ -15,28 +15,28 @@
 [ext_resource path="res://Assets/Font/ArialBold.tres" type="DynamicFont" id=13]
 [ext_resource path="res://Assets/Font/Arial.tres" type="DynamicFont" id=14]
 [ext_resource path="res://Scenes/CardNumber.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Assets/Card/attribute_dual.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Card/attribute_wind.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Card/attribute_star.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Card/attribute_glass.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Card/attribute_life.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Card/attribute_neutral.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Card/attribute_volt.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Card/attribute_earth.png" type="Texture" id=23]
-[ext_resource path="res://Assets/Card/attribute_iron.png" type="Texture" id=24]
-[ext_resource path="res://Assets/Card/attribute_necro.png" type="Texture" id=25]
-[ext_resource path="res://Assets/Card/attribute_fire.png" type="Texture" id=26]
-[ext_resource path="res://Assets/Card/attribute_ice.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Card/attribute_fire.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Card/attribute_earth.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Card/attribute_wind.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Card/attribute_ice.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Card/attribute_iron.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Card/attribute_dual.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Card/attribute_glass.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Card/attribute_star.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Card/attribute_life.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Card/attribute_neutral.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Card/attribute_necro.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Card/attribute_volt.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Card/condition_persistent.png" type="Texture" id=28]
-[ext_resource path="res://Assets/Card/condition_swift.png" type="Texture" id=29]
-[ext_resource path="res://Assets/Card/condition_slow.png" type="Texture" id=30]
-[ext_resource path="res://Assets/Card/condition_activation.png" type="Texture" id=31]
-[ext_resource path="res://Assets/Card/condition_artefact.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Card/condition_slow.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Card/condition_activation.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Card/condition_artefact.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Card/condition_swift.png" type="Texture" id=32]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 178, 241 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 3 ) ],
 "loop": false,
@@ -49,7 +49,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
@@ -62,7 +62,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
@@ -75,7 +75,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
@@ -88,7 +88,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
@@ -101,70 +101,83 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Assets/Font/arial.ttf"
+
+[sub_resource type="DynamicFont" id=11]
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=8]
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ ExtResource( 16 ) ],
-"loop": true,
-"name": "dual",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ) ],
-"loop": true,
-"name": "wind",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ) ],
-"loop": true,
-"name": "star",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 19 ) ],
-"loop": true,
-"name": "glass",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 20 ) ],
-"loop": true,
-"name": "life",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 21 ) ],
-"loop": true,
-"name": "neutral",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "volt",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "earth",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "iron",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 25 ) ],
-"loop": true,
-"name": "necro",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 26 ) ],
 "loop": true,
 "name": "fire",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 27 ) ],
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "earth",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "wind",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
 "loop": true,
 "name": "ice",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "iron",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ) ],
+"loop": true,
+"name": "dual",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "glass",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "star",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "life",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "neutral",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 26 ) ],
+"loop": true,
+"name": "necro",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ) ],
+"loop": true,
+"name": "volt",
+"speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
 "frames": [ ExtResource( 28 ) ],
 "loop": true,
@@ -173,22 +186,22 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 29 ) ],
 "loop": true,
-"name": "swift",
+"name": "slow",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 30 ) ],
 "loop": true,
-"name": "slow",
+"name": "activation",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 31 ) ],
 "loop": true,
-"name": "activation",
+"name": "artefact",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 32 ) ],
 "loop": true,
-"name": "artefact",
+"name": "swift",
 "speed": 5.0
 } ]
 
@@ -201,7 +214,7 @@ activation_text = "Activation text now
 effect_text = "Effect Text"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -166.0
@@ -222,31 +235,31 @@ expand = true
 stretch_mode = 7
 
 [node name="CardTemplate" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "off"
 playing = true
 
 [node name="RightNotch" type="AnimatedSprite" parent="."]
 position = Vector2( 160, 0 )
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 animation = "off"
 playing = true
 
 [node name="TopNotch" type="AnimatedSprite" parent="."]
 position = Vector2( 1, -230 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "off"
 playing = true
 
 [node name="LeftNotch" type="AnimatedSprite" parent="."]
 position = Vector2( -160, 0 )
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "off"
 playing = true
 
 [node name="DownNotch" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 230 )
-frames = SubResource( 6 )
+frames = SubResource( 7 )
 animation = "off"
 playing = true
 
@@ -354,7 +367,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
 custom_fonts/bold_font = ExtResource( 13 )
-custom_fonts/normal_font = ExtResource( 14 )
+custom_fonts/normal_font = SubResource( 11 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_constants/line_separation = -7
 bbcode_enabled = true
@@ -367,29 +380,35 @@ scroll_active = false
 
 [node name="EffectText" type="RichTextLabel" parent="."]
 margin_left = -145.0
-margin_top = 137.0
+margin_top = 136.0
 margin_right = 217.0
-margin_bottom = 221.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 362, 84 )
 rect_scale = Vector2( 0.8, 0.8 )
+rect_clip_content = false
 mouse_filter = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
 custom_fonts/bold_font = ExtResource( 13 )
-custom_fonts/normal_font = ExtResource( 14 )
+custom_fonts/normal_font = SubResource( 8 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "Effect Text"
+tab_size = 0
 text = "Effect Text"
 scroll_active = false
 
 [node name="Attribute" type="AnimatedSprite" parent="."]
 position = Vector2( 128, -182 )
-frames = SubResource( 7 )
+frames = SubResource( 9 )
 animation = "neutral"
 playing = true
 
 [node name="Condition" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 18 )
-frames = SubResource( 8 )
-animation = "artefact"
+frames = SubResource( 10 )
+animation = "activation"
 playing = true
 [connection signal="mouse_entered" from="." to="." method="_on_Node2D_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Node2D_mouse_exited"]

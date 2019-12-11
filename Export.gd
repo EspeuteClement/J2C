@@ -14,7 +14,7 @@ func _ready() -> void:
 #func _process(delta: float) -> void:
 #	pass
 
-const scalefactor = Vector2(0.75,0.75);
+const scalefactor = Vector2(1.0,1.0);
 const tiles_size = Vector2(6,6);
 
 var deck_db : Array;
@@ -307,13 +307,13 @@ func _save_custom_deck(in_name:String, out_name:String):
 		var notch_id = 0;
 		for c in notches_txt:
 			match c.to_upper():
-				"R":
+				"R", ">":
 					notch_id += 1 << Card.Dir.Right;
-				"T":
+				"T", "^":
 					notch_id += 1 << Card.Dir.Top;
-				"L":
+				"L", "<":
 					notch_id += 1 << Card.Dir.Left;
-				"D":
+				"D", "V":
 					notch_id += 1 << Card.Dir.Down;
 				"_":
 					printerr("Notch char not recognized");
@@ -335,4 +335,14 @@ func _on_CheckBox_toggled(button_pressed: bool) -> void:
 func _on_SaveDecks_pressed() -> void:
 	_save_custom_deck("import/import1.cdb", "Custom Offense 1");
 	_save_custom_deck("import/import2.cdb", "Custom Defense 1");
+	_save_custom_deck("import/import3.cdb", "Canonic Offense");
+	_save_custom_deck("import/import4.cdb", "Canonic Defense");
+	_save_custom_deck("import/import5.cdb", "Phoenix Fire Offense");
+	_save_custom_deck("import/import6.cdb", "Phoenix Fire Defense");
+	_save_custom_deck("import/import7.cdb", "Geothermal Energy Offense");
+	_save_custom_deck("import/import8.cdb", "Geothermal Energy Defense");
+	
+	
+	
+	
 	

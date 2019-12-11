@@ -40,6 +40,7 @@ enum CardProp {
 	ATTRIBUTE,
 	VALUE,
 	NOTCH_COUNT,
+	TAGS,
 	COUNT
 };
 

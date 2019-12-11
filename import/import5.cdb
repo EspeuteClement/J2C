@@ -1,0 +1,32 @@
+Offense,,,,,,,,,
+id,notches,name,type,condition,effect,condition_type,attribute,base_value,notch_count
+2,<^v,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per fire card in the same cluster,Activation,Fire,1,3
+2,<v>,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per fire card in the same cluster,Activation,Fire,1,3
+2,<^>,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per fire card in the same cluster,Activation,Fire,1,3
+80,<^>,Firestarter,Offense,This card is not connected to a Fire card,Immediately play a Fire card connected to this one,Swift,Fire,2,3
+80,<^v,Firestarter,Offense,This card is not connected to a Fire card,Immediately play a Fire card connected to this one,Swift,Fire,2,3
+80,^v>,Firestarter,Offense,This card is not connected to a Fire card,Immediately play a Fire card connected to this one,Swift,Fire,2,3
+41,<^>v,Altar of Agni,Hybrid,This card is in a Fire cluster of 4 or more cards,Fire cards in the affected columns gain +1 value,Artefact,Fire,0,4
+41,<^>v,Altar of Agni,Hybrid,This card is in a Fire cluster of 4 or more cards,Fire cards in the affected columns gain +1 value,Artefact,Fire,0,4
+3,^v>,Eruption,Offense,The number of cards in the chain is inferior or equal to 4,DMG +1 per fire card in the same cluster,Activation,Fire,3,3
+3,<v>,Eruption,Offense,The number of cards in the chain is inferior or equal to 4,DMG +1 per fire card in the same cluster,Activation,Fire,3,3
+81,<^>,Incandescent Crucible,Hybrid,You have at least one Iron card in your hand,"Discard an Iron card, get a Fire card from your deck",Swift,Fire,2,3
+81,<^v,Incandescent Crucible,Hybrid,You have at least one Iron card in your hand,"Discard an Iron card, get a Fire card from your deck",Swift,Fire,2,3
+79,<v>,Phoenix Rush,Offense,There is at least one card in your discard pile,"If there is a non-Phoenix Fire card in your discard pile you can play it after this one, do it immediately. If you do it, lose 1 HP",Swift,Fire,2,3
+79,<^v,Phoenix Rush,Offense,There is at least one card in your discard pile,"If there is a non-Phoenix Fire card in your discard pile you can play it after this one, do it immediately. If you do it, lose 1 HP",Swift,Fire,2,3
+79,^v>,Phoenix Rush,Offense,There is at least one card in your discard pile,"If there is a non-Phoenix Fire card in your discard pile you can play it after this one, do it immediately. If you do it, lose 1 HP",Swift,Fire,2,3
+85,<^v,Sacrifice,Hybrid,There is at least one card in your discard pile,"Discard one card, get any card from your discard pile",Swift,Necro,1,3
+85,<^>,Sacrifice,Hybrid,There is at least one card in your discard pile,"Discard one card, get any card from your discard pile",Swift,Necro,1,3
+74,<v>,Wish,Hybrid,There is no artefact in your artefact slots,Get an artefact card from your deck,Slow,Star,1,3
+97,^v>,Magnetic Mallet,Offense,Play this card next to an iron card,Get up to 2 iron cards from your deck,Swift,Volt,1,3
+97,<^>,Magnetic Mallet,Offense,Play this card next to an iron card,Get up to 2 iron cards from your deck,Swift,Volt,1,3
+4,<v>,Ultimate Combustion,Offense,Play this card first,DMG +2 per fire card in the same cluster,Activation,Fire,1,3
+12,<^v,Throwing Knife,Offense,There is at least 3 iron cards in the chain,DMG +1 per iron card in the chain,Activation,Iron,2,3
+12,<^>,Throwing Knife,Offense,There is at least 3 iron cards in the chain,DMG +1 per iron card in the chain,Activation,Iron,2,3
+12,<v>,Throwing Knife,Offense,There is at least 3 iron cards in the chain,DMG +1 per iron card in the chain,Activation,Iron,2,3
+15,<^v,Iron Spear,Offense,This card is in a column full of cards,DMG+2 per Iron card in the current column,Activation,Iron,1,3
+15,^v>,Iron Spear,Offense,This card is in a column full of cards,DMG+2 per Iron card in the current column,Activation,Iron,1,3
+44,<^>,Iron Deposit,Hybrid,There are 3 or more Iron cards in the chain,"Right before the drawing phase, you can discard one non-Iron card then get any Iron card from your deck",Artefact,Iron,0,3
+13,<,Dawn Battle Axe,Offense,Play this card first,"If a Dusk Battle Axe is activated, DMG+5",Activation,Iron,3,1
+14,>,Dusk Battle Axe,Offense,Play this card as the 12th card,"If a Dawn Battle Axe is activated, DMG+5",Activation,Iron,3,1
+84,^v>,Sudden Death,Offense,There is no card in your discard pile,"Discard any card connected to this one, then discard this card",Swift,Necro,0,3
