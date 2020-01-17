@@ -19,7 +19,7 @@ const tiles_size = Vector2(6,6);
 
 var deck_db : Array;
 
-func export_card(card : Card, out_name : String) -> void:
+func export_card(card : CardNew, out_name : String) -> void:
 	#remove all other cards
 	for node in get_children():
 		node.queue_free();
@@ -44,7 +44,7 @@ func export_card(card : Card, out_name : String) -> void:
 
 
 
-func export_batch(nodes: Array, type:int, out_name: String, db:Dictionary):
+func export_batch(nodes: Array, out_name: String, db:Dictionary):
 	randomize()
 	for child in get_children():
 		remove_child(child);
@@ -52,7 +52,6 @@ func export_batch(nodes: Array, type:int, out_name: String, db:Dictionary):
 		
 	var size = preload("res://Assets/Card/template_off.png").get_size()*scalefactor;	
 	get_viewport().set_size(size*tiles_size);
-
 	
 	var current_deck;
 	var image_name;
@@ -62,13 +61,13 @@ func export_batch(nodes: Array, type:int, out_name: String, db:Dictionary):
 	for c in range(nodes.size()):
 		if (c % int(tiles_size.x * tiles_size.y) == 0):
 			image_name = "%s_%s_%d.png" % [out_name, CardDatabase.export_hash, nb_gen];
-			current_deck = _add_new_deck(db, nb_gen, image_name, type);
-			deck_db[type].append(current_deck);
+			current_deck = _add_new_deck(db, nb_gen, image_name);
+			deck_db.append(current_deck);
 		
-		var node = nodes[c];
+		var node = nodes[c] as CardNew;
 		if (node):
-			var dupe = node.duplicate();
-			dupe.values = node.values;
+			var dupe = node.duplicate(0xF);
+#			dupe.values = node.values;
 			add_child(dupe);
 			dupe.position = size/2 + size * Vector2(i%int(tiles_size.x), int(i/tiles_size.y));
 			dupe.scale = scalefactor;
@@ -106,20 +105,19 @@ const FILE_HOST_URL = "http://clementespeute.com/res/";
 
 func _notch_flags_to_name(flags: int) -> String:
 	var name = "";
-	if (flags & (1<<Card.Dir.Right) > 0):
+	if (flags & (1<<CardNew.Dir.Right) > 0):
 		name += "R";
-	if (flags & (1<<Card.Dir.Top) > 0):
+	if (flags & (1<<CardNew.Dir.Top) > 0):
 		name += "T";
-	if (flags & (1<<Card.Dir.Left) > 0):
+	if (flags & (1<<CardNew.Dir.Left) > 0):
 		name += "L";
-	if (flags & (1<<Card.Dir.Down) > 0):
+	if (flags & (1<<CardNew.Dir.Down) > 0):
 		name += "D";
 	
 	return name;
 
-func _add_new_deck(db:Dictionary, id:int, face_card_file:String, type:int) -> Dictionary:
+func _add_new_deck(db:Dictionary, id:int, face_card_file:String) -> Dictionary:
 	var deck_name = (id+3);
-	
 	
 	if (db.ObjectStates[0].CustomDeck.has(deck_name)):
 		return db;
@@ -127,11 +125,7 @@ func _add_new_deck(db:Dictionary, id:int, face_card_file:String, type:int) -> Di
 	var dict = Dictionary();
 	db.ObjectStates[0].CustomDeck[deck_name] = dict;
 	dict.FaceURL = FILE_HOST_URL + face_card_file;
-	match type:
-		Card.CardType.OFFENSE:
-			dict.BackURL = FILE_HOST_URL + "card_back_offense.png";
-		Card.CardType.DEFENSE:
-			dict.BackURL = FILE_HOST_URL + "card_back_defense.png";
+	dict.BackURL = FILE_HOST_URL + "card_back.png";
 	
 	dict.NumWidth = tiles_size.x;
 	dict.NumHeight = tiles_size.y;
@@ -140,7 +134,7 @@ func _add_new_deck(db:Dictionary, id:int, face_card_file:String, type:int) -> Di
 	
 	return dict;
 	
-func _add_new_card_id(db:Dictionary, card:Card) -> Dictionary:
+func _add_new_card_id(db:Dictionary, card:Node) -> Dictionary:
 	
 	if !CardTemplateObject:
 		var file := File.new()
@@ -163,10 +157,10 @@ func _add_new_card_id(db:Dictionary, card:Card) -> Dictionary:
 	
 	var card_id = card.card_export_id;	
 	card_obj.CardID = card_id;
-	card_obj.Nickname = "%s (%s) [%s]" % [card.card_name, Card.attribute_animation_name[card.card_attribute].capitalize() , _notch_flags_to_name(card.notch_flags)];
+	card_obj.Nickname = "%s (%s) [%s]" % [card.card_name, CardNew.attribute_animation_name[card.card_attribute].capitalize() , _notch_flags_to_name(card.notch_flags)];
 	card_obj.Description = "%d, %d, x:%d, y:%d" % [card.card_export_id, card.card_deck_id, card.card_x, card.card_y];
 	card_obj.CustomDeck = Dictionary();
-	var the_deck = deck_db[card.card_type][deck_id-3].duplicate();
+	var the_deck = deck_db[deck_id-3].duplicate();
 	card_obj.CustomDeck[str(deck_id+3)] = the_deck;
 	
 	(db.ObjectStates[0].DeckIDs as Array).append(card_id);
@@ -174,108 +168,71 @@ func _add_new_card_id(db:Dictionary, card:Card) -> Dictionary:
 	db.ObjectStates[0]["ContainedObjects"].append(card_obj);
 	return db;
 
-func _save_card_db(db:Dictionary, out_name:String, type:int):
+func _save_card_db(db:Dictionary, out_name:String):
 	var deck_export = File.new();
 	deck_export.open("user://%s.json" %out_name, File.WRITE_READ);
 	deck_export.store_string(JSON.print(db, "  "));
 	deck_export.close();
 	
 	var path;
-	match type:
-		Card.CardType.OFFENSE:
-			path = "res://Assets/Card/card_back_offense.png";
-		Card.CardType.DEFENSE:
-			path = "res://Assets/Card/card_back_defense.png";
+
+	path = "res://Assets/Card/card_back.png";
 	
 	var dir = Directory.new()
 	dir.copy(path, "user://%s.png" % out_name);
 
 func _on_Export_pressed() -> void:
-	var pb = $"../../../CanvasLayer/Panel/VBoxContainer/ProgressBar";
-	pb.visible = true;
-	pb.percent_visible = true;
-	pb.value = 0;
-	pb.min_value = 0;
-	pb.max_value = 1.0;
-	
-	deck_db = [Array(), Array()];
+	deck_db = Array();
 	
 	var count:int = 0;
 	var nb_batch:int = 0;
-	var batch_off := Array();
-	var batch_def := Array();
+	var batch := Array();
+
 	var children = $"../../../CardDB".get_children();
 	var count_batch:int = 0;
 	
-	var current_type = Card.CardType.OFFENSE;
-	
 	for node in children:
-		if node is Card:
-			if !tiled:
-				export_card(node, "(%03d) - %s" % [count, node.card_name]);
-				yield(get_tree(), "idle_frame")
-				yield(get_tree(), "idle_frame")
-			if tiled:
-				match node.card_type:
-					Card.CardType.OFFENSE:
-						batch_off.append(node);
-					Card.CardType.DEFENSE:
-						batch_def.append(node);
+		if node is CardNew:
+			batch.append(node);
 			count += 1;
-			pb.value = float(count) / float(children.size());
+#			pb.value = float(count) / float(children.size());
 			
-	if tiled:
-		var db = _create_deck_export_data();
-		export_batch(batch_off, Card.CardType.OFFENSE,  "cards_batch_off", db);
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		
-		_save_card_db(db, "Master Deck Offense", Card.CardType.OFFENSE);		
-		db = _create_deck_export_data();
-		export_batch(batch_def, Card.CardType.DEFENSE, "cards_batch_def", db);
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		_save_card_db(db, "Master Deck Defense", Card.CardType.DEFENSE);
-		
-	pb.visible = false;
+	var db = _create_deck_export_data();
+	export_batch(batch,  "cards_batch", db);
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+
+	_save_card_db(db, "Master Deck");		
 	
 	OS.shell_open(str("file://", OS.get_user_data_dir()));
 	pass # Replace with function body.
@@ -308,13 +265,13 @@ func _save_custom_deck(in_name:String, out_name:String):
 		for c in notches_txt:
 			match c.to_upper():
 				"R", ">":
-					notch_id += 1 << Card.Dir.Right;
+					notch_id += 1 << CardNew.Dir.Right;
 				"T", "^":
-					notch_id += 1 << Card.Dir.Top;
+					notch_id += 1 << CardNew.Dir.Top;
 				"L", "<":
-					notch_id += 1 << Card.Dir.Left;
+					notch_id += 1 << CardNew.Dir.Left;
 				"D", "V":
-					notch_id += 1 << Card.Dir.Down;
+					notch_id += 1 << CardNew.Dir.Down;
 				"_":
 					printerr("Notch char not recognized");
 					
@@ -325,7 +282,7 @@ func _save_custom_deck(in_name:String, out_name:String):
 		db.ObjectStates[0].CustomDeck[str(did)] = deck;
 		did += 1;
 	
-	_save_card_db(db, out_name, type);
+	_save_card_db(db, out_name);
 
 func _on_CheckBox_toggled(button_pressed: bool) -> void:
 	tiled = button_pressed;
@@ -341,6 +298,7 @@ func _on_SaveDecks_pressed() -> void:
 	_save_custom_deck("import/import6.cdb", "Phoenix Fire Defense");
 	_save_custom_deck("import/import7.cdb", "Geothermal Energy Offense");
 	_save_custom_deck("import/import8.cdb", "Geothermal Energy Defense");
+	#_save_custom_deck("import/import9.cdb", "Blank example");
 	
 	
 	

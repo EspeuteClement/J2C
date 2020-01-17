@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/BG/Background.png" type="Texture" id=2]
 [ext_resource path="res://Export.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Card.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Camera2D.gd" type="Script" id=5]
+[ext_resource path="res://Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://HTTPRequest.gd" type="Script" id=5]
+[ext_resource path="res://MasterDeckStatus.gd" type="Script" id=6]
 
 [node name="Board" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -1737.61, -1621.77 )
+position = Vector2( -1732, -1736 )
 texture = ExtResource( 2 )
 centered = false
 region_enabled = true
@@ -38,70 +39,119 @@ gui_disable_input = true
 [node name="RenderCam" type="Camera2D" parent="Control/Viewport"]
 script = ExtResource( 3 )
 
-[node name="Node2D" parent="Control" instance=ExtResource( 4 )]
-position = Vector2( 194, 327 )
-card_type = 1
-card_attribute = 4
-card_condition = 1
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 drag_margin_left = 0.0
 drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.0
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="PanelContainer" parent="CanvasLayer"]
-margin_right = 128.0
-margin_bottom = 134.0
+margin_right = 292.0
+margin_bottom = 425.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel"]
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/Panel"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 121.0
-margin_bottom = 127.0
+margin_right = 285.0
+margin_bottom = 418.0
+tab_align = 0
 
-[node name="SaveDecks" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_right = 114.0
-margin_bottom = 20.0
-text = "Save Decks"
+[node name="Master Deck" type="Tabs" parent="CanvasLayer/Panel/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
 
-[node name="Imoprt" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 24.0
-margin_right = 114.0
-margin_bottom = 44.0
-text = "Import"
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/TabContainer/Master Deck"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[node name="Export" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 48.0
-margin_right = 114.0
-margin_bottom = 68.0
-text = "Export"
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer"]
+margin_right = 270.0
+margin_bottom = 24.0
+placeholder_text = "url"
 
-[node name="Download" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 72.0
-margin_right = 114.0
-margin_bottom = 92.0
+[node name="Download" type="Button" parent="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 28.0
+margin_right = 270.0
+margin_bottom = 48.0
 text = "Download"
 
-[node name="CheckBox" type="CheckBox" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_top = 96.0
-margin_right = 114.0
-margin_bottom = 120.0
+[node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer/Download"]
+script = ExtResource( 5 )
+
+[node name="MasterDeckStatus" type="Label" parent="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 52.0
+margin_right = 270.0
+margin_bottom = 66.0
+text = "MasterDeck.csv : Not present"
+script = ExtResource( 6 )
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 70.0
+margin_right = 270.0
+margin_bottom = 74.0
+
+[node name="Import" type="Button" parent="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 78.0
+margin_right = 270.0
+margin_bottom = 98.0
+text = "Import"
+
+[node name="Export" type="Button" parent="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 102.0
+margin_right = 270.0
+margin_bottom = 122.0
+text = "Export"
+
+[node name="SaveDecks" type="Button" parent="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 126.0
+margin_right = 270.0
+margin_bottom = 146.0
+text = "Save Decks"
+
+[node name="CheckBox" type="CheckBox" parent="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 150.0
+margin_right = 270.0
+margin_bottom = 174.0
 text = "Tiled"
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer"]
 visible = false
-margin_top = 124.0
+margin_top = 132.0
 margin_right = 114.0
-margin_bottom = 138.0
+margin_bottom = 146.0
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 178.0
+margin_right = 270.0
+margin_bottom = 198.0
+text = "Test"
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 202.0
+margin_right = 270.0
+margin_bottom = 216.0
+
+[node name="Play Decks" type="Tabs" parent="CanvasLayer/Panel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
 
 [node name="CardDB" type="Node2D" parent="."]
-[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/SaveDecks" to="Control/Viewport/RenderCam" method="_on_SaveDecks_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Imoprt" to="." method="_on_Imoprt_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Export" to="Control/Viewport/RenderCam" method="_on_Export_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Download" to="." method="_on_Download_pressed"]
-[connection signal="toggled" from="CanvasLayer/Panel/VBoxContainer/CheckBox" to="Control/Viewport/RenderCam" method="_on_CheckBox_toggled"]
+[connection signal="pressed" from="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer/Download" to="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer/Download/HTTPRequest" method="_on_Button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer/Import" to="." method="_on_Import_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer/Export" to="Control/Viewport/RenderCam" method="_on_Export_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer/SaveDecks" to="Control/Viewport/RenderCam" method="_on_SaveDecks_pressed"]
+[connection signal="toggled" from="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer/CheckBox" to="Control/Viewport/RenderCam" method="_on_CheckBox_toggled"]
+[connection signal="pressed" from="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer/Button" to="CanvasLayer/Panel/TabContainer/Master Deck/VBoxContainer/Download/HTTPRequest" method="_on_Button_pressed"]

@@ -1,7 +1,7 @@
 tool
 extends Node2D
 
-class_name Card
+class_name CardNew
 
 enum Dir {
 	Right,

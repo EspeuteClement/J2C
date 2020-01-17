@@ -7,26 +7,26 @@ id,notches,name,type,condition,effect,condition_type,attribute,base_value,notch_
 38,<v>,Volt Shield,Defense,There are 2 or more Volt cards in the chain,BLK+2,Activation,Volt,2,3
 38,<^>,Volt Shield,Defense,There are 2 or more Volt cards in the chain,BLK+2,Activation,Volt,2,3
 38,^v>,Volt Shield,Defense,There are 2 or more Volt cards in the chain,BLK+2,Activation,Volt,2,3
-105,<^v,Electrosmite,Defense,There is at least 3 activated cards in the chain,Deactivate any card,Swift,Volt,1,3
-105,^v>,Electrosmite,Defense,There is at least 3 activated cards in the chain,Deactivate any card,Swift,Volt,1,3
+105,<^v,Electrosmite,Defense,There is at least 2 activated cards in the chain,Deactivate any card,Swift,Volt,1,3
+105,^v>,Electrosmite,Defense,There is at least 2 activated cards in the chain,Deactivate any card,Swift,Volt,1,3
 62,<v>,Electric-powered Rubber Suit,Defense,This card is connected to at least 2 Volt card,Your cards can't be deactivated anymore,Persistent,Volt,3,3
 104,<v>,Short Circuit,Hybrid,There is at least one activated card in the chain,"Get a card in your deck, deactivate one of your cards",Swift,Volt,1,3
 104,<^>,Short Circuit,Hybrid,There is at least one activated card in the chain,"Get a card in your deck, deactivate one of your cards",Swift,Volt,1,3
 102,<^v,Artificial Energy Source,Hybrid,This card is not connected to any Volt card,Place an Activated token on this card. It acts as an Activation card with no effect,Swift,Volt,3,3
-52,<^v,Voltaic Bear Trap,Hybrid,This card is activated,"Each round, the first activated card in the affected column is deactivated",Artefact,Volt,0,3
-90,<v>,Tough choice,Hybrid,Play this card,"Draw 2 cards, then discard one card",Swift,Neutral,1,3
+102,<^v,Artificial Energy Source,Hybrid,This card is not connected to any Volt card,Place an Activated token on this card. It acts as an Activation card with no effect,Swift,Volt,3,3
+102,<v>,Artificial Energy Source,Hybrid,This card is not connected to any Volt card,Place an Activated token on this card. It acts as an Activation card with no effect,Swift,Volt,3,3
+52,^v>,Voltaic Bear Trap,Hybrid,This card is activated,"Each round, the first activated card in the affected column is deactivated",Artefact,Volt,0,3
+90,<^v,Tough choice,Hybrid,Play this card,"Draw 2 cards, then discard one card",Swift,Neutral,1,3
 90,^v>,Tough choice,Hybrid,Play this card,"Draw 2 cards, then discard one card",Swift,Neutral,1,3
-29,<^v,Additive Guard,Defense,The sum of the base value of all card connected to this one is superior or equal to 5,BLK+2 for each defense card connected to this one,Activation,Neutral,2,3
-78,^v>,Rock formation,Hybrid,Play this card,Create a monolith on a free slot next to this card,Swift,Earth,2,3
 78,<^>,Rock formation,Hybrid,Play this card,Create a monolith on a free slot next to this card,Swift,Earth,2,3
 78,<^v,Rock formation,Hybrid,Play this card,Create a monolith on a free slot next to this card,Swift,Earth,2,3
-0,<^>,Natural Fortress,Defense,There are 3 or more Earth cards in the chain,"BLK+1 per Earth card in the chain, BLK+2 per monolith",Activation,Earth,2,3
+78,<^>,Rock formation,Hybrid,Play this card,Create a monolith on a free slot next to this card,Swift,Earth,2,3
 0,^v>,Natural Fortress,Defense,There are 3 or more Earth cards in the chain,"BLK+1 per Earth card in the chain, BLK+2 per monolith",Activation,Earth,2,3
 0,<v>,Natural Fortress,Defense,There are 3 or more Earth cards in the chain,"BLK+1 per Earth card in the chain, BLK+2 per monolith",Activation,Earth,2,3
-92,^v>,Preemptive Guard,Defense,Play this card second,Pass your opponent's next turn,Swift,Neutral,2,3
-85,<v>,Sacrifice,Hybrid,There is at least one card in your discard pile,"Discard one card, get any card from your discard pile",Swift,Necro,1,3
-72,<^>,Social Orb,Defense,There is another Social Orb in the chain,BLK+3 per other Social Orb in the chain,Slow,Neutral,2,3
-72,<^v,Social Orb,Defense,There is another Social Orb in the chain,BLK+3 per other Social Orb in the chain,Slow,Neutral,2,3
-72,<v>,Social Orb,Defense,There is another Social Orb in the chain,BLK+3 per other Social Orb in the chain,Slow,Neutral,2,3
-94,^v>,Elemental Harvest,Hybrid,Discard one card,"Get an artefact from your deck, with the same attribute as the card you just discarded",Swift,Star,2,3
-76,<^>,White flag,Defense,Play this card,End the phase immediately. Your opponent draw 2 additional cards in the next phase and you lose 2 HP,Swift,Dual,0,3
+0,^v>,Natural Fortress,Defense,There are 3 or more Earth cards in the chain,"BLK+1 per Earth card in the chain, BLK+2 per monolith",Activation,Earth,2,3
+92,<v>,Preemptive Guard,Defense,Play this card second,Pass your opponent's next turn,Swift,Neutral,2,3
+85,<^>,Sacrifice,Hybrid,There is at least one card in your discard pile,"Discard one card, get any card from your discard pile",Swift,Necro,1,3
+106,<^v>,Magnetic Shuffle,Hybrid,There is at least one activated card in the chain,Choose an activation token on a card connected to this one and place it on another card connected to this one,Swift,Volt,2,4
+106,<^v>,Magnetic Shuffle,Hybrid,There is at least one activated card in the chain,Choose an activation token on a card connected to this one and place it on another card connected to this one,Swift,Volt,2,4
+94,^v>,Elemental Harvest,Hybrid,Play this card,"Discard one card then get an artefact from your deck, with the same attribute as the card you just discarded",Swift,Star,2,3
+76,<^>,White flag,Defense,Play this card,End the round immediately. Your opponent draw 2 additional cards in the next round and you lose 2 HP,Swift,Dual,0,3

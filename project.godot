@@ -10,12 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
-"class": "Card",
+"class": "CardNew",
 "language": "GDScript",
-"path": "res://Scenes/Card.gd"
+"path": "res://Scenes/CardNew.gd"
 } ]
 _global_script_class_icons={
-"Card": ""
+"CardNew": ""
 }
 
 [application]
@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 CardDatabase="*res://Scenes/CardDatabase.gd"
+Constants="*res://Scenes/Constants.gd"
 
 [display]
 

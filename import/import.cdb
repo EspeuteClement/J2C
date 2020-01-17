@@ -1,87 +1,87 @@
 id,name,type,condition,effect,condition_type,attribute,base_value,notch_count,keywords
 0,Natural Fortress,Defense,There are 3 or more Earth cards in the chain,"BLK+1 per Earth card in the chain, BLK+2 per monolith",Activation,Earth,2,3,"earth, monolith"
 1,Mother Gaïa,Defense,There is at least one Star card in the chain,"BLK+1 per Star or Earth card in the chain,",Activation,Earth,2,3,"earth, star"
-2,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per fire card in the same cluster,Activation,Fire,1,3,fire
-3,Eruption,Offense,The number of cards in the chain is inferior or equal to 4,DMG +1 per fire card in the same cluster,Activation,Fire,3,3,
-4,Ultimate Combustion,Offense,Play this card first,DMG +2 per fire card in the same cluster,Activation,Fire,1,3,
-5,Agni's Blessing,Defense,There are 3 or more Fire cards in this card Fire cluster,BLK+2 per Fire card in the cluster,Activation,Fire,2,3,
-6,Fire Shield,Defense,There are 2 or more Fire cards in the chain,BLK+2,Activation,Fire,2,3,
-7,Frostbite,Offense,There is at least one locked card in the chain,"DMG+1 per defense locked card, DMG+2 per offense locked card",Activation,Ice,2,3,
-8,Ice Shield,Defense,There are 2 or more Ice cards in the chain,BLK+2,Activation,Ice,2,3,
-9,Celcius Veil,Defense,There are 2 or more Fire or Ice cards in the chain,BLK+1 per Fire or Ice card in the chain,Activation,Ice,1,3,
-10,Glacial Fortress,Defense,There are 3 or more Ice cards in the chain,"BLK+1 per Ice card in the chain, BLK+2 per locked card in the chain",Activation,Ice,2,3,
-11,Frost Retribution,Defense,There are 3 or more condition-locked card in the chain,DMG+1 per locked card in the chain,Activation,Ice,2,3,
-12,Throwing Knife,Offense,There is at least 3 iron cards in the chain,DMG +1 per iron card in the chain,Activation,Iron,2,3,
-13,Dawn Battle Axe,Offense,Play this card first,"If a Dusk Battle Axe is activated, DMG+5",Activation,Iron,3,1,
-14,Dusk Battle Axe,Offense,Play this card as the 12th card,"If a Dawn Battle Axe is activated, DMG+5",Activation,Iron,3,1,
-15,Iron Spear,Offense,This card is in a column full of cards,DMG+2 per Iron card in the current column,Activation,Iron,1,3,
-16,Iron Helmet,Defense,The total base damage in the chain is superior or equal to 4,BLK+1 per Iron card in the chain,Activation,Iron,2,3,
-17,Iron Gloves,Defense,The total base damage in the chain is superior or equal to 7,BLK+1 per Iron card in the chain,Activation,Iron,3,3,
-18,Iron Buckler,Defense,The total base damage in the chain is superior or equal to 10,BLK+2 per Iron card in the chain,Activation,Iron,1,3,
-19,Iron Plating,Defense,This card is in a row  full of card,BLK+1 per Iron cards in the current row,Activation,Iron,2,3,
-20,Corpse Army,Offense,There is at least one Necro card in your discard pile,DMG+1 per Necro card in your discard pile (max +8),Activation,Necro,2,3,
-21,Faked Death,Defense,There are 3 or more Necro cards in the chain,"If the final dealt damage is below or equal to 5, negates all damages",Activation,Necro,2,3,
-22,Horizontal Assault,Offense,This card is in a row full of cards,DMG +4,Activation,Neutral,1,3,
-23,Vertical Assault,Offense,This card is in a column full of cards,DMG +3,Activation,Neutral,1,3,
-24,Square Assault,Offense,The width of the chain is equal to its height,Deals the width + height of the chain as DMG,Activation,Neutral,2,3,
-25,Testudo Formation,Defense,The cards on the board form a perfect square,BLK+3,Activation,Neutral,2,3,
-26,Cross Guard,Defense,There is at least one card in the field's corners,BLK+1 for each card in corners,Activation,Neutral,2,3,
-27,War of Attrition,Defense,The number of cards in the chain is inferior or equal to 4,"If the number of cards in the chain is superior equal to 12, BLOCK+7",Activation,Neutral,2,3,
-28,Simple Guard,Defense,Play this card,BLK+1,Activation,Neutral,2,3,
-29,Additive Guard,Defense,The sum of the base value of all card connected to this one is superior or equal to 5,BLK+2 for each defense card connected to this one,Activation,Neutral,2,3,
-30,Substractive Guard,Defense,The sum of the base value of all card connected to this one is superior or equal to 5,BLK+2 for each offense card connected to this one,Activation,Neutral,2,3,
-31,Starcall,Offense,An artefact is played,DMG +3,Activation,Star,3,3,
-32,Meteor,Offense,There is at least one artefact in your artefact slots,"DMG+1 per artefact you own, DMG-1 per empty artefact slot",Activation,Star,4,3,
-33,Electric Star Burst,Offense,This card has no activation condition,DMG +2 per Volt card in the chain,Activation,Star,2,3,
-34,Star Dome,Hybrid,This card is played in a column affected by an artefact,BLK+2,Activation,Star,2,3,
+2,Fireball,Offense,The number of cards in the chain is inferior or equal to 8,DMG +1 per Fire card in the same cluster,Activation,Fire,1,3,"fire, cluster"
+3,Eruption,Offense,The number of cards in the chain is inferior or equal to 4,DMG +1 per Fire card in the same cluster,Activation,Fire,2,3,"fire, cluster"
+4,Ultimate Combustion,Offense,Play this card first,DMG +2 per Fire card in the same cluster,Activation,Fire,1,3,"fire, cluster, first"
+5,Agni's Blessing,Defense,There are 3 or more Fire cards in this card Fire cluster,BLK+2 per Fire card in the same cluster,Activation,Fire,1,3,"fire, cluster"
+6,Fire Shield,Defense,There are 2 or more Fire cards in the chain,BLK+2,Activation,Fire,2,3,fire
+7,Frostbite,Offense,There is at least one locked card in the chain,"DMG+1 per defense locked card, DMG+2 per offense locked card",Activation,Ice,2,3,"ice, lock"
+8,Ice Shield,Defense,There are 2 or more Ice cards in the chain,BLK+2,Activation,Ice,2,3,ice
+9,Celcius Veil,Defense,There are 2 or more Fire or Ice cards in the chain,BLK+1 per Fire or Ice card in the chain,Activation,Ice,1,3,"ice, fire"
+10,Glacial Fortress,Defense,There are 3 or more Ice cards in the chain,"BLK+1 per Ice card in the chain, BLK+2 per locked card in the chain",Activation,Ice,2,3,"ice, lock"
+11,Frost Retribution,Defense,There are 3 or more condition-locked card in the chain,DMG+1 per locked card in the chain,Activation,Ice,1,3,"ice, lock, damage"
+12,Throwing Knife,Offense,There is at least 3 iron cards in the chain,DMG +1 per iron card in the chain,Activation,Iron,2,3,"iron, first"
+13,Dawn Battle Axe,Offense,Play this card first,"If a Dusk Battle Axe is activated, DMG+5",Activation,Iron,3,1,"iron, last"
+14,Dusk Battle Axe,Offense,Play this card as the 12th card,"If a Dawn Battle Axe is activated, DMG+5",Activation,Iron,3,1,"iron, column"
+15,Iron Spear,Offense,This card is in a column full of cards,DMG+2 per Iron card in the current column,Activation,Iron,1,3,iron
+16,Iron Helmet,Defense,The total base damage in the chain is superior or equal to 4,BLK+1 per Iron card in the chain,Activation,Iron,2,3,iron
+17,Iron Gloves,Defense,The total base damage in the chain is superior or equal to 7,BLK+1 per Iron card in the chain,Activation,Iron,3,3,iron
+18,Iron Buckler,Defense,The total base damage in the chain is superior or equal to 10,BLK+2 per Iron card in the chain,Activation,Iron,1,3,iron
+19,Iron Plating,Defense,This card is in a row  full of card,BLK+1 per Iron cards in the current row,Activation,Iron,2,3,"iron, row"
+20,Corpse Army,Offense,There is at least one Necro card in your discard pile,DMG+1 per Necro card in your discard pile (max +8),Activation,Necro,2,3,necro
+21,Faked Death,Defense,There are 3 or more Necro cards in the chain,"If the final dealt damage is below or equal to 5, negates all damages",Activation,Necro,2,3,necro
+22,Horizontal Assault,Offense,This card is in a row full of cards,DMG +4,Activation,Neutral,1,3,"neutral, row"
+23,Vertical Assault,Offense,This card is in a column full of cards,DMG +3,Activation,Neutral,1,3,"neutral, column"
+24,Square Assault,Offense,The chain forms a perfect square (2x2 or 3x3),DMG +3,Activation,Neutral,2,3,"neutral, geometry"
+25,Testudo Formation,Defense,The cards on the board form a perfect square,BLK+3,Activation,Neutral,2,3,"neutral, geometry"
+26,Cross Guard,Defense,There is at least one card in the field's corners,BLK+1 for each card in corners,Activation,Neutral,2,3,"neutral, corner"
+27,War of Attrition,Defense,The number of cards in the chain is inferior or equal to 4,"If the number of cards in the chain is superior equal to 12, BLOCK+7",Activation,Neutral,2,3,neutral
+28,Simple Guard,Defense,Play this card,BLK+1,Activation,Neutral,2,3,"neutral, simple"
+29,Additive Guard,Defense,The sum of the base value of all card connected to this one is superior or equal to 5,BLK+2 for each defense card connected to this one,Activation,Neutral,2,3,neutral
+30,Substractive Guard,Defense,The sum of the base value of all card connected to this one is superior or equal to 5,BLK+2 for each offense card connected to this one,Activation,Neutral,2,3,neutral
+31,Starcall,Offense,An artefact is played,DMG +2,Activation,Star,3,3,"star, artefact"
+32,Meteor,Offense,Play this card,DMG -1 per empty artefact slot,Activation,Star,4,3,"star, artefact"
+33,Electric Star Burst,Offense,This card has no activation condition,DMG +2 per Volt card in the chain,Activation,Star,2,3,"star, volt"
+34,Star Dome,Hybrid,This card is played in a column affected by one artefact you own,BLK +2,Activation,Star,2,3,
 35,Cosmic Veil,Defense,There are 2 or more Star cards in the chain,"BLK+1 per Star cards in the chain, BLK +1 per artefact in your artefact slots",Activation,Star,1,3,
 36,Conductivity,Offense,There is at least 1 Iron card in the chain,DMG+2 per offense Iron card connected to this card. Receive 1 DMG per defense Iron card connected to this card.,Activation,Volt,2,3,
 37,Curfew,Offense,There is at least 1 deactivated card in the chain,DMG+3 per deactivated card in the chain,Activation,Volt,2,3,
 38,Volt Shield,Defense,There are 2 or more Volt cards in the chain,BLK+2,Activation,Volt,2,3,
 39,Natural Power Source,Offense,This card is connected to at least 2 Volt card,DMG+2 for each Volt card connected to this one,Activation,Volt,2,4,
 40,Geopurifier,Hybrid,There are 3 or more monoliths on the board,"When a monolith is destroyed, your opponent must discard one card (once per turn)",Artefact,Earth,0,3,
-41,Altar of Agni,Hybrid,This card is in a Fire cluster of 4 or more cards,Fire cards in the affected columns gain +1 value,Artefact,Fire,0,4,
-42,Crystalline Urchin,Hybrid,There are 10 cards or more in the chain,Receive 2 DMG at the end of each round,Artefact,Glass,2,3,
-43,Altar of Boreas ,Hybrid,There are 2 or more locked cards in the chain,Ice cards in the affected columns gain +1 value,Artefact,Ice,0,4,
+41,Altar of Agni,Hybrid,This card is in a Fire cluster of 3 or more cards,Fire cards in the affected columns gain +1 value,Artefact,Fire,0,4,"fire, column"
+42,Crystalline Urchin,Hybrid,There are 10 cards or more in the chain,Lose 1 HP,Artefact,Glass,2,3,
+43,Altar of Boreas ,Hybrid,There are 2 or more locked cards in the chain,Ice cards in the affected columns gain +1 value,Artefact,Ice,0,4,"ice, column"
 44,Iron Deposit,Hybrid,There are 3 or more Iron cards in the chain,"Right before the drawing phase, you can discard one non-Iron card then get any Iron card from your deck",Artefact,Iron,0,3,
 45,Heart Medallion,Hybrid,There are at least 3 Life cards in the chain,Reduces all DMG dealt before the damage phase by 1,Artefact,Life,0,3,
 46,Emergency Pouch,Hybrid,You lost at least 1 HP before the damage phase this turn,"Draw a card, receive 2 DMG (once per round)",Artefact,Life,0,3,
-47,Rebrith Stone,Hybrid,There is an odd number of card in your discard pile,"Once per round, when you draw because of the effect of a card, get a card from your discard pile instead",Artefact,Necro,0,3,
-48,Abandoned Observatory,Hybrid,This card is not connected to any Star card,"At the begining of the phase, draw up to 2 cards. Discard all non-Star cards drawn this way.",Artefact,Star,0,3,
-49,Bag of Star Dust,Hybrid,This card is connected to at least one Star card,"If there 4 or more Star cards in the column affected by this card, replace this artefact with any artefact from your deck",Artefact,Star,0,3,
-50,Geothermal Power Plant,Hybrid,There are 3 or more Earth cards in the chain,"DMG +1 to all Volt and Earth cards in the affected columns. If the value is superior or equal to 4, destroy this card after applying its effect",Artefact,Volt,0,3,
-51,Altar of Thor,Hybrid,There are 2 or more deactivated cards in the chain,Volt cards in the affected columns gain +1 value,Artefact,Volt,0,4,
+47,Rebrith Stone,Hybrid,There is an odd number of card in your discard pile,"Once per round, when you draw because of the effect of a card, you can get a card from your discard pile instead",Artefact,Necro,0,3,
+48,Abandoned Observatory,Hybrid,This card is not connected to any Star card,"At the begining of the round, draw up to 2 cards. Discard all non-Star cards drawn this way.",Artefact,Star,0,3,"star, draw"
+49,Bag of Star Dust,Hybrid,This card is connected to at least one Star card,"Before the damage phase, if there 4 or more Star cards in the columns affected by this card, get an artefact from your deck and place it directly in one of your artefact slots.",Artefact,Star,0,3,"star, column, artefact, deck"
+50,Geothermal Power Plant,Hybrid,There are 2 or more Volt cards connected to monoliths,"DMG +1 to all Volt and Earth cards in the affected columns. If the value is superior or equal to 4, destroy this card after applying its effect",Artefact,Volt,0,3,
+51,Altar of Thor,Hybrid,There are 2 or more deactivated cards in the chain,Volt cards in the affected columns gain +1 value,Artefact,Volt,0,4,"volt, column"
 52,Voltaic Bear Trap,Hybrid,This card is activated,"Each round, the first activated card in the affected column is deactivated",Artefact,Volt,0,3,
 53,Iceball,Offense,The total base damage in the chain is superior or equal to 5,All cards connected to this one are locked,Persistent,Ice,1,3,
-54,Blizzard,Offense,The total base damage in the chain is superior or equal to 10,All 4 cards around this one are locked,Persistent,Ice,3,3,
-55,Death Freeze,Offense,The total base damage in the chain is superior or equal to 15,All 8 cards around this one are locked,Persistent,Ice,4,3,
-56,Frozen Mantle,Defense,There are 3 or more defense cards in the chain,All cards connected to this one are locked,Persistent,Ice,3,3,
-57,Frozen fields,Defense,There are 4 or more Ice cards in the chain,All cards placed after this card in the chain have their condition locked,Persistent,Ice,3,3,
+54,Blizzard,Offense,The total base damage in the chain is superior or equal to 10,All 4 cards around this one are locked,Persistent,Ice,2,3,
+55,Death Freeze,Offense,The total base damage in the chain is superior or equal to 15,All 8 cards around this one are locked,Persistent,Ice,3,3,
+56,Frozen Mantle,Defense,There are 3 or more defense cards in the chain,All cards connected to this one are locked,Persistent,Ice,1,3,
+57,Frozen fields,Defense,There are 4 or more Ice cards in the chain,All cards are locked when played,Persistent,Ice,3,3,
 58,Metal Coating,Hybrid,This card is connected to a non-Iron card,The cards directly connected to this card gain Iron as an additional attribute,Persistent,Iron,2,1,
 59,Treasure Hunt,Hybrid,There is no monolith next to this card,"Each time a monolith is destroyed, draw a card",Persistent,Neutral,1,3,
 60,Spiky Shield,Defense,There are 3 or more offense cards in the chain,Deals 1 DMG to the attacker when an offense card is played,Persistent,Neutral,1,3,
 61,EM Field Generator,Offense,There is at least 3 iron cards in the chain,Draw one card at the end of your turn. Discard it immediately if it is not an iron card.,Persistent,Volt,3,3,
 62,Electric-powered Rubber Suit,Defense,This card is connected to at least 2 Volt card,Your cards can't be deactivated anymore,Persistent,Volt,3,3,
-63,Future Sight,Hybrid,If the last played card belongs to your opponent,Draw two card at the begining of your next phase,Slow,Dual,1,3,
-64,Glass Blade,Offense,The total base damage in the chain is superior or equal to 10,This card's owner loses 4 HP,Slow,Glass,5,3,
-65,Glass Armour,Defense,The total base damage in the chain is superior or equal to 10,This card's owner loses 4 HP,Slow,Glass,5,3,
+63,Future Sight,Hybrid,If the last played card belongs to your opponent,Draw two card at the begining of the next round,Slow,Dual,1,3,
+64,Glass Blade,Offense,The total base damage in the chain is superior or equal to 10,This card's owner loses 3 HP,Slow,Glass,4,3,
+65,Glass Armour,Defense,The total base damage in the chain is superior or equal to 10,This card's owner loses 3 HP,Slow,Glass,3,3,
 66,Scrap Yard,Defense,You have at least one Iron card in your discard pile,BLK+1 per Iron card in your discard pile (max 4),Slow,Iron,2,3,
-67,Heavy Boomerang,Offense,The enemy has more cards than you in the chain,Put this card back in your hand at the begining of your next offensive phase,Slow,Neutral,6,3,
-68,Crystalline Boomerang,Offense,The enemy has as many cards as you in the chain,Put this card back in your hand at the begining of your next offensive phase,Slow,Neutral,4,3,
-69,Light Boomerang,Offense,You have more cards than the enemy in the chain,Put this card back in your hand at the begining of your next offensive phase,Slow,Neutral,2,3,
+67,Heavy Boomerang,Offense,The enemy has more cards than you in the chain,Put this card back in your hand at the begining of your next offense round,Slow,Neutral,6,3,
+68,Crystalline Boomerang,Offense,The enemy has as many cards as you in the chain,Put this card back in your hand at the begining of your next offense round,Slow,Neutral,4,3,
+69,Light Boomerang,Offense,You have more cards than the enemy in the chain,Put this card back in your hand at the begining of your next offense round,Slow,Neutral,2,3,
 70,Lucky 7,Offense,There is exactly 7 cards in the chain,DMG +7,Slow,Neutral,0,3,
-71,Iron Blessing,Defense,There is at least 3 iron cards in the chain and you played an iron card this turn,Draw one more card during the drawing phase,Slow,Neutral,3,3,
+71,Iron Blessing,Defense,There is at least 3 iron cards in the chain and you played an iron card this round,Draw one more card during the drawing phase,Slow,Neutral,3,3,
 72,Social Orb,Defense,There is another Social Orb in the chain,BLK+3 per other Social Orb in the chain,Slow,Neutral,2,3,
-73,Hexagonal Guard,Defense,There is exactly 6 cards in the chain,BLK+6,Slow,Neutral,0,3,
-74,Wish,Hybrid,There is no artefact in your artefact slots,Get an artefact card from your deck,Slow,Star,1,3,
+73,Hexagonal Guard,Defense,There is exactly 6 cards in the chain,BLK+6,Slow,Neutral,1,3,
+74,Wish,Hybrid,There is no artefact in your artefact slots,Get an artefact card from your deck,Swift,Star,1,3,
 75,Supernova,Offense,This card is not in a cluster of at least 4 Star cards,Discard this card before damage calculation,Slow,Star,5,3,
-76,White flag,Defense,Play this card,End the phase immediately. Your opponent draw 2 additional cards in the next phase and you lose 2 HP,Swift,Dual,0,3,
+76,White flag,Defense,Play this card,End the round immediately. Your opponent draw 2 additional cards in the next round and you lose 2 HP,Swift,Dual,0,3,
 77,Earthquake,Offense,Play this card,"Destroy all monoliths. Lose 5 HP, reduced by 2 per monolith destroyed",Swift,Earth,5,3,
 78,Rock formation,Hybrid,Play this card,Create a monolith on a free slot next to this card,Swift,Earth,2,3,
-79,Phoenix Rush,Offense,There is at least one card in your discard pile,"If there is a non-Phoenix Fire card in your discard pile you can play it after this one, do it immediately. If you do it, lose 1 HP",Swift,Fire,2,3,
+79,Phoenix Rush,Offense,There is at least one card in your discard pile,"If there is a non-Phoenix Fire card in your discard pile you can play connected to this one, do it immediately. If you do it, lose 1 HP",Swift,Fire,2,3,
 80,Firestarter,Offense,This card is not connected to a Fire card,Immediately play a Fire card connected to this one,Swift,Fire,2,3,
 81,Incandescent Crucible,Hybrid,You have at least one Iron card in your hand,"Discard an Iron card, get a Fire card from your deck",Swift,Fire,2,3,
-82,Phoenix Call,Defense,You have at least one Fire card in your hand,"Discard a Fire card, get any non-Phoenix card from your discard pile",Swift,Fire,2,3,
+82,Phoenix Call,Defense,You have at least one Fire card in your hand,"If there is a non-Phoenix Fire card in your discard pile you can play connected to this one, do it immediately. If you do it, discard one fire card",Swift,Fire,2,3,
 83,Turbodrill,Offense,There is at least one monolith on the board,"Destroy a monolith connected to this card. If a monolith is effectively destroyed, get any Earth card from your deck",Swift,Iron,2,3,
 84,Sudden Death,Offense,There is no card in your discard pile,"Discard any card connected to this one, then discard this card",Swift,Necro,0,3,
 85,Sacrifice,Hybrid,There is at least one card in your discard pile,"Discard one card, get any card from your discard pile",Swift,Necro,1,3,
@@ -93,20 +93,37 @@ id,name,type,condition,effect,condition_type,attribute,base_value,notch_count,ke
 91,Greedy Policy,Hybrid,You oppnent drew at least one card during their last turn,Draw 2 cards,Swift,Neutral,1,3,
 92,Preemptive Guard,Defense,Play this card second,Pass your opponent's next turn,Swift,Neutral,2,3,
 93,Guard Counter,Defense,There is another Guard Counter in the chain,Draw one card for each other Guard Counter in the chain,Swift,Neutral,3,3,
-94,Elemental Harvest,Hybrid,Discard one card,"Get an artefact from your deck, with the same attribute as the card you just discarded",Swift,Star,2,3,
-95,Constellation,Hybrid,There is at least one Star card in the chain,"Get a Star card from your deck, its base value must be equal to the number of Star cards in the chain",Swift,Star,1,3,
-96,Starshift,Offense,There is at least one artefact in play,"Move an artefact, or exchange two artefacts in any of their owner's artefact slots",Swift,Star,3,3,
+94,Elemental Harvest,Hybrid,Play this card,"Discard one card then get an artefact from your deck, with the same attribute as the card you just discarded",Swift,Star,2,3,
+95,Constellation,Hybrid,There are 2 or more Star cards in the chain,"Get a Star card from your deck, its base value must be equal to the number of Star cards in the chain",Swift,Star,1,3,
+96,Starshift,Offense,There is at least one artefact in any artefact slot,"Move an artefact, or exchange two artefacts in any of their owner's artefact slots",Swift,Star,2,3,
 97,Magnetic Mallet,Offense,Play this card next to an iron card,Get up to 2 iron cards from your deck,Swift,Volt,1,3,
 98,Thunderball,Offense,There is at least two activated cards in the chain,All cards connected to this one are deactivated,Swift,Volt,3,3,
 99,Thunderstorm,Offense,There is at least three activated cards in the chain,The last defense card activated is deactivated,Swift,Volt,3,3,
-100,IEM Burst,Offense,There is at least 4 activated cards in the chain,All cards are deactivated,Swift,Volt,3,3,
-101,ON/OFF Switch,Hybrid,Play this card,"You opponent deactivate one of his activated cards. If they have none, activate one of your cards",Swift,Volt,1,3,
-102,Artificial Energy Source,Hybrid,This card is not connected to any Volt card,Place an Activated token on this card. It acts as an Activation card with no effect,Swift,Volt,3,3,
+100,IEM Burst,Offense,There is at least 4 activated cards in the chain,All cards are deactivated. DMG+1 per card deactivated this way,Swift,Volt,2,3,
+101,ON/OFF Switch,Hybrid,Play this card,"You opponent deactivate one of his activated cards. If they have none, activate one of your cards",Swift,Volt,2,3,
+102,Artificial Energy Source,Hybrid,This card is not connected to any Volt card,Place an Activated token on this card. It acts as an Activation card with no effect,Swift,Volt,3,3,"volt,  deactivation, activation"
 103,Power Shortage,Hybrid,Connect this card to an activated card,Deactivate the card,Swift,Volt,1,1,
 104,Short Circuit,Hybrid,There is at least one activated card in the chain,"Get a card in your deck, deactivate one of your cards",Swift,Volt,1,3,
-105,Electrosmite,Defense,There is at least 3 activated cards in the chain,Deactivate any card,Swift,Volt,1,3,
+105,Electrosmite,Defense,There is at least 2 activated cards in the chain,Deactivate any card,Swift,Volt,1,3,
 106,Magnetic Shuffle,Hybrid,There is at least one activated card in the chain,Choose an activation token on a card connected to this one and place it on another card connected to this one,Swift,Volt,2,4,
-107,Singularity,Hybrid,,,,Star,1,3,
-108,Basaltic Hammer,Offense,There are 5 or more Fire cards in the chain,DMG+5,Activation,Earth,2,3,
+107,Singularity,Hybrid,,,,Star,4,3,
+108,Basaltic Hammer,Offense,There are 4 or more Fire cards in the chain,DMG+4,Activation,Earth,2,3,
 109,Diamond Thrust,Offense,There are 3 or more Earth cards in the chain,DMG+1 per Earth card around this one (8 cards),Activation,Earth,2,3,
-110,,,,,,,,,
+110,Fire Swirl,Defense,This card is connected to a Fire card,Draw a card,Swift,Fire,2,3,
+111,Frozen Flame,Offense,This card is connected to a cluster of at least 3 Ice cards,DMG+1 per Ice card in the cluster,Activation,Fire,2,3,"fire, ice, cluster"
+112,Like a zombie in my yard,Hybrid,This card was discarded or destroyed during this round,Apply this card's base value as if it was played normally,Slow,Necro,2,3,
+113,Portal to the Otherworld,Hybrid,Play this card,"Play a card immediately from your discard pile, lose 2HP. You can reactivate this effect as many times as you want, the HP cost is increased by 1 each time you reuse this effect",Swift,Necro,1,3,
+114,Forgotten Graveyard,Defense,A card was discarded this round,BLK+1 per Necro card in your discard pile (max 4),Activation,Necro,2,3,
+115,Renew,Hybrid,This card is in the chain,"When you discard a card, draw a card",Persistent,Necro,2,3,
+116,Shatter,Offense,There are 3 or more Glass cards in the chain,Destroy all of your other Glass cards in the chain. This card gains DMG+3 per card destroyed this way,Swift,Glass,2,3,
+117,Crystal Shard,Offense,Play this card,Lose 2 HP,Swift,Glass,4,3,
+118,Crystal Ball,Defense,Play this card,"Declare an attribute. If the attribute of the next card you opponent plays is the one predicted, this card gains BLK+4.",Swift,Glass,0,3,
+119,Deal With The Glass Devil,Hybrid,Play this card,"Draw a card. If this card is a Glass card, lose 2 HP",Swift,Glass,2,3,
+120,Sattelite,Defense,This card is not connected to only one Star card,BLK -2,Slow,Star,3,3,
+121,Power Share,Hybrid,There is at least one activated card,"Select an activated card, place an activation token on all cards connected to it",Swift,Volt,2,3,
+122,Energy Wave,Hybrid,Play this card,Place up to 2 activation tokens on any of your opponent cards,Swift,Volt,2,3,
+123,Will-O-Wisp,Hybrid,Play this card,Get a Will-O-Wisp in your discard pile and play it immediately after this card,Swift,Fire,1,3,
+124,,,,,,,,,
+125,,,,,,,,,
+126,,,,,,,,,
+127,,,,,,,,,

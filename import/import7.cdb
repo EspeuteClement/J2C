@@ -3,9 +3,9 @@ id,notches,name,type,condition,effect,condition_type,attribute,base_value,notch_
 102,<^v,Artificial Energy Source,Hybrid,This card is not connected to any Volt card,Place an Activated token on this card. It acts as an Activation card with no effect,Swift,Volt,3,3
 102,<v>,Artificial Energy Source,Hybrid,This card is not connected to any Volt card,Place an Activated token on this card. It acts as an Activation card with no effect,Swift,Volt,3,3
 102,<^>,Artificial Energy Source,Hybrid,This card is not connected to any Volt card,Place an Activated token on this card. It acts as an Activation card with no effect,Swift,Volt,3,3
-50,<^v,Geothermal Power Plant,Hybrid,There are 3 or more Earth cards in the chain,"DMG +1 to all Volt and Earth cards in the affected columns. If the value is superior or equal to 4, destroy this card after applying its effect",Artefact,Volt,0,3
-50,<v>,Geothermal Power Plant,Hybrid,There are 3 or more Earth cards in the chain,"DMG +1 to all Volt and Earth cards in the affected columns. If the value is superior or equal to 4, destroy this card after applying its effect",Artefact,Volt,0,3
-100,<^>,IEM Burst,Offense,There is at least 4 activated cards in the chain,All cards are deactivated,Swift,Volt,3,3
+50,<^v,Geothermal Power Plant,Hybrid,There are 2 or more Volt cards connected to monoliths,"DMG +1 to all Volt and Earth cards in the affected columns. If the value is superior or equal to 4, destroy this card after applying its effect",Artefact,Volt,0,3
+50,<v>,Geothermal Power Plant,Hybrid,There are 2 or more Volt cards connected to monoliths,"DMG +1 to all Volt and Earth cards in the affected columns. If the value is superior or equal to 4, destroy this card after applying its effect",Artefact,Volt,0,3
+100,<^>,IEM Burst,Offense,There is at least 4 activated cards in the chain,All cards are deactivated. DMG+1 per card deactivated this way,Swift,Volt,2,3
 83,^v>,Turbodrill,Offense,There is at least one monolith on the board,"Destroy a monolith connected to this card. If a monolith is effectively destroyed, get any Earth card from your deck",Swift,Iron,2,3
 106,<^v>,Magnetic Shuffle,Hybrid,There is at least one activated card in the chain,Choose an activation token on a card connected to this one and place it on another card connected to this one,Swift,Volt,2,4
 106,<^v>,Magnetic Shuffle,Hybrid,There is at least one activated card in the chain,Choose an activation token on a card connected to this one and place it on another card connected to this one,Swift,Volt,2,4
@@ -15,7 +15,7 @@ id,notches,name,type,condition,effect,condition_type,attribute,base_value,notch_
 85,<^v,Sacrifice,Hybrid,There is at least one card in your discard pile,"Discard one card, get any card from your discard pile",Swift,Necro,1,3
 33,<^v,Electric Star Burst,Offense,This card has no activation condition,DMG +2 per Volt card in the chain,Activation,Star,2,3
 33,<v>,Electric Star Burst,Offense,This card has no activation condition,DMG +2 per Volt card in the chain,Activation,Star,2,3
-101,^v>,ON/OFF Switch,Hybrid,Play this card,"You opponent deactivate one of his activated cards. If they have none, activate one of your cards",Swift,Volt,1,3
+101,^v>,ON/OFF Switch,Hybrid,Play this card,"You opponent deactivate one of his activated cards. If they have none, activate one of your cards",Swift,Volt,2,3
 103,v,Power Shortage,Hybrid,Connect this card to an activated card,Deactivate the card,Swift,Volt,1,1
 103,<,Power Shortage,Hybrid,Connect this card to an activated card,Deactivate the card,Swift,Volt,1,1
 104,<^>,Short Circuit,Hybrid,There is at least one activated card in the chain,"Get a card in your deck, deactivate one of your cards",Swift,Volt,1,3
@@ -29,4 +29,4 @@ id,notches,name,type,condition,effect,condition_type,attribute,base_value,notch_
 109,<^v,Diamond Thrust,Offense,There are 3 or more Earth cards in the chain,DMG+1 per Earth card around this one (8 cards),Activation,Earth,2,3
 109,<v>,Diamond Thrust,Offense,There are 3 or more Earth cards in the chain,DMG+1 per Earth card around this one (8 cards),Activation,Earth,2,3
 109,^v>,Diamond Thrust,Offense,There are 3 or more Earth cards in the chain,DMG+1 per Earth card around this one (8 cards),Activation,Earth,2,3
-74,<^>,Wish,Hybrid,There is no artefact in your artefact slots,Get an artefact card from your deck,Slow,Star,1,3
+74,<^>,Wish,Hybrid,There is no artefact in your artefact slots,Get an artefact card from your deck,Swift,Star,1,3

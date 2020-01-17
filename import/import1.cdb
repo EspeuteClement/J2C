@@ -1,32 +1,32 @@
 Offense,,,,,,,,,
 id,notches,name,type,condition,effect,condition_type,attribute,base_value,notch_count
-55,^>v,Death Freeze,Offense,The total base damage in the chain is superior or equal to 15,All 8 cards around this one are locked,Persistent,Ice,4,3
-55,^<v,Death Freeze,Offense,The total base damage in the chain is superior or equal to 15,All 8 cards around this one are locked,Persistent,Ice,4,3
-55,v<>,Death Freeze,Offense,The total base damage in the chain is superior or equal to 15,All 8 cards around this one are locked,Persistent,Ice,4,3
-96,^>v,Starshift,Offense,There is at least one artefact in play,"Move an artefact, or exchange two artefacts in any of their owner's artefact slots",Swift,Star,3,3
+55,^>v,Death Freeze,Offense,The total base damage in the chain is superior or equal to 15,All 8 cards around this one are locked,Persistent,Ice,3,3
+55,^<v,Death Freeze,Offense,The total base damage in the chain is superior or equal to 15,All 8 cards around this one are locked,Persistent,Ice,3,3
+55,v<>,Death Freeze,Offense,The total base damage in the chain is superior or equal to 15,All 8 cards around this one are locked,Persistent,Ice,3,3
+96,^>v,Starshift,Offense,There is at least one artefact in any artefact slot,"Move an artefact, or exchange two artefacts in any of their owner's artefact slots",Swift,Star,2,3
 88,^<v,Thrid Strike,Offense,Play this card as the third card of a chain,Pass your opponent next turn,Swift,Neutral,3,3
 98,v<>,Thunderball,Offense,There is at least two activated cards in the chain,All cards connected to this one are deactivated,Swift,Volt,3,3
 99,^>v,Thunderstorm,Offense,There is at least three activated cards in the chain,The last defense card activated is deactivated,Swift,Volt,3,3
-96,^<v,Starshift,Offense,There is at least one artefact in play,"Move an artefact, or exchange two artefacts in any of their owner's artefact slots",Swift,Star,3,3
+96,^<v,Starshift,Offense,There is at least one artefact in any artefact slot,"Move an artefact, or exchange two artefacts in any of their owner's artefact slots",Swift,Star,2,3
 88,v<>,Thrid Strike,Offense,Play this card as the third card of a chain,Pass your opponent next turn,Swift,Neutral,3,3
 98,^>v,Thunderball,Offense,There is at least two activated cards in the chain,All cards connected to this one are deactivated,Swift,Volt,3,3
 99,^<v,Thunderstorm,Offense,There is at least three activated cards in the chain,The last defense card activated is deactivated,Swift,Volt,3,3
-96,v<>,Starshift,Offense,There is at least one artefact in play,"Move an artefact, or exchange two artefacts in any of their owner's artefact slots",Swift,Star,3,3
+96,v<>,Starshift,Offense,There is at least one artefact in any artefact slot,"Move an artefact, or exchange two artefacts in any of their owner's artefact slots",Swift,Star,2,3
 88,^>v,Thrid Strike,Offense,Play this card as the third card of a chain,Pass your opponent next turn,Swift,Neutral,3,3
 98,^<v,Thunderball,Offense,There is at least two activated cards in the chain,All cards connected to this one are deactivated,Swift,Volt,3,3
 99,v<>,Thunderstorm,Offense,There is at least three activated cards in the chain,The last defense card activated is deactivated,Swift,Volt,3,3
-100,^>v,IEM Burst,Offense,There is at least 4 activated cards in the chain,All cards are deactivated,Swift,Volt,3,3
+100,^>v,IEM Burst,Offense,There is at least 4 activated cards in the chain,All cards are deactivated. DMG+1 per card deactivated this way,Swift,Volt,2,3
 13,^,Dawn Battle Axe,Offense,Play this card first,"If a Dusk Battle Axe is activated, DMG+5",Activation,Iron,3,1
 14,v,Dusk Battle Axe,Offense,Play this card as the 12th card,"If a Dawn Battle Axe is activated, DMG+5",Activation,Iron,3,1
-100,^v>,IEM Burst,Offense,There is at least 4 activated cards in the chain,All cards are deactivated,Swift,Volt,3,3
+100,^v>,IEM Burst,Offense,There is at least 4 activated cards in the chain,All cards are deactivated. DMG+1 per card deactivated this way,Swift,Volt,2,3
 13,>,Dawn Battle Axe,Offense,Play this card first,"If a Dusk Battle Axe is activated, DMG+5",Activation,Iron,3,1
 14,<,Dusk Battle Axe,Offense,Play this card as the 12th card,"If a Dawn Battle Axe is activated, DMG+5",Activation,Iron,3,1
-100,<>v,IEM Burst,Offense,There is at least 4 activated cards in the chain,All cards are deactivated,Swift,Volt,3,3
+100,<>v,IEM Burst,Offense,There is at least 4 activated cards in the chain,All cards are deactivated. DMG+1 per card deactivated this way,Swift,Volt,2,3
 13,v,Dawn Battle Axe,Offense,Play this card first,"If a Dusk Battle Axe is activated, DMG+5",Activation,Iron,3,1
 14,>,Dusk Battle Axe,Offense,Play this card as the 12th card,"If a Dawn Battle Axe is activated, DMG+5",Activation,Iron,3,1
-54,^v<,Blizzard,Offense,The total base damage in the chain is superior or equal to 10,All 4 cards around this one are locked,Persistent,Ice,3,3
-54,v>^,Blizzard,Offense,The total base damage in the chain is superior or equal to 10,All 4 cards around this one are locked,Persistent,Ice,3,3
-54,<>^,Blizzard,Offense,The total base damage in the chain is superior or equal to 10,All 4 cards around this one are locked,Persistent,Ice,3,3
+54,^v<,Blizzard,Offense,The total base damage in the chain is superior or equal to 10,All 4 cards around this one are locked,Persistent,Ice,2,3
+54,v>^,Blizzard,Offense,The total base damage in the chain is superior or equal to 10,All 4 cards around this one are locked,Persistent,Ice,2,3
+54,<>^,Blizzard,Offense,The total base damage in the chain is superior or equal to 10,All 4 cards around this one are locked,Persistent,Ice,2,3
 102,<^>,Artificial Energy Source,Hybrid,This card is not connected to any Volt card,Place an Activated token on this card. It acts as an Activation card with no effect,Swift,Volt,3,3
 102,<v>,Artificial Energy Source,Hybrid,This card is not connected to any Volt card,Place an Activated token on this card. It acts as an Activation card with no effect,Swift,Volt,3,3
 102,^><,Artificial Energy Source,Hybrid,This card is not connected to any Volt card,Place an Activated token on this card. It acts as an Activation card with no effect,Swift,Volt,3,3
