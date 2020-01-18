@@ -249,7 +249,7 @@ func _on_Import_pressed() -> void:
 					_generate_card_new(line, 0xF, gen_data);
 				_:
 					printerr("Too Much sides");
-	pass;
+	AppState.import_done = true;
 
 #func _on_Imoprt_pressed_old() -> void:
 #	CardDatabase.Data.clear();
@@ -337,3 +337,6 @@ func _on_Download_pressed() -> void:
 	
 	#var error = $HTTPRequest.request(url, PoolStringArray( ), false, HTTPClient.METHOD_GET);
 	print(error);
+
+func _on_LineEdit_text_entered(new_text: String) -> void:
+	pass # Replace with function body.

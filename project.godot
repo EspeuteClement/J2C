@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 CardDatabase="*res://Scenes/CardDatabase.gd"
 Constants="*res://Scenes/Constants.gd"
+AppState="*res://Scenes/AppState.gd"
 
 [display]
 

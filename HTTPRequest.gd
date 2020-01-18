@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 	
 func _on_Button_pressed():
 	set_download_file(Constants.MasterDeckPath);
-	print(request("http://docs.google.com/spreadsheets/d/1o7K6qs4PkOApoRXCfQgh5xbE5y-aXSAl2VRxwKNk-3w/export?gid=1339057682&format=csv&id=1o7K6qs4PkOApoRXCfQgh5xbE5y-aXSAl2VRxwKNk-3w"))
+	print(request("http://docs.google.com/spreadsheets/d/%s/export?gid=%s&format=csv&id=%s" % [AppState.master_sheet_code, AppState.master_sheet_gid, AppState.master_sheet_code]))
 	print("Request launched");
 
 func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
