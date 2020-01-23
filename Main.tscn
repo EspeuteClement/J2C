@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/BG/Background.png" type="Texture" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://MasterDeckStatus.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/ExportButton.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/ExportAll.gd" type="Script" id=9]
-[ext_resource path="res://TESTDOWNLOAD.gd" type="Script" id=10]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends LineEdit
@@ -267,7 +266,7 @@ size_flags_vertical = 3
 
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer"]
 margin_right = 253.0
-margin_bottom = 840.0
+margin_bottom = 866.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tab_align = 0
@@ -444,21 +443,11 @@ text = "Export"
 script = ExtResource( 9 )
 
 [node name="Button" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer"]
-margin_top = 844.0
-margin_right = 253.0
-margin_bottom = 866.0
-text = "Open User Dir"
-script = SubResource( 8 )
-
-[node name="Button2" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer"]
 margin_top = 870.0
 margin_right = 253.0
 margin_bottom = 892.0
-text = "TEST DONWLOAD"
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Open User Dir"
+script = SubResource( 8 )
 
 [node name="CardDB" type="Node2D" parent="."]
 [connection signal="text_entered" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer/LineEdit" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer/LineEdit" method="_on_LineEdit_text_entered"]
@@ -471,4 +460,3 @@ __meta__ = {
 [connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/Export" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/Export" method="_on_Export_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/ExportAll" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/ExportAll" method="_on_Export_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/Button" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/Button" method="_on_Button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/Button2" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/Button2" method="_on_Button2_pressed"]
