@@ -1,214 +1,157 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scenes/CardNew.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Card/fire.jpg" type="Texture" id=2]
-[ext_resource path="res://Assets/Card/template_off.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Card/template_def.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Card/notch_right_off.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Card/notch_right_def.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Card/notch_up_off.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Card/notch_up_def.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Card/notch_left_off.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Card/notch_left_def.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Card/notch_down_off.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Card/notch_down_def.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Font/ArialBold.tres" type="DynamicFont" id=13]
-[ext_resource path="res://Assets/Font/Arial.tres" type="DynamicFont" id=14]
-[ext_resource path="res://Scenes/CardNumber.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Assets/Card/attribute_fire.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Card/attribute_iron.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Card/attribute_neutral.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Card/attribute_wind.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Card/attribute_dual.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Card/attribute_star.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Card/attribute_necro.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Card/attribute_ice.png" type="Texture" id=23]
-[ext_resource path="res://Assets/Card/attribute_earth.png" type="Texture" id=24]
-[ext_resource path="res://Assets/Card/attribute_volt.png" type="Texture" id=25]
-[ext_resource path="res://Assets/Card/attribute_life.png" type="Texture" id=26]
-[ext_resource path="res://Assets/Card/attribute_glass.png" type="Texture" id=27]
-[ext_resource path="res://Assets/Card/condition_persistent.png" type="Texture" id=28]
-[ext_resource path="res://Assets/Card/condition_activation.png" type="Texture" id=29]
-[ext_resource path="res://Assets/Card/condition_slow.png" type="Texture" id=30]
-[ext_resource path="res://Assets/Card/condition_swift.png" type="Texture" id=31]
-[ext_resource path="res://Assets/Card/condition_artefact.png" type="Texture" id=32]
+[ext_resource path="res://Assets/EffectBorders/BordersBig.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://Assets/Font/ArialBold.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Scenes/EffectSmall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/CardFrames/empty_card.png" type="Texture" id=6]
+[ext_resource path="res://Assets/CardFrames/notch_right.png" type="Texture" id=7]
+[ext_resource path="res://Assets/CardFrames/arrow_right.png" type="Texture" id=8]
+[ext_resource path="res://Assets/CardFrames/notch_top.png" type="Texture" id=9]
+[ext_resource path="res://Assets/CardFrames/arrow_up.png" type="Texture" id=10]
+[ext_resource path="res://Assets/CardFrames/notch_left.png" type="Texture" id=11]
+[ext_resource path="res://Assets/CardFrames/arrow_left.png" type="Texture" id=12]
+[ext_resource path="res://Assets/CardFrames/notch_down.png" type="Texture" id=13]
+[ext_resource path="res://Assets/CardFrames/arrow_down.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Font/Arial.tres" type="DynamicFont" id=15]
+[ext_resource path="res://Assets/Attributes/attribute_fire.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Attributes/attribute_necro.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Attributes/attribute_dual.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Attributes/attribute_volt.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Attributes/attribute_ice.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Attributes/attribute_glass.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Attributes/attribute_wind.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Attributes/attribute_earth.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Attributes/attribute_holy.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Attributes/attribute_none.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Attributes/attribute_star.png" type="Texture" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 178, 241 )
 
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": false,
-"name": "off",
-"speed": 0.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "def",
-"speed": 5.0
-} ]
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://Assets/Font/arial.ttf"
 
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "def",
-"speed": 5.0
-} ]
+[sub_resource type="DynamicFont" id=3]
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = SubResource( 2 )
 
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "def",
-"speed": 5.0
-} ]
+[sub_resource type="DynamicFont" id=4]
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = SubResource( 2 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 9 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "def",
+"name": "default",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "def",
+"name": "default",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFontData" id=11]
+font_path = "res://Assets/Font/arialbd.ttf"
+
+[sub_resource type="DynamicFont" id=12]
+size = 40
+use_filter = true
+font_data = SubResource( 11 )
+
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
 "frames": [ ExtResource( 16 ) ],
 "loop": true,
 "name": "fire",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ) ],
+"frames": [ ExtResource( 23 ) ],
 "loop": true,
-"name": "iron",
+"name": "earth",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ) ],
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "ice",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ) ],
 "loop": true,
 "name": "neutral",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
+"frames": [ ExtResource( 17 ) ],
 "loop": true,
-"name": "wind",
+"name": "necro",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 20 ) ],
+"frames": [ ExtResource( 18 ) ],
 "loop": true,
 "name": "dual",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 21 ) ],
 "loop": true,
-"name": "star",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "necro",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "ice",
+"name": "glass",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 24 ) ],
 "loop": true,
-"name": "earth",
+"name": "holy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 25 ) ],
+"frames": [ ExtResource( 19 ) ],
 "loop": true,
 "name": "volt",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 26 ) ],
 "loop": true,
-"name": "life",
+"name": "star",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 27 ) ],
+"frames": [ ExtResource( 22 ) ],
 "loop": true,
-"name": "glass",
+"name": "wind",
 "speed": 5.0
 } ]
-
-[sub_resource type="SpriteFrames" id=8]
-animations = [ {
-"frames": [ ExtResource( 28 ) ],
-"loop": true,
-"name": "persistent",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 29 ) ],
-"loop": true,
-"name": "activation",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 30 ) ],
-"loop": true,
-"name": "slow",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 31 ) ],
-"loop": true,
-"name": "swift",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 32 ) ],
-"loop": true,
-"name": "artefact",
-"speed": 5.0
-} ]
-
-[sub_resource type="DynamicFontData" id=9]
-font_path = "res://Assets/Font/arial.ttf"
-
-[sub_resource type="DynamicFont" id=10]
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = SubResource( 9 )
-
-[sub_resource type="DynamicFont" id=11]
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = SubResource( 9 )
 
 [node name="Node2D" type="KinematicBody2D"]
 input_pickable = true
 script = ExtResource( 1 )
-card_name = ""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -217,8 +160,11 @@ shape = SubResource( 1 )
 margin_left = -166.0
 margin_top = -237.0
 margin_right = 167.0
-margin_bottom = 231.0
+margin_bottom = 242.0
 mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
@@ -231,141 +177,14 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 7
 
-[node name="CardTemplate" type="AnimatedSprite" parent="."]
-position = Vector2( 1, 1 )
-frames = SubResource( 2 )
-animation = "off"
-playing = true
-
-[node name="RightNotch" type="AnimatedSprite" parent="."]
-position = Vector2( 160, 0 )
-frames = SubResource( 3 )
-animation = "off"
-playing = true
-
-[node name="TopNotch" type="AnimatedSprite" parent="."]
-position = Vector2( 1, -230 )
-frames = SubResource( 4 )
-animation = "off"
-playing = true
-
-[node name="LeftNotch" type="AnimatedSprite" parent="."]
-position = Vector2( -160, 0 )
-frames = SubResource( 5 )
-animation = "off"
-playing = true
-
-[node name="DownNotch" type="AnimatedSprite" parent="."]
-position = Vector2( 0, 230 )
-frames = SubResource( 6 )
-animation = "off"
-playing = true
-
-[node name="DamageScale" type="Node2D" parent="."]
-position = Vector2( 93, -161 )
-scale = Vector2( 0.75, 0.75 )
-
-[node name="DamageValue" type="Label" parent="DamageScale"]
-margin_right = 77.0
-margin_bottom = 24.0
-custom_fonts/font = ExtResource( 13 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "0 DMG"
-
-[node name="CardName" type="Label" parent="."]
-margin_left = -66.0
-margin_top = -195.0
-margin_right = 107.0
-margin_bottom = -171.0
-rect_scale = Vector2( 0.99422, 1 )
-size_flags_horizontal = 0
-size_flags_vertical = 0
-size_flags_stretch_ratio = 0.0
-custom_fonts/font = ExtResource( 14 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-
-[node name="Right" parent="." instance=ExtResource( 15 )]
-margin_left = -103.0
-margin_top = -194.0
-margin_right = -80.0
-margin_bottom = -170.0
-rect_pivot_offset = Vector2( 12, 12 )
-text = "■"
-
-[node name="Top" parent="." instance=ExtResource( 15 )]
-margin_left = -122.0
-margin_top = -212.0
-margin_right = -99.0
-margin_bottom = -188.0
-rect_pivot_offset = Vector2( 12, 12 )
-text = "■"
-
-[node name="Left" parent="." instance=ExtResource( 15 )]
-margin_left = -140.0
-margin_top = -194.0
-margin_right = -117.0
-margin_bottom = -170.0
-rect_pivot_offset = Vector2( 12, 12 )
-text = "■"
-
-[node name="Down" parent="." instance=ExtResource( 15 )]
-margin_left = -122.0
-margin_top = -174.0
-margin_right = -99.0
-margin_bottom = -150.0
-rect_pivot_offset = Vector2( 12, 12 )
-text = "■"
-
-[node name="RightNotchNumber" parent="." instance=ExtResource( 15 )]
-visible = false
-margin_left = 142.0
-margin_top = -11.0
-margin_right = 165.0
-margin_bottom = 13.0
-rect_pivot_offset = Vector2( 12, 10 )
-text = "0"
-
-[node name="TopNotchNumber" parent="." instance=ExtResource( 15 )]
-visible = false
-margin_left = -12.0
-margin_top = -236.0
-margin_right = 11.0
-margin_bottom = -212.0
-rect_pivot_offset = Vector2( 12, 12 )
-text = "0"
-
-[node name="LeftNotchNumber" parent="." instance=ExtResource( 15 )]
-visible = false
-margin_left = -164.0
-margin_top = -11.0
-margin_right = -141.0
-margin_bottom = 13.0
-rect_pivot_offset = Vector2( 12, 10 )
-text = "0"
-
-[node name="DownNotchNumber" parent="." instance=ExtResource( 15 )]
-visible = false
-margin_left = -12.0
-margin_top = 212.0
-margin_right = 11.0
-margin_bottom = 231.0
-rect_pivot_offset = Vector2( 12, 10 )
-text = "0"
-
-[node name="Attribute" type="AnimatedSprite" parent="."]
-position = Vector2( 128, -182 )
-frames = SubResource( 7 )
-animation = "neutral"
-playing = true
-
 [node name="Effect_Solo" type="Node2D" parent="."]
-editor/display_folded = true
 visible = false
 
 [node name="Condition_Solo" type="AnimatedSprite" parent="Effect_Solo"]
-position = Vector2( 0, 18 )
-frames = SubResource( 8 )
-animation = "activation"
+position = Vector2( 0, 120 )
+scale = Vector2( 0.5, 0.5 )
+frames = ExtResource( 3 )
+animation = "blitz"
 playing = true
 
 [node name="ActivationText_Solo" type="RichTextLabel" parent="Effect_Solo"]
@@ -379,9 +198,9 @@ mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
-custom_fonts/bold_font = ExtResource( 13 )
-custom_fonts/normal_font = SubResource( 10 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/bold_font = ExtResource( 4 )
+custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_constants/line_separation = -7
 bbcode_enabled = true
 meta_underlined = false
@@ -399,115 +218,105 @@ mouse_filter = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
-custom_fonts/bold_font = ExtResource( 13 )
-custom_fonts/normal_font = SubResource( 11 )
+custom_fonts/bold_font = ExtResource( 4 )
+custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 tab_size = 0
 scroll_active = false
 
-[node name="Effect_1" type="Node2D" parent="."]
-editor/display_folded = true
+[node name="Effect_1" parent="." instance=ExtResource( 5 )]
+position = Vector2( -79, 114 )
 
-[node name="Condition_1" type="AnimatedSprite" parent="Effect_1"]
-position = Vector2( -82, 19 )
-frames = SubResource( 8 )
-animation = "activation"
+[node name="Effect_2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 81, 114 )
+
+[node name="CardTemplate" type="AnimatedSprite" parent="."]
+position = Vector2( 1, 1 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 5 )
 playing = true
 
-[node name="ActivationText_1" type="RichTextLabel" parent="Effect_1"]
-margin_left = -145.0
-margin_top = 32.0
-margin_right = -10.0
-margin_bottom = 113.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="RightNotch" type="Node2D" parent="."]
+position = Vector2( 144, 0 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Broder" type="AnimatedSprite" parent="RightNotch"]
+frames = SubResource( 6 )
+playing = true
+
+[node name="Diamond" type="Sprite" parent="RightNotch"]
+position = Vector2( -464, -360 )
+texture = ExtResource( 8 )
+
+[node name="TopNotch" type="Node2D" parent="."]
+position = Vector2( 1, -212 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Border" type="AnimatedSprite" parent="TopNotch"]
+frames = SubResource( 7 )
+playing = true
+
+[node name="Diamond" type="Sprite" parent="TopNotch"]
+position = Vector2( -218, 24 )
+texture = ExtResource( 10 )
+
+[node name="LeftNotch" type="Node2D" parent="."]
+
+[node name="Border" type="AnimatedSprite" parent="LeftNotch"]
+position = Vector2( -142, 0 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 8 )
+playing = true
+
+[node name="Sprite" type="Sprite" parent="LeftNotch"]
+position = Vector2( -129, -180 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 12 )
+
+[node name="DownNotch" type="Node2D" parent="."]
+position = Vector2( 0, 214 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Border" type="AnimatedSprite" parent="DownNotch"]
+frames = SubResource( 9 )
+playing = true
+
+[node name="Sprite" type="Sprite" parent="DownNotch"]
+position = Vector2( -216, -748 )
+texture = ExtResource( 14 )
+
+[node name="DamageScale" type="Node2D" parent="."]
+position = Vector2( 93, -161 )
+scale = Vector2( 0.75, 0.75 )
+
+[node name="DamageValue" type="Label" parent="DamageScale"]
+margin_left = -278.667
+margin_top = -48.0
+margin_right = -201.667
+margin_bottom = -2.00002
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "8"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardName" type="Label" parent="."]
+margin_left = -62.0
+margin_top = -196.0
+margin_right = 107.0
+margin_bottom = -165.0
+rect_scale = Vector2( 0.99422, 1 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
-custom_fonts/bold_font = ExtResource( 13 )
-custom_fonts/normal_font = SubResource( 10 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_constants/line_separation = -7
-bbcode_enabled = true
-bbcode_text = "Activation text now
-"
-meta_underlined = false
-text = "Activation text now
-"
-scroll_active = false
+custom_fonts/font = ExtResource( 15 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 
-[node name="EffectText_1" type="RichTextLabel" parent="Effect_1"]
-margin_left = -144.0
-margin_top = 99.0
-margin_right = 26.0
-margin_bottom = 233.0
-rect_scale = Vector2( 0.8, 0.8 )
-rect_clip_content = false
-mouse_filter = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-size_flags_stretch_ratio = 0.0
-custom_fonts/bold_font = ExtResource( 13 )
-custom_fonts/normal_font = SubResource( 11 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-bbcode_enabled = true
-bbcode_text = "Effect Text"
-tab_size = 0
-text = "Effect Text"
-scroll_active = false
-
-[node name="Effect_2" type="Node2D" parent="."]
-position = Vector2( 151, -1 )
-
-[node name="Condition_2" type="AnimatedSprite" parent="Effect_2"]
-position = Vector2( -82, 19 )
-frames = SubResource( 8 )
-animation = "activation"
+[node name="Attribute" type="AnimatedSprite" parent="."]
+position = Vector2( 130, -180 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 10 )
+animation = "holy"
 playing = true
-
-[node name="ActivationText_2" type="RichTextLabel" parent="Effect_2"]
-margin_left = -145.0
-margin_top = 32.0
-margin_right = -10.0
-margin_bottom = 113.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-size_flags_stretch_ratio = 0.0
-custom_fonts/bold_font = ExtResource( 13 )
-custom_fonts/normal_font = SubResource( 10 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_constants/line_separation = -7
-bbcode_enabled = true
-bbcode_text = "Activation text now
-"
-meta_underlined = false
-text = "Activation text now
-"
-scroll_active = false
-
-[node name="EffectText_2" type="RichTextLabel" parent="Effect_2"]
-margin_left = -144.0
-margin_top = 99.0
-margin_right = 26.0
-margin_bottom = 233.0
-rect_scale = Vector2( 0.8, 0.8 )
-rect_clip_content = false
-mouse_filter = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-size_flags_stretch_ratio = 0.0
-custom_fonts/bold_font = ExtResource( 13 )
-custom_fonts/normal_font = SubResource( 11 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-bbcode_enabled = true
-bbcode_text = "Effect Text"
-tab_size = 0
-text = "Effect Text"
-scroll_active = false
-[connection signal="mouse_entered" from="." to="." method="_on_Node2D_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_Node2D_mouse_exited"]

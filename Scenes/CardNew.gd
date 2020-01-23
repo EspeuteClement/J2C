@@ -30,7 +30,9 @@ enum CardAttribute {
 	EARTH,
 	LIFE,
 	STAR,
-	NECRO
+	NECRO,
+	HOLY,
+	WIND
 };
 
 const attribute_animation_name = {
@@ -44,7 +46,10 @@ const attribute_animation_name = {
 	CardAttribute.EARTH: "earth",
 	CardAttribute.LIFE: "life",
 	CardAttribute.STAR: "star",
-	CardAttribute.NECRO: "necro"
+	CardAttribute.NECRO: "necro",
+	CardAttribute.HOLY: "holy",
+	CardAttribute.WIND: "wind",
+	
 };
 
 enum CardCondition {
@@ -52,7 +57,8 @@ enum CardCondition {
 	PERSISTENT,
 	SWIFT,
 	SLOW,
-	ARTEFACT
+	ARTEFACT,
+	SPECIAL
 };
 
 const condition_animation_name = {
@@ -61,7 +67,7 @@ const condition_animation_name = {
 	CardCondition.SWIFT: "swift",
 	CardCondition.SLOW: "slow",
 	CardCondition.ARTEFACT: "artefact",
-	
+	CardCondition.SPECIAL: "special",
 };
 
 # Editor stuff ==============
@@ -84,21 +90,20 @@ export var card_y = 0;
 export var card_deck_id = 0;
 export var card_export_id = 0;
 
-onready var Labels = [$Right, $Top, $Left , $Down];
-onready var LabelsNotch = [$RightNotchNumber, $TopNotchNumber, $LeftNotchNumber , $DownNotchNumber];
-
 onready var CardName = $CardName;
 
 onready var EffectWidgets = [
 	{
-		"activation" : $Effect_1/ActivationText_1,
-		"effect" : $Effect_1/EffectText_1,
-		"condition" : $Effect_1/Condition_1
+		"widget": $Effect_1
+#		"activation" : $Effect_1/ActivationText,
+#		"effect" : $Effect_1/EffectText,
+#		"condition" : $Effect_1/Condition
 	},
 	{
-		"activation" : $Effect_2/ActivationText_2,
-		"effect" : $Effect_2/EffectText_2,
-		"condition" : $Effect_2/Condition_2
+#		"activation" : $Effect_2/ActivationText,
+#		"effect" : $Effect_2/EffectText,
+#		"condition" : $Effect_2/Condition
+		"widget": $Effect_2
 	},
 	{
 		"activation" : $Effect_Solo/ActivationText_Solo,
@@ -114,12 +119,9 @@ onready var CardBorders = [$RightNotch, $TopNotch, $LeftNotch, $DownNotch, $Card
 func update_card():
 	for direction in range(0, Dir.Count):
 		if (values[direction] >= 0):
-			Labels[direction].text = "■";
-			LabelsNotch[direction].visible = false;
+			pass
 		else:
 			CardBorders[direction].visible = false;
-			Labels[direction].visible = false;
-			LabelsNotch[direction].visible = false;
 	
 	if (CardName):
 		CardName.text = card_name;
@@ -139,13 +141,23 @@ func update_card():
 	$Effect_1.visible = has_two_effects;
 	$Effect_2.visible = has_two_effects;
 	
-	for i in range(start, end+1):
-		var item = i if has_two_effects else 0
-		EffectWidgets[i].activation.bbcode_text = card_effects[item].activation;
-		EffectWidgets[i].effect.bbcode_text = card_effects[item].effect;
-		var cond = card_effects[item].condition;
-		if (cond >=0):
-			EffectWidgets[i].condition.play(condition_animation_name[card_effects[item].condition]);
+	if (!has_two_effects):
+		for i in range(start, end+1):
+			var item = i if has_two_effects else 0
+			EffectWidgets[i].activation.bbcode_text = card_effects[item].activation;
+			EffectWidgets[i].effect.bbcode_text = card_effects[item].effect;
+			var cond = card_effects[item].condition;
+			if (cond >=0):
+				EffectWidgets[i].condition.play(condition_animation_name[card_effects[item].condition]);
+	else:
+		for i in range(start, end+1):
+			var item = i if has_two_effects else 0
+			EffectWidgets[i].widget.activation_text = card_effects[item].activation;
+			EffectWidgets[i].widget.effect_text = card_effects[item].effect;
+			var cond = card_effects[item].condition;
+			if (cond >=0):
+				EffectWidgets[i].widget.condition_anim = condition_animation_name[card_effects[item].condition];
+		
 			
 	if($Attribute):
 		$Attribute.play(attribute_animation_name[card_attribute]);

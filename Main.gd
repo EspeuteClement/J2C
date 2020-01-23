@@ -69,17 +69,17 @@ func strip_spaces(s :String) -> String:
 
 func _generate_card_new(props : Array, notches : int, gen_data : Dictionary) -> void:
 	var _id = int(props[CardPropNew.CARD_ID].strip_edges());
-	var new_card : CardNew = preload("res://Scenes/CardNew.tscn").instance();
+	var new_card = preload("res://Scenes/CardNew.tscn").instance();
 	
 	new_card.card_name = props[CardPropNew.NAME].strip_edges();
 	new_card.notch_flags = notches;
 	new_card.card_id = gen_data.current_card_id;
-#	for i in range(4):
-#		var side = notches & 1 << i;
-#		if (side > 0):
-#			new_card.values[i] = 1;
-#		else:
-#			new_card.values[i] = -1;
+	for i in range(4):
+		var side = notches & 1 << i;
+		if (side > 0):
+			new_card.values[i] = 1;
+		else:
+			new_card.values[i] = -1;
 
 #   Parse card effects
 	var has_solo_effect = (props.size() <= CardPropNew.EFFECT_1) || (props[CardPropNew.CONDITION_2].strip_edges() == "");
@@ -117,7 +117,10 @@ func _generate_card_new(props : Array, notches : int, gen_data : Dictionary) -> 
 	get_tree().get_root().get_node("Board/CardDB").add_child(new_card);
 	new_card.update_card();
 	
-	
+	if(!CardDatabase.Data.has(_id)):
+		CardDatabase.Data[_id] = Dictionary();
+
+	CardDatabase.Data[_id][notches] = new_card;
 
 #func _genetrate_card(props : Array, sides_flags : int, type: int, gen_data : Dictionary) -> Node2D:
 #	var id = int(props[0].strip_edges());

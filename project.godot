@@ -53,6 +53,18 @@ view_pan_mouse={
  ]
 }
 
+[network]
+
+limits/webrtc/max_channel_in_buffer_kb=2
+limits/websocket_client/max_in_buffer_kb=2
+limits/websocket_client/max_in_packets=2
+limits/websocket_client/max_out_buffer_kb=2
+limits/websocket_client/max_out_packets=2
+limits/websocket_server/max_in_buffer_kb=2
+limits/websocket_server/max_in_packets=2
+limits/websocket_server/max_out_buffer_kb=2
+limits/websocket_server/max_out_packets=2
+
 [rendering]
 
 quality/intended_usage/framebuffer_allocation=0

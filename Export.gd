@@ -25,8 +25,9 @@ func export_card(card : CardNew, out_name : String) -> void:
 		node.queue_free();
 		remove_child(node);
 	
-	var dupe = card.duplicate();
-	dupe.values = card.values;
+	var dupe = card.duplicate(0);
+	dupe.card_effects = card.card_effects;
+	
 	add_child(dupe);
 	
 	var size = preload("res://Assets/Card/CardTemplate.png").get_size();
@@ -176,7 +177,7 @@ func _save_card_db(db:Dictionary, out_name:String):
 	
 	var path;
 
-	path = "res://Assets/Card/card_back.png";
+	path = "res://Assets/Card/card_back_offense.png";
 	
 	var dir = Directory.new()
 	dir.copy(path, "user://%s.png" % out_name);
@@ -232,9 +233,7 @@ func _on_Export_pressed() -> void:
 	yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
 
-	_save_card_db(db, "Master Deck");		
-	
-	OS.shell_open(str("file://", OS.get_user_data_dir()));
+	_save_card_db(db, "Master Deck");
 	pass # Replace with function body.
 
 var tiled = false;
@@ -247,13 +246,7 @@ func _save_custom_deck(in_name:String, out_name:String):
 	if (err):
 		printerr("Couldn't open file %s" % in_name);
 		return;
-	
-	var line = f.get_csv_line();
-	
-	var type = 0;
-	var type_str = line[0].strip_edges().to_lower();
-	if (type_str == "defense"): type = 1;
-	
+	var line;
 	f.get_csv_line();
 	var db = _create_deck_export_data();
 	
@@ -264,21 +257,21 @@ func _save_custom_deck(in_name:String, out_name:String):
 		var notch_id = 0;
 		for c in notches_txt:
 			match c.to_upper():
-				"R", ">":
+				"R", ">", "6":
 					notch_id += 1 << CardNew.Dir.Right;
-				"T", "^":
+				"T", "^", "8":
 					notch_id += 1 << CardNew.Dir.Top;
-				"L", "<":
+				"L", "<", "4":
 					notch_id += 1 << CardNew.Dir.Left;
-				"D", "V":
+				"D", "V", "2":
 					notch_id += 1 << CardNew.Dir.Down;
-				"_":
+				_:
 					printerr("Notch char not recognized");
 					
-		_add_new_card_id(db, CardDatabase.Data[id][type][notch_id]);
+		_add_new_card_id(db, CardDatabase.Data[id][notch_id]);
 	
 	var did = 3;
-	for deck in deck_db[type]:
+	for deck in deck_db:
 		db.ObjectStates[0].CustomDeck[str(did)] = deck;
 		did += 1;
 	

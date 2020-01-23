@@ -1,14 +1,17 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/BG/Background.png" type="Texture" id=2]
 [ext_resource path="res://Export.gd" type="Script" id=3]
 [ext_resource path="res://Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://ui_theme.tres" type="Theme" id=5]
-[ext_resource path="res://HTTPRequest.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/DownloadButton.gd" type="Script" id=6]
 [ext_resource path="res://MasterDeckStatus.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/ExportButton.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/ExportAll.gd" type="Script" id=9]
+[ext_resource path="res://TESTDOWNLOAD.gd" type="Script" id=10]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=1]
 script/source = "extends LineEdit
 
 # Declare member variables here. Examples:
@@ -46,7 +49,7 @@ func _on_LineEdit_text_entered(new_text: String) -> void:
 	pass # Replace with function body.
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Label
 
 # Declare member variables here. Examples:
@@ -66,7 +69,7 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=3]
 script/source = "extends Button
 
 # Declare member variables here. Examples:
@@ -83,7 +86,7 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=4]
 script/source = "extends Button
 
 # Declare member variables here. Examples:
@@ -101,6 +104,68 @@ func _process(delta: float) -> void:
 "
 
 [sub_resource type="GDScript" id=5]
+script/source = "extends LineEdit
+
+# Declare member variables here. Examples:
+# var a: int = 2
+# var b: String = \"text\"
+
+
+var reg = RegEx;
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	reg = RegEx.new();
+	reg.compile(\"docs.google.com\\\\/spreadsheets\\\\/d\\\\/([a-zA-Z\\\\-0-9]+)\\\\/edit#gid=([0-9]+)\");
+	pass # Replace with function body.
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+#	pass
+
+
+func _on_LineEdit_text_entered(new_text: String) -> void:
+	var result : RegExMatch = reg.search(new_text);
+	
+	if (!result):
+		AppState.download_deck_code = null;
+		AppState.download_deck_gid = null;
+		return;
+	
+	AppState.download_deck_code = result.get_string(0);
+	AppState.download_deck_gid = result.get_string(1);
+	
+	print(\"parsed %s, %s\" % [AppState.download_deck_code, AppState.download_deck_gid]);
+	
+	pass # Replace with function body.
+"
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends LineEdit
+
+
+# Declare member variables here. Examples:
+# var a: int = 2
+# var b: String = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+#	pass
+
+
+func _on_LineEdit2_text_changed(new_text: String) -> void:
+	AppState.download_deck_name = new_text;
+	pass # Replace with function body.
+"
+
+[sub_resource type="GDScript" id=7]
 script/source = "extends ItemList
 
 # Declare member variables here. Examples:
@@ -116,6 +181,27 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 #	pass
+"
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends Button
+
+# Declare member variables here. Examples:
+# var a: int = 2
+# var b: String = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+#	pass
+
+
+func _on_Button_pressed() -> void:
+	OS.shell_open(str(\"file://\", OS.get_user_data_dir()));
+	pass # Replace with function body.
 "
 
 [node name="Board" type="Node2D"]
@@ -171,83 +257,22 @@ theme = ExtResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="TabContainer" type="TabContainer" parent="CanvasLayer/Panel/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/PanelContainer"]
 margin_left = 6.0
 margin_top = 4.0
 margin_right = 259.0
 margin_bottom = 896.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer"]
+margin_right = 253.0
+margin_bottom = 840.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 tab_align = 0
 
-[node name="Master Deck" type="Tabs" parent="CanvasLayer/Panel/PanelContainer/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer"]
-margin_right = 243.0
-margin_bottom = 24.0
-clear_button_enabled = true
-placeholder_text = "url"
-script = SubResource( 3 )
-
-[node name="UrlStatus" type="Label" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer"]
-margin_top = 28.0
-margin_right = 243.0
-margin_bottom = 42.0
-script = SubResource( 4 )
-
-[node name="Download" type="Button" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer"]
-margin_top = 46.0
-margin_right = 243.0
-margin_bottom = 66.0
-text = "Download"
-
-[node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer/Download"]
-script = ExtResource( 6 )
-
-[node name="MasterDeckStatus" type="Label" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer"]
-margin_top = 70.0
-margin_right = 243.0
-margin_bottom = 84.0
-text = "MasterDeck.csv : Not present"
-script = ExtResource( 7 )
-
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer"]
-margin_top = 88.0
-margin_right = 243.0
-margin_bottom = 92.0
-
-[node name="Import" type="Button" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer"]
-margin_top = 96.0
-margin_right = 243.0
-margin_bottom = 116.0
-text = "Import"
-script = SubResource( 1 )
-
-[node name="Export" type="Button" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer"]
-margin_top = 120.0
-margin_right = 243.0
-margin_bottom = 140.0
-text = "Export"
-script = SubResource( 2 )
-
-[node name="Label" type="Label" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer"]
-margin_top = 144.0
-margin_right = 243.0
-margin_bottom = 158.0
-
-[node name="Play Decks" type="Tabs" parent="CanvasLayer/Panel/PanelContainer/TabContainer"]
-editor/display_folded = true
+[node name="Master Deck" type="Tabs" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -255,94 +280,195 @@ margin_top = 29.0
 margin_right = -5.0
 margin_bottom = -5.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer"]
 margin_right = 243.0
-margin_bottom = 52.0
+margin_bottom = 22.0
+clear_button_enabled = true
+placeholder_text = "url"
+script = SubResource( 1 )
+
+[node name="UrlStatus" type="Label" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 26.0
+margin_right = 243.0
+margin_bottom = 48.0
+script = SubResource( 2 )
+
+[node name="Download" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 52.0
+margin_right = 243.0
+margin_bottom = 74.0
+text = "Download"
+script = ExtResource( 6 )
+
+[node name="MasterDeckStatus" type="Label" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 78.0
+margin_right = 243.0
+margin_bottom = 100.0
+text = "MasterDeck.csv : Not present"
+script = ExtResource( 7 )
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 104.0
+margin_right = 243.0
+margin_bottom = 108.0
+
+[node name="Import" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 112.0
+margin_right = 243.0
+margin_bottom = 134.0
+text = "Import"
+script = SubResource( 3 )
+
+[node name="Export" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer"]
+margin_top = 138.0
+margin_right = 243.0
+margin_bottom = 160.0
+text = "Export"
+script = SubResource( 4 )
+
+[node name="Play Decks" type="Tabs" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer"]
+margin_right = 243.0
+margin_bottom = 48.0
 columns = 2
 
-[node name="Url" type="Label" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer/GridContainer"]
-margin_top = 1.0
+[node name="Url" type="Label" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/GridContainer"]
 margin_right = 76.0
-margin_bottom = 23.0
+margin_bottom = 22.0
 text = "Url"
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer/GridContainer"]
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/GridContainer"]
 margin_left = 80.0
 margin_right = 243.0
-margin_bottom = 24.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 custom_constants/minimum_spaces = 0
 clear_button_enabled = true
+script = SubResource( 5 )
 
-[node name="Label2" type="Label" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer/GridContainer"]
-margin_top = 29.0
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/GridContainer"]
+margin_top = 26.0
 margin_right = 76.0
-margin_bottom = 51.0
+margin_bottom = 48.0
 text = "Deckname"
 
-[node name="LineEdit2" type="LineEdit" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer/GridContainer"]
+[node name="LineEdit2" type="LineEdit" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/GridContainer"]
 margin_left = 80.0
-margin_top = 28.0
+margin_top = 26.0
 margin_right = 243.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 custom_constants/minimum_spaces = 0
 clear_button_enabled = true
+script = SubResource( 6 )
 
-[node name="Download" type="Button" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer"]
-margin_top = 56.0
+[node name="Download" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer"]
+margin_top = 52.0
 margin_right = 243.0
-margin_bottom = 76.0
+margin_bottom = 74.0
 text = "Download"
+script = ExtResource( 6 )
+is_deck_download = true
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer"]
-margin_top = 80.0
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer"]
+margin_top = 78.0
 margin_right = 243.0
-margin_bottom = 84.0
+margin_bottom = 82.0
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer"]
-margin_top = 88.0
+[node name="Label" type="Label" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer"]
+margin_top = 86.0
 margin_right = 243.0
-margin_bottom = 110.0
+margin_bottom = 108.0
 text = "Available decks"
 
-[node name="Re-Scan" type="Button" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer"]
-margin_top = 114.0
+[node name="Re-Scan" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer"]
+margin_top = 112.0
 margin_right = 243.0
 margin_bottom = 134.0
 text = "Re-Scan"
 
-[node name="ItemList" type="ItemList" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer"]
+[node name="ItemList" type="ItemList" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer"]
 margin_top = 138.0
 margin_right = 243.0
-margin_bottom = 786.0
+margin_bottom = 754.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = SubResource( 5 )
+script = SubResource( 7 )
 
-[node name="Re-Download" type="Button" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer"]
-margin_top = 790.0
+[node name="Re-Download" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer"]
+margin_top = 758.0
 margin_right = 243.0
-margin_bottom = 810.0
+margin_bottom = 780.0
+disabled = true
 text = "Re-Download"
 
-[node name="Export" type="Button" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer"]
-margin_top = 814.0
+[node name="Export" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer"]
+margin_top = 784.0
 margin_right = 243.0
-margin_bottom = 834.0
+margin_bottom = 806.0
 text = "Export"
+script = ExtResource( 8 )
 
-[node name="Delete" type="Button" parent="CanvasLayer/Panel/PanelContainer/TabContainer/Play Decks/VBoxContainer"]
-margin_top = 838.0
+[node name="Delete" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer"]
+margin_top = 810.0
 margin_right = 243.0
-margin_bottom = 858.0
+margin_bottom = 832.0
+disabled = true
 text = "Delete"
 
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer"]
+margin_top = 784.0
+margin_right = 40.0
+margin_bottom = 788.0
+
+[node name="ExportAll" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer"]
+margin_top = 784.0
+margin_right = 243.0
+margin_bottom = 806.0
+text = "Export"
+script = ExtResource( 9 )
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer"]
+margin_top = 844.0
+margin_right = 253.0
+margin_bottom = 866.0
+text = "Open User Dir"
+script = SubResource( 8 )
+
+[node name="Button2" type="Button" parent="CanvasLayer/Panel/PanelContainer/VBoxContainer"]
+margin_top = 870.0
+margin_right = 253.0
+margin_bottom = 892.0
+text = "TEST DONWLOAD"
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="CardDB" type="Node2D" parent="."]
-[connection signal="text_entered" from="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer/LineEdit" to="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer/LineEdit" method="_on_LineEdit_text_entered"]
-[connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer/Download" to="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer/Download/HTTPRequest" method="_on_Button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer/Import" to="." method="_on_Import_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/TabContainer/Master Deck/VBoxContainer/Export" to="Control/Viewport/RenderCam" method="_on_Export_pressed"]
+[connection signal="text_entered" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer/LineEdit" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer/LineEdit" method="_on_LineEdit_text_entered"]
+[connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer/Download" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer/Download" method="_on_Download_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer/Import" to="." method="_on_Import_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Master Deck/VBoxContainer/Export" to="Control/Viewport/RenderCam" method="_on_Export_pressed"]
+[connection signal="text_changed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/GridContainer/LineEdit" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/GridContainer/LineEdit" method="_on_LineEdit_text_changed"]
+[connection signal="text_changed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/GridContainer/LineEdit2" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/GridContainer/LineEdit2" method="_on_LineEdit2_text_changed"]
+[connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/Download" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/Download" method="_on_Download_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/Export" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/Export" method="_on_Export_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/ExportAll" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/TabContainer/Play Decks/VBoxContainer/ExportAll" method="_on_Export_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/Button" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/Button" method="_on_Button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/PanelContainer/VBoxContainer/Button2" to="CanvasLayer/Panel/PanelContainer/VBoxContainer/Button2" method="_on_Button2_pressed"]
