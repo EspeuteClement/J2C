@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Scenes/CardNew.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Card/fire.jpg" type="Texture" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Assets/Attributes/attribute_holy.png" type="Texture" id=24]
 [ext_resource path="res://Assets/Attributes/attribute_none.png" type="Texture" id=25]
 [ext_resource path="res://Assets/Attributes/attribute_star.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Font/arial.ttf" type="DynamicFontData" id=27]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 178, 241 )
@@ -83,24 +84,19 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFontData" id=11]
+[sub_resource type="DynamicFontData" id=10]
 font_path = "res://Assets/Font/arialbd.ttf"
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=11]
 size = 40
 use_filter = true
-font_data = SubResource( 11 )
+font_data = SubResource( 10 )
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=12]
 animations = [ {
 "frames": [ ExtResource( 16 ) ],
 "loop": true,
 "name": "fire",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "earth",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 20 ) ],
@@ -118,9 +114,9 @@ animations = [ {
 "name": "necro",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ) ],
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
-"name": "dual",
+"name": "holy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 21 ) ],
@@ -128,9 +124,14 @@ animations = [ {
 "name": "glass",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 24 ) ],
+"frames": [ ExtResource( 18 ) ],
 "loop": true,
-"name": "holy",
+"name": "dual",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "earth",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 19 ) ],
@@ -148,6 +149,16 @@ animations = [ {
 "name": "wind",
 "speed": 5.0
 } ]
+
+[sub_resource type="DynamicFont" id=13]
+size = 10
+use_filter = true
+font_data = ExtResource( 27 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 10
+use_filter = true
+font_data = ExtResource( 27 )
 
 [node name="Node2D" type="KinematicBody2D"]
 input_pickable = true
@@ -179,6 +190,7 @@ stretch_mode = 7
 
 [node name="Effect_Solo" type="Node2D" parent="."]
 visible = false
+position = Vector2( 0, -6 )
 
 [node name="Condition_Solo" type="AnimatedSprite" parent="Effect_Solo"]
 position = Vector2( 0, 120 )
@@ -295,7 +307,7 @@ margin_left = -278.667
 margin_top = -48.0
 margin_right = -201.667
 margin_bottom = -2.00002
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "8"
 __meta__ = {
@@ -317,6 +329,44 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 [node name="Attribute" type="AnimatedSprite" parent="."]
 position = Vector2( 130, -180 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 10 )
+frames = SubResource( 12 )
 animation = "holy"
 playing = true
+
+[node name="Version rect" type="ColorRect" parent="."]
+margin_left = 23.0
+margin_top = 231.0
+margin_right = 167.0
+margin_bottom = 242.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D" type="Node2D" parent="Version rect"]
+rotation = 0.785398
+
+[node name="TextureRect" type="ColorRect" parent="Version rect/Node2D"]
+margin_right = 12.0
+margin_bottom = 11.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Number" type="Label" parent="Version rect"]
+margin_left = 8.0
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 13 )
+text = "n°:001"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Version" type="Label" parent="Version rect"]
+anchor_right = 1.0
+custom_fonts/font = SubResource( 14 )
+text = "v0.0.0"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

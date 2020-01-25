@@ -15,9 +15,8 @@ func _ready() -> void:
 #	pass
 
 const scalefactor = Vector2(1.0,1.0);
-const tiles_size = Vector2(6,6);
 
-var deck_db : Array;
+
 
 func export_card(card : CardNew, out_name : String) -> void:
 	#remove all other cards
@@ -46,41 +45,47 @@ func export_card(card : CardNew, out_name : String) -> void:
 
 
 func export_batch(nodes: Array, out_name: String, db:Dictionary):
+	var popup = preload("res://Scenes/PopupDialog.tscn").instance();
+	get_tree().root.add_child(popup);
+	
+	popup.popup_exclusive = true;
+	popup.popup();
+	
 	randomize()
 	for child in get_children():
 		remove_child(child);
 		child.queue_free();
 		
 	var size = preload("res://Assets/Card/template_off.png").get_size()*scalefactor;	
-	get_viewport().set_size(size*tiles_size);
+	get_viewport().set_size(size*AppState.tiles_size);
 	
 	var current_deck;
 	var image_name;
 	
 	var i = 0;
 	var nb_gen = 0;
-	for c in range(nodes.size()):
-		if (c % int(tiles_size.x * tiles_size.y) == 0):
-			image_name = "%s_%s_%d.png" % [out_name, CardDatabase.export_hash, nb_gen];
-			current_deck = _add_new_deck(db, nb_gen, image_name);
-			deck_db.append(current_deck);
+	var max_nodes = nodes.size();
+	for c in range(max_nodes):
+		popup.progress = c * 100 / max_nodes;
+		if (c % int(AppState.tiles_size.x * AppState.tiles_size.y) == 0):
+			image_name = "%s_%s_%d.png" % [out_name, CardDatabase.export_hash, nb_gen+3];
 		
 		var node = nodes[c] as CardNew;
 		if (node):
 			var dupe = node.duplicate(0xF);
 #			dupe.values = node.values;
 			add_child(dupe);
-			dupe.position = size/2 + size * Vector2(i%int(tiles_size.x), int(i/tiles_size.y));
+			dupe.position = size/2 + size * Vector2(i%int(AppState.tiles_size.x), int(i/AppState.tiles_size.y));
 			dupe.scale = scalefactor;
 			
 			_add_new_card_id(db, dupe);
 		
-		if (i == tiles_size.x * tiles_size.y - 1 || c == nodes.size()-1):
+		if (i == AppState.tiles_size.x * AppState.tiles_size.y - 1 || c == nodes.size()-1):
 			get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
 			yield(get_tree(), "idle_frame")
 			yield(get_tree(), "idle_frame")
 			var img = get_viewport().get_texture().get_data();
-			img.save_png("user://%s" % image_name);
+			img.save_png("%s/%s" % [Constants.MasterDeckDirPath, image_name]);
 			
 			nb_gen += 1;
 			i = 0;
@@ -90,6 +95,8 @@ func export_batch(nodes: Array, out_name: String, db:Dictionary):
 				child.queue_free();
 		else:
 			i += 1
+	popup.queue_free();
+	
 
 var CardTemplateObject = null;
 
@@ -102,7 +109,6 @@ func _create_deck_export_data() -> Dictionary:
 	dict.ObjectStates[0].CustomDeck.clear();
 	return dict;
 
-const FILE_HOST_URL = "http://clementespeute.com/res/";
 
 func _notch_flags_to_name(flags: int) -> String:
 	var name = "";
@@ -116,24 +122,6 @@ func _notch_flags_to_name(flags: int) -> String:
 		name += "D";
 	
 	return name;
-
-func _add_new_deck(db:Dictionary, id:int, face_card_file:String) -> Dictionary:
-	var deck_name = (id+3);
-	
-	if (db.ObjectStates[0].CustomDeck.has(deck_name)):
-		return db;
-		
-	var dict = Dictionary();
-	db.ObjectStates[0].CustomDeck[deck_name] = dict;
-	dict.FaceURL = FILE_HOST_URL + face_card_file;
-	dict.BackURL = FILE_HOST_URL + "card_back.png";
-	
-	dict.NumWidth = tiles_size.x;
-	dict.NumHeight = tiles_size.y;
-	dict.BackIsHidden = true;
-	dict.UniqueBack = false;
-	
-	return dict;
 	
 func _add_new_card_id(db:Dictionary, card:Node) -> Dictionary:
 	
@@ -161,17 +149,21 @@ func _add_new_card_id(db:Dictionary, card:Node) -> Dictionary:
 	card_obj.Nickname = "%s (%s) [%s]" % [card.card_name, CardNew.attribute_animation_name[card.card_attribute].capitalize() , _notch_flags_to_name(card.notch_flags)];
 	card_obj.Description = "%d, %d, x:%d, y:%d" % [card.card_export_id, card.card_deck_id, card.card_x, card.card_y];
 	card_obj.CustomDeck = Dictionary();
-	var the_deck = deck_db[deck_id-3].duplicate();
-	card_obj.CustomDeck[str(deck_id+3)] = the_deck;
+	var the_deck = AppState.deck_db[deck_id].duplicate();
+	card_obj.CustomDeck[str(deck_id)] = the_deck;
 	
 	(db.ObjectStates[0].DeckIDs as Array).append(card_id);
 	
 	db.ObjectStates[0]["ContainedObjects"].append(card_obj);
+	
+	if !db.ObjectStates[0]["CustomDeck"].has(str(deck_id)):
+		db.ObjectStates[0]["CustomDeck"][str(deck_id)] = the_deck;
+		
 	return db;
 
 func _save_card_db(db:Dictionary, out_name:String):
 	var deck_export = File.new();
-	deck_export.open("user://%s.json" %out_name, File.WRITE_READ);
+	deck_export.open("%s.json" % out_name, File.WRITE_READ);
 	deck_export.store_string(JSON.print(db, "  "));
 	deck_export.close();
 	
@@ -180,10 +172,10 @@ func _save_card_db(db:Dictionary, out_name:String):
 	path = "res://Assets/Card/card_back_offense.png";
 	
 	var dir = Directory.new()
-	dir.copy(path, "user://%s.png" % out_name);
+	dir.copy(path, "%s.png" % out_name);
 
 func _on_Export_pressed() -> void:
-	deck_db = Array();
+	
 	
 	var count:int = 0;
 	var nb_batch:int = 0;
@@ -199,41 +191,24 @@ func _on_Export_pressed() -> void:
 #			pb.value = float(count) / float(children.size());
 			
 	var db = _create_deck_export_data();
-	export_batch(batch,  "cards_batch", db);
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
+	
+#	Clear out the output directory
+	var Dir = Directory.new();
+	Dir.open(Constants.MasterDeckDirPath)
+	Dir.list_dir_begin()
+	var file_name = Dir.get_next()
+	while (file_name != ""):
+		if !Dir.current_is_dir():
+			Dir.remove(file_name);
+		file_name = Dir.get_next()
+		
+	Dir.list_dir_end();
+	
+	export_batch(batch,  Constants.MasterDeckImageName, db);
 
-	_save_card_db(db, "Master Deck");
+	_save_card_db(db, Constants.MasterDeckOutPath);
+	
+
 	pass # Replace with function body.
 
 var tiled = false;
@@ -247,13 +222,18 @@ func _save_custom_deck(in_name:String, out_name:String):
 		printerr("Couldn't open file %s" % in_name);
 		return;
 	var line;
+#	DL header
 	f.get_csv_line();
+#	Info headers
+	f.get_csv_line();	
 	var db = _create_deck_export_data();
 	
 	while(!f.eof_reached()):
 		line = f.get_csv_line();
 		var id = int(line[0].strip_edges());
+		if (!id): continue;
 		var notches_txt = line[1].strip_edges();
+		if (!notches_txt): continue;
 		var notch_id = 0;
 		for c in notches_txt:
 			match c.to_upper():
@@ -269,11 +249,6 @@ func _save_custom_deck(in_name:String, out_name:String):
 					printerr("Notch char not recognized");
 					
 		_add_new_card_id(db, CardDatabase.Data[id][notch_id]);
-	
-	var did = 3;
-	for deck in deck_db:
-		db.ObjectStates[0].CustomDeck[str(did)] = deck;
-		did += 1;
 	
 	_save_card_db(db, out_name);
 

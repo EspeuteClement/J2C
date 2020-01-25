@@ -71,9 +71,11 @@ func _generate_card_new(props : Array, notches : int, gen_data : Dictionary) -> 
 	var _id = int(props[CardPropNew.CARD_ID].strip_edges());
 	var new_card = preload("res://Scenes/CardNew.tscn").instance();
 	
+	new_card.id = _id;
 	new_card.card_name = props[CardPropNew.NAME].strip_edges();
 	new_card.notch_flags = notches;
 	new_card.card_id = gen_data.current_card_id;
+	
 	for i in range(4):
 		var side = notches & 1 << i;
 		if (side > 0):
@@ -113,6 +115,13 @@ func _generate_card_new(props : Array, notches : int, gen_data : Dictionary) -> 
 	new_card.card_deck_id = 3 + int(gen_data.current_card_id / (CARD_PER_COLUMN * CARD_PER_ROW));
 	new_card.card_export_id = new_card.card_deck_id * 100 + (gen_data.current_card_id % (CARD_PER_COLUMN * CARD_PER_ROW));
 	
+	new_card.version_string = gen_data.version;
+	
+	if (gen_data.current_card_id % int(AppState.tiles_size.x * AppState.tiles_size.y) == 0):
+		var image_name = "%s_%s_%d.png" % [Constants.MasterDeckImageName, CardDatabase.export_hash, new_card.card_deck_id];
+		var current_deck = AppState._add_new_deck(new_card.card_deck_id, image_name);
+		print("Generated one deck");
+	
 	gen_data.current_card_id += 1;
 	get_tree().get_root().get_node("Board/CardDB").add_child(new_card);
 	new_card.update_card();
@@ -121,6 +130,8 @@ func _generate_card_new(props : Array, notches : int, gen_data : Dictionary) -> 
 		CardDatabase.Data[_id] = Dictionary();
 
 	CardDatabase.Data[_id][notches] = new_card;
+	
+
 
 #func _genetrate_card(props : Array, sides_flags : int, type: int, gen_data : Dictionary) -> Node2D:
 #	var id = int(props[0].strip_edges());
@@ -221,6 +232,12 @@ func _on_Import_pressed() -> void:
 		gen_data.current_card_id = 0;
 		var lines_parsed = 0;
 		#skip first line
+		var metadata_line = f.get_csv_line();
+		var version = metadata_line[0];
+		
+		gen_data["version"] = version;
+		
+		#skip headers
 		f.get_csv_line();
 		while(!f.eof_reached()):
 			var line = f.get_csv_line();
@@ -334,12 +351,3 @@ func _on_Import_pressed() -> void:
 #		printerr("Couldn't open file %s. Error %d" % [path, err]);
 #
 #	f.close();	
-
-func _on_Download_pressed() -> void:
-	var error = OS.execute("Wget/dl.bat", [], true);
-	
-	#var error = $HTTPRequest.request(url, PoolStringArray( ), false, HTTPClient.METHOD_GET);
-	print(error);
-
-func _on_LineEdit_text_entered(new_text: String) -> void:
-	pass # Replace with function body.

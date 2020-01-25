@@ -19,6 +19,9 @@ enum CardType {
 
 var animation_names = ["off", "def"];
 
+onready var VersionNode = $"Version rect/Version"
+onready var NumberNode = $"Version rect/Number"
+
 enum CardAttribute {
 	NEUTRAL,
 	FIRE,
@@ -89,6 +92,8 @@ export var card_x = 0;
 export var card_y = 0;
 export var card_deck_id = 0;
 export var card_export_id = 0;
+
+export var version_string = "";
 
 onready var CardName = $CardName;
 
@@ -164,6 +169,13 @@ func update_card():
 		
 	if($DamageScale/DamageValue):
 		$DamageScale/DamageValue.text = "%d" % [card_value];
+		
+	if (VersionNode):
+		VersionNode.text = version_string;
+		
+	if (NumberNode):
+		NumberNode.text = "n°:%03d" % id;
+	
 	update();
 
 # Game stuff
