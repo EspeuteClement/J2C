@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/EffectBorders/BordersSmall.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Assets/Font/ArialBold.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/EffectSmall.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Assets/Font/arial.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[node name="Effect_1" type="Node2D"]
+position = Vector2( -78, 112 )
+script = ExtResource( 3 )
+
+[node name="Condition" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = ExtResource( 1 )
+animation = "blitz"
+playing = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ActivationText" type="RichTextLabel" parent="."]
+margin_left = -67.0
+margin_top = -86.0
+margin_right = 68.0
+margin_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+custom_fonts/bold_font = ExtResource( 2 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_constants/line_separation = -7
+bbcode_enabled = true
+bbcode_text = "Activation text now
+"
+meta_underlined = false
+text = "Activation text now
+"
+scroll_active = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EffectText" type="RichTextLabel" parent="."]
+margin_left = -68.0
+margin_top = 18.0
+margin_right = 102.0
+margin_bottom = 152.0
+rect_scale = Vector2( 0.8, 0.8 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+custom_fonts/bold_font = ExtResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "Effect Text"
+tab_size = 0
+text = "Effect Text"
+scroll_active = false
+__meta__ = {
+"_edit_lock_": true
+}
