@@ -66,10 +66,21 @@ func strip_spaces(s :String) -> String:
 #	s = s.replace(" ", "");
 #	s = s.replace("\t", "");
 
+var Dir = Directory.new();
 
 func _generate_card_new(props : Array, notches : int, gen_data : Dictionary) -> void:
 	var _id = int(props[CardPropNew.CARD_ID].strip_edges());
+	
 	var new_card = preload("res://Scenes/CardNew.tscn").instance();
+	
+	var img_path = "user://img/%04d.png" % _id;
+	
+	if (Dir.file_exists(img_path)):
+		var imagetexture = ImageTexture.new()
+		imagetexture.load(img_path);
+		
+		new_card.get_node("Illustration").texture = imagetexture;
+	
 	
 	new_card.id = _id;
 	new_card.card_name = props[CardPropNew.NAME].strip_edges();
@@ -351,3 +362,12 @@ func _on_Import_pressed() -> void:
 #		printerr("Couldn't open file %s. Error %d" % [path, err]);
 #
 #	f.close();	
+
+
+func _on_ExportUrl_text_entered(new_text: String) -> void:
+	Constants.FILE_HOST_URL = new_text
+	pass # Replace with function body.
+
+
+func _on_ExportUrl_text_changed(new_text: String) -> void:
+	Constants.FILE_HOST_URL = new_text

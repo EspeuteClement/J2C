@@ -25,9 +25,9 @@ animations = [ {
 "name": "artefact",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "blitz",
+"name": "swift",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
@@ -35,9 +35,9 @@ animations = [ {
 "name": "special",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "swift",
+"name": "blitz",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],

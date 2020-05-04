@@ -97,6 +97,8 @@ func export_batch(nodes: Array, out_name: String, db:Dictionary):
 			i += 1
 	popup.queue_free();
 	
+	_save_card_db(db, Constants.MasterDeckOutPath);
+	
 
 var CardTemplateObject = null;
 
@@ -206,7 +208,7 @@ func _on_Export_pressed() -> void:
 	
 	export_batch(batch,  Constants.MasterDeckImageName, db);
 
-	_save_card_db(db, Constants.MasterDeckOutPath);
+
 	
 
 	pass # Replace with function body.

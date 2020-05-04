@@ -1,7 +1,7 @@
 [gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Scenes/CardNew.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Card/fire.jpg" type="Texture" id=2]
+[ext_resource path="res://Assets/Attributes/attribute_xeno.png" type="Texture" id=2]
 [ext_resource path="res://Assets/EffectBorders/BordersBig.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://Assets/Font/ArialBold.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Scenes/EffectSmall.tscn" type="PackedScene" id=5]
@@ -99,39 +99,14 @@ animations = [ {
 "name": "fire",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 20 ) ],
+"frames": [ ExtResource( 22 ) ],
 "loop": true,
-"name": "ice",
+"name": "wind",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 25 ) ],
 "loop": true,
 "name": "neutral",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ) ],
-"loop": true,
-"name": "necro",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "holy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 21 ) ],
-"loop": true,
-"name": "glass",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ) ],
-"loop": true,
-"name": "dual",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "earth",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 19 ) ],
@@ -144,9 +119,39 @@ animations = [ {
 "name": "star",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ) ],
+"frames": [ ExtResource( 23 ) ],
 "loop": true,
-"name": "wind",
+"name": "earth",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ) ],
+"loop": true,
+"name": "glass",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "dual",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "necro",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "holy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "ice",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "xeno",
 "speed": 5.0
 } ]
 
@@ -177,16 +182,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-margin_left = -165.0
-margin_top = -240.0
+[node name="Illustration" type="TextureRect" parent="."]
+margin_left = -164.0
+margin_top = -233.0
 margin_right = 167.0
-margin_bottom = 238.0
+margin_bottom = 237.0
 mouse_filter = 2
-texture = ExtResource( 2 )
 expand = true
 stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Effect_Solo" type="Node2D" parent="."]
 visible = false
@@ -330,7 +336,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 position = Vector2( 130, -180 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 12 )
-animation = "holy"
+animation = "xeno"
 playing = true
 
 [node name="Version rect" type="ColorRect" parent="."]

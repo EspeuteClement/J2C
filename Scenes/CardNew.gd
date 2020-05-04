@@ -35,7 +35,8 @@ enum CardAttribute {
 	STAR,
 	NECRO,
 	HOLY,
-	WIND
+	WIND,
+	XENO,
 };
 
 const attribute_animation_name = {
@@ -52,6 +53,7 @@ const attribute_animation_name = {
 	CardAttribute.NECRO: "necro",
 	CardAttribute.HOLY: "holy",
 	CardAttribute.WIND: "wind",
+	CardAttribute.XENO: "xeno",
 	
 };
 

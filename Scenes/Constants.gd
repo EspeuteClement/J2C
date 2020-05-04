@@ -17,4 +17,4 @@ var ImagesPaths = "user://img/"
 
 var DecksPath = "user://decks/"
 
-const FILE_HOST_URL = "http://clementespeute.com/res/";
+var FILE_HOST_URL = "http://clementespeute.com/res/";
